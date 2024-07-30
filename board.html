@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+    <link rel="icon" type="image/x-icon" href="assets/img/favicon.svg">
+
+
     <link rel="stylesheet" href="css/board.css">
     <link rel="stylesheet" href="css/font.css">
     <link rel="stylesheet" href="css/header.css">
@@ -15,20 +18,35 @@
     <div w3-include-html="template.html"></div> 
 
     <div class="headline">
-        <h1>Board</h1>
-        <div id="searchbar">
-            <input type="text" placeholder="Find Task">
-            <div class="line"></div>
-            <img class="magnifying-glass" src="assets/img/magnifying-glass.svg" alt="magnifying glass">
+        <div class="headline-left">
+            <h1>Board</h1>
         </div>
-        <a href="#" class="add-task-btn">Add task <img src="assets/img/btn-plus.svg" alt="+"></a>
+        <div class="headline-right">
+            <div id="searchbar">
+                <input type="text" placeholder="Find Task">
+                <div class="line"></div>
+                <img class="magnifying-glass" src="assets/img/magnifying-glass.svg" alt="magnifying glass">
+            </div>
+            <a href="#" class="add-task-btn">Add task <img src="assets/img/btn-plus.svg" alt="+"></a>    
+        </div>
     </div>
     
     <div class="tasks">
-        <div class="to-do-split"></div>
-        <div class="in-progress-split"></div>
-        <div class="await-feedback-split"></div>
-        <div class="done-split"></div>
+        <div class="to-do-split">
+            <span>To do</span>
+            <img src="assets/img/plus-button.svg" alt="plus">
+        </div>
+        <div class="in-progress-split">
+            <span>In progress</span>
+            <img src="assets/img/plus-button.svg" alt="plus">
+        </div>
+        <div class="await-feedback-split">
+            <span>Await feedback</span>
+            <img src="assets/img/plus-button.svg" alt="plus">
+        </div>
+        <div class="done-split">
+            <span>Done</span>
+        </div>
     </div>
 
 

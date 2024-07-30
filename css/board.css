@@ -11,9 +11,22 @@ body {
 }
 
 .headline {
+  width: 70%;
   display: flex;
+  justify-content: space-between;
   align-items: center;
-  margin-left: 232px;
+  margin-left: 300px;
+}
+
+.headline-left > h1 {
+  font-size: 61px;
+  font-weight: 700;
+}
+
+.headline-right {
+  width: 504px;
+  display: flex;
+  justify-content: space-between;
 }
 
 #searchbar {
@@ -96,4 +109,31 @@ body {
 
 .add-task-btn:active {
   position: relative;
+}
+
+.tasks {
+  width: 80%;
+  display: flex;
+  justify-content: space-between;
+  margin-left: 300px;
+}
+
+.to-do-split,
+.in-progress-split,
+.await-feedback-split,
+.done-split {
+  width: 244px;
+  height: 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.to-do-split > span,
+.in-progress-split > span,
+.await-feedback-split > span,
+.done-split > span {
+  font-size: 20px;
+  font-weight: 700;
+  color: rgba(66, 82, 110, 1);
 }
