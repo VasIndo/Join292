@@ -19,3 +19,11 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     });
   });
+
+  function activeDetailCard() {
+    document.getElementById('card-detail-view').classList.remove("active-card");
+  }
+
+  function hideDetailCard() {
+    document.getElementById('card-detail-view').classList.add("active-card");
+  }

@@ -46,7 +46,7 @@
         </div>
         <div class="in-progress-tasks">
           <!--add task card here -->
-          <div class="card">
+          <div onclick="activeDetailCard()" id="card">
             <div class="catagory">User Story</div>
             <h1 class="title">Kochwelt Page & Recipe Recommender</h1>
             <p class="description">Build start page with recipe recommendation...</p>
@@ -87,10 +87,10 @@
       </div>
     </div>
 
-    <div class="card-detail-view">
+    <div class="active-card" id="card-detail-view">
       <div class="card-detail-view-headline">
         <div class="card-detail-view-catagory">User Story</div>
-        <img src="assets/img/close.svg" alt="close">
+        <img onclick="hideDetailCard()" src="assets/img/close.svg" alt="close">
       </div>
       <h1 class="card-detail-view-title">Kochwelt Page & Recipe Recommender</h1>
       <span class="card-detail-view-description">Build start page with recipe recommendation.</span>
