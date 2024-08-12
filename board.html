@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="icon" type="image/x-icon" href="assets/img/favicon.svg" />
+
+    <link rel="stylesheet" href="css/board.css" />
+    <link rel="stylesheet" href="css/font.css" />
+    <link rel="stylesheet" href="css/template.css" />
+
+    <title>Join Board</title>
+  </head>
+  <body onload="includeHTML()">
+    <div w3-include-html="template.html"></div>
+
+    <div class="board">
+      <div class="headline">
+        <div class="headline-left">
+          <h1>Board</h1>
+        </div>
+        <div class="headline-right">
+          <form id="searchbar">
+            <input id="searchbar-field" type="text" placeholder="Find Task" />
+            <div class="line"></div>
+            <img class="magnifying-glass" src="assets/img/magnifying-glass.svg" alt="magnifying glass" />
+          </form>
+          <a onclick="toggleAddTaskPopUp()" href="#" class="add-task-btn"
+            >Add task <img src="assets/img/btn-plus.svg" alt="+"
+          /></a>
+        </div>
+      </div>
+
+      <div class="tasks">
+        <div class="to-do-split">
+          <div class="to-do-headline">
+            <span>To do</span>
+            <img class="task-plus" id="to-do-plus" src="assets/img/plus-button.svg" alt="plus" />
+          </div>
+          <div class="to-do-tasks">
+            <img src="assets/img/no-tasks.svg" alt="" />
+            <!--add task card here for To Do -->         
+          </div>
+        </div>
+        <div class="in-progress-split">
+          <div class="in-progress-headline">
+            <span>In progress</span>
+            <img class="task-plus" id="in-progress-plus" src="assets/img/plus-button.svg" alt="plus" />
+          </div>
+          <div class="in-progress-tasks">
+            <!--add task card heren for In progress -->
+            <div onclick="toggleDetailTaskCard()" id="card">
+              <div class="catagory">User Story</div>
+              <h1 class="title">Kochwelt Page & Recipe Recommender</h1>
+              <p class="description">Build start page with recipe recommendation...</p>
+              <div class="subtasks">
+                <div class="subtasks-diagram">
+                  <div class="subtasks-diagram-filled"></div>
+                </div>
+                <span class="subtasks-number">1/2</span>
+              </div>
+              <div class="bottom-card">
+                <div class="assigned-to">
+                  <span class="person-one">AM</span>
+                  <span class="person-two">EM</span>
+                  <span class="person-three">MB</span>
+                </div>
+                <img class="prio" src="assets/img/prio-medium.svg" alt="medium" />
+              </div>
+            </div>
+            <!--add task card until here for in progress -->
+          </div>
+        </div>
+        <div class="await-feedback-split">
+          <div class="await-feedback-headline">
+            <span>Await feedback</span>
+            <img class="task-plus" id="await-feedback-plus" src="assets/img/plus-button.svg" alt="plus" />
+          </div>
+          <div class="in-progress-tasks">
+            <!--add task card here Awiat feedback-->
+          </div>
+        </div>
+        <div class="done-split">
+          <div class="done-headline">
+            <span>Done</span>
+          </div>
+          <div class="done-tasks">
+            <!--add task card here for Done-->
+          </div>
+        </div>
+      </div>
+
+      <div class="hide-card" id="card-detail-view">
+        <div class="card-detail-view-headline">
+          <div class="card-detail-view-catagory">User Story</div>
+          <img onclick="toggleDetailTaskCard()" src="assets/img/close.svg" alt="close" />
+        </div>
+        <h1 class="card-detail-view-title">Kochwelt Page & Recipe Recommender</h1>
+        <span class="card-detail-view-description">Build start page with recipe recommendation.</span>
+        <div class="card-detail-view-date">
+          <span class="card-detail-view-date-text">Due Date:</span>
+          <span class="card-detail-view-date-due-date">10/05/2023</span>
+        </div>
+        <div class="card-detail-view-priority">
+          <span class="card-detail-view-priority-text">Priority:</span>
+          <div class="card-detail-view-priority-urgency">
+            <span>Medium</span>
+            <img src="assets/img/prio-medium.svg" alt="medium" />
+          </div>
+        </div>
+        <div class="card-detail-view-assigned-to">
+          <span>Assigned-To:</span>
+          <div class="card-detail-view-assigned-to-person-one">
+            <span class="card-detail-view-assigned-to-person-one-logo">AM</span>
+            <span>Anton Mayer</span>
+          </div>
+          <div class="card-detail-view-assigned-to-person-two">
+            <span class="card-detail-view-assigned-to-person-two-logo">EM</span>
+            <span>Emmanuel Mauer</span>
+          </div>
+          <div class="card-detail-view-assigned-to-person-three">
+            <span class="card-detail-view-assigned-to-person-three-logo">MB</span>
+            <span>Marcel Bauer</span>
+          </div>
+        </div>
+        <div class="card-detail-view-subtasks">
+          <span>Subtasks</span>
+          <div class="card-detail-view-subtasks-enumeration">
+            <div class="card-detail-view-subtasks-enumeration-one">
+              <img src="assets/img/check-button-checked.svg" alt="checked" />
+              <span>Implement Recipe Recommendation</span>
+            </div>
+            <div class="card-detail-view-subtasks-enumeration-two">
+              <img src="assets/img/check-button.svg" alt="not checked" />
+              <span>Start Page Layout</span>
+            </div>
+          </div>
+        </div>
+        <div class="options-container">
+          <div class="options">
+            <div class="delete">
+              <img src="assets/img/delete.svg" alt="Bin" />
+              <span>Delete</span>
+            </div>
+            <div class="options-line"></div>
+            <div class="edit">
+              <img src="assets/img/edit.svg" alt="Pencil" />
+              <span>Edit</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="hide-add-task" id="add-task">
+      <div onclick="toggleAddTaskPopUp()" class="add-task-headline">
+        <h1>Add Task</h1>
+        <img src="assets/img/close.svg" alt="Close" />
+      </div>
+      <form action="">
+        <div class="form">
+          <div class="add-task-left">
+            <label for="title">Title <span>*</span></label>
+            <input type="text" id="title" name="task-title" required placeholder="Enter a Title" />
+
+            <label for="description">Description</label>
+            <textarea
+              id="description"
+              name="task-description"
+              rows="6"
+              cols="50"
+              placeholder="Enter a Description"
+            ></textarea>
+
+            <div class="assigned-container">
+              <label for="assigned-select">Assigned to</label>
+              <div onclick="toggleAssignedDropDown()" id="assigned-dropdown">
+                Select contacts to assign
+                <img
+                  class="drop-down-arrow"
+                  src="assets/img/drop-down-arrow.svg"
+                  alt="Arrow"
+                />
+              </div>
+              <div id="person-to-assigned" class="d-none">
+                <!-- add persons -->
+                 <div id="person0" onclick="togglePersonToAssigned(0)" class="person-container">
+                  <div class="person">
+                    <span class="person-to-assigned-logo1">SM</span>
+                    <span id="person-to-assigned-name0">Sofia Müller</span> 
+                   </div>
+                   <img id="person0-checkbox" src="assets/img/check-button.svg" class="checkbox">  
+                 </div>
+                 <!-- add person until here -->
+                 <div id="person1" onclick="togglePersonToAssigned(1)" class="person-container">
+                  <div class="person">
+                    <span class="person-to-assigned-logo2">AM</span>
+                    <span id="person-to-assigned-name1">Anton Mayer</span> 
+                   </div>
+                   <img id="person1-checkbox" src="assets/img/check-button.svg" class="checkbox">  
+                 </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="add-task-line"></div>
+
+          <div class="add-task-right">
+            <div class="date-container">
+              <label for="date">Due date <span>*</span></label>
+              <input type="date" id="date" name="date" required/>
+            </div>
+
+            <div class="add-task-prio">
+              <label for="prio">Prio</label>
+              <div class="prio-btn">
+                <button type="button" id="urgent-btn">
+                  Urgent <img src="assets/img/prio-urgent.svg" alt="Urgent" />
+                </button>
+                <button type="button" id="medium-btn">
+                  Medium <img src="assets/img/prio-medium.svg" alt="Medium" />
+                </button>
+                <button type="button" id="low-btn">Low <img src="assets/img/prio-low.svg" alt="Low" /></button>
+              </div>
+            </div>
+
+            <div class="category-container">
+              <label for="category-select">Category</label>
+              <div id="category-dropdown">
+                Select task category
+                <img
+                  onclick="toggleCategoryDropDown()"
+                  class="drop-down-arrow"
+                  src="assets/img/drop-down-arrow.svg"
+                  alt="Arrow"
+                />
+              </div>
+              <div id="categories" class="d-none">
+                <!-- add categories -->
+              </div>
+            </div>
+
+            <div class="subtasks-container">
+              <label for="subtasks">Subtasks</label>
+              <div class="add-subtasks-container">
+                <input name="add-subtasks" id="add-subtasks" placeholder="Add new subtasks" />
+                <img src="assets/img/plus2.svg" alt="Plus" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+      <div class="bottom">
+        <div class="bottom-left">
+          <span>*</span>
+          <span>This field is required</span>
+        </div>
+        <div class="bottom-right">
+            <a href="#" onclick="toggleAddTaskPopUp()" onmouseenter="mouseEnterChangeX()" onmouseleave="mouseLeaveChangeX()" class="cancel-btn">Cancel<img id="cancel-btn-img" src="assets/img/cancel-x.svg"/></a>
+            <a href="#" class="create-task-btn">Create Task<img src="assets/img/create-task-check.svg"/></a>
+        </div>
+      </div>
+    </div>
+
+    <div id="board-container" class="d-none"></div>
+
+    <script src="js/include.js"></script>
+    <script src="js/board.js"></script>
+    <script src="js/template.js"></script>
+  </body>
+</html>

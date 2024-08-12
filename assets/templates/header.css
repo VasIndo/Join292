@@ -1,0 +1,87 @@
+body {
+    padding: 0;
+    margin: 0;
+}
+
+header {
+    height: 96px;
+    padding: 20px 40px 20px 348px;
+    gap: 0px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.headerInfo {
+    align-items: center;
+    width: 104px;
+    height: 56px;
+    gap: 16px;
+    display: flex;
+}
+
+.helpBtn {
+    width: 32px;
+    height: 32px;
+}
+
+.userBtn {
+    width: 56px;
+    height: 56px;
+}
+
+nav {
+    width: 232px;
+    height: 1024px;
+    padding: 64px 0px 64px 0px;
+    gap: 0px;
+    background-color: #2A3647;
+    position: absolute;
+    top: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.navLogo {
+    width: 100.03px;
+    height: 121.97px;
+}
+
+.navBar {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 15px;
+    width: 232px;
+    height: 229px;
+}
+
+.navBar a {
+    text-decoration: none;
+    color: #CDCDCD;
+    font-size: 16px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 56px;
+}
+
+.navBar a:hover {
+    background-color: #091931;
+}
+
+.navBarIcon {
+    width: 30px;
+    height: 30px;
+}
+
+.navLaws {
+    color: #A8A8A8;
+    font-size: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}

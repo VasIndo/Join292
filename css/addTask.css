@@ -1,0 +1,151 @@
+body {
+    overflow-x: hidden;
+}
+
+.addTaskContainer {
+    width: 100vw;
+    height: 100vh;
+    background-color: #f6f7f8;
+    padding-left: 96px;
+    margin-left: 232px;
+}
+
+.addTaskContainer h1 {
+    margin-block-start: 0;
+    margin-block-end: 0;
+    padding-top: 110px;
+    font-size: 61px;
+    font-weight: 700;
+    padding-bottom: 48px;
+}
+
+.formCon {
+    display: flex;
+    font-size: 20px;
+}
+
+form span {
+    color: #FF8190;
+}
+
+.leftForm {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.formCon input {
+    width: 440px;
+    height: 48px;
+    border-radius: 10px;
+    border: 1px solid #D1D1D1;
+    padding: 12px 21px 12px 21px;
+    color: #D1D1D1;
+    margin-bottom: 16px;
+    font-size: 20px;
+}
+
+.formCon textarea {
+    font-size: 20px;
+    height: 120px;
+    border-radius: 10px;
+    border: 1px solid #D1D1D1;
+    padding: 18px 16px 18px 16px;
+    color: #D1D1D1;
+    margin-bottom: 16px;
+}
+
+.formCon select {
+    font-size: 20px;
+    height: 48px;
+    border-radius: 10px;
+    border: 1px solid #D1D1D1;
+    color: #D1D1D1;
+    margin-bottom: 24px;
+    padding: 12px 16px 12px 16px;
+}
+
+.devider {
+    width: 0px;
+    height: 424px;
+    border: 1px solid #D1D1D1;
+    margin-left: 48.25px;
+    margin-right: 48px;
+    margin-bottom: 138px;
+}
+
+.rightForm {
+    display: flex;
+    flex-direction: column;
+    height: 376px;
+    gap: 8px;
+}
+
+#date {
+    width: 440px;
+    height: 48px;
+    border-radius: 10px;
+    border: 1px solid #D1D1D1;
+    color: #D1D1D1;
+    margin-bottom: 24px;
+}
+
+.btnPrio {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 8px;
+    margin-bottom: 24px;
+}
+
+.formBtn {
+    border: 0;
+    background: none;
+    width: 136px;
+    height: 56px;
+    padding: 16px 10px 16px 10px;
+    background-color: white;
+    border-radius: 10px;
+    font-size: 20px;
+}
+
+.formBtn:hover {
+    cursor: pointer;
+    box-shadow: 0px 4px 4px 1px #0000001A;
+}
+
+.checkBtn {
+    width: 183px;
+    height: 56px;
+    padding: 16px;
+    border-radius: 10px;
+    font-size: 21px;
+    background-color: #2A3647;
+    color: white;
+    padding-block: 0;
+    padding-inline: 0;
+}
+
+.resetBtn {
+    width: 110px;
+    height: 56px;
+    padding: 16px;
+    border-radius: 10px;
+    border: 1px solid #2A3647;
+    background-color: #F6F7F8;
+    color: #2A3647;
+    font-size: 20px;
+}
+
+.addTaskContainer p {
+    font-size: 16px;
+    width: 170px;
+    height: 27px;
+    position: absolute;
+    top: 926px;
+    left: 328px;
+}
+
+.addTaskContainer p span {
+    color: #FF8190;
+}

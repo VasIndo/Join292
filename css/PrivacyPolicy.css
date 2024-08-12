@@ -1,0 +1,50 @@
+/* Privacy Policy */
+body {
+  font-family: "Inter";
+}
+
+.header-privacy {
+  margin-top: 100px;
+  margin-left: 328px;
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-bottom: 40px;
+}
+
+.header-privacy img {
+  width: 32px;
+  height: 32px;
+  padding: 5px;
+  margin-right: 125px;
+}
+
+.header-privacy img:hover {
+  background-color: rgba(238, 238, 238, 1);
+  border-radius: 50%;
+}
+
+h1 {
+  width: 419px;
+  height: 73px;
+  font-size: 61px;
+  line-height: 73.2px;
+  font-weight: 700;
+  margin: 0px;
+}
+
+.text-Policy {
+  width: 1016px;
+  margin-left: 328px;
+  margin-bottom: 50px;
+}
+
+h2 {
+  font-size: 27px;
+  font-weight: 700;
+  line-height: 32.4px;
+  width: 346px;
+  height: 32px;
+  margin: 0px;
+}

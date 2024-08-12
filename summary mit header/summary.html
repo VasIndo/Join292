@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/x-icon" href="img/favicon.svg">
+    <title>Join-Summary</title>
+
+    <link rel="stylesheet" href="css/summary.css" />
+    <link rel="stylesheet" href="css/font.css" />
+  </head>
+  <body onload="includeHTML()">
+
+    <div w3-include-html="header.html"></div> 
+
+    <div class="summary">
+      <div class="headline">
+        <h1>Join 360</h1>
+        <div class="line"></div>
+        <span>Key Metrics at a Glance</span>
+      </div>
+
+      <div class="first-row">
+        <div onmouseenter="changeToDoIconOnMouseEnter()" onmouseleave="changeToDoIconOnMouseLeave()" class="to-do">
+          <img id="summary-to-do-icon" src="img/summary-to-do.svg" />
+          <div class="number-of">
+            <span class="number">1</span>
+            <span class="number-of-text">To-do</span>
+          </div>
+        </div>
+        <div onmouseenter="changeDoneIconOnMouseEnter()" onmouseleave="changeDoneIconOnMouseLeave()" class="done">
+          <img id="summary-done-icon" src="img/summary-done.svg" />
+          <div class="number-of">
+            <span class="number">1</span>
+            <span class="number-of-text">Done</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="second-row">
+        <div class="second-row-left">
+          <div class="urgent">
+            <img src="img/summary-urgent.svg" />
+            <div class="number-of">
+              <span class="number">1</span>
+              <span>Urgent</span>
+            </div>
+          </div>
+          <div class="urgent-line"></div>
+          <div class="dead-line">
+            <span class="dead-line-date">October 16, 2022</span>
+            <span class="dead-line-upcoming-deadline">Upcoming Deadline</span>
+          </div>  
+        </div>
+        <div class="second-row-right">
+          <div class="greeting">
+            <span class="greeting-message">Good morning,</span>
+            <span class="greeting-person">Sofia Müller</span>
+          </div>    
+        </div>
+      </div>
+
+      <div class="third-row">
+        <div class="third-row-tasks-in-board">
+          <span class="number">5</span>
+          <span class="number-of-text">Tasks in Board</span>
+        </div>
+        <div class="third-row-tasks-in-progress">
+          <span class="number">2</span>
+          <span class="number-of-text">Tasks in Progress</span>
+        </div>
+        <div class="third-row-awaiting-feedback">
+          <span class="number">2</span>
+          <span class="number-of-text">Awaiting Feedback</span>
+        </div>
+      </div>
+      
+    </div>
+
+    <script src="js/include.js"></script>
+    <script src="js/summary.js"></script>
+  </body>
+</html>

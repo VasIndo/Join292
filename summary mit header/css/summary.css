@@ -1,0 +1,258 @@
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  font-family: "Inter";
+  padding: 0;
+  margin: 0;
+}
+
+.sidebar {
+  width: 232px;
+  height: 100vh;
+  background-color: #2a3647;
+}
+
+.summary-overview {
+  width: 560px;
+  height: 562px;
+}
+
+.overview {
+  width: 560px;
+  height: 562px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.summary {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background-color: #f6f7f8;
+  padding-left: 100px;
+  margin-left: 232px;
+}
+
+.headline {
+  width: 625px;
+  height: 73px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.headline > h1 {
+  font-size: 61px;
+  font-weight: 700;
+}
+
+.line {
+  width: 3px;
+  height: 59px;
+  border-radius: 3px;
+  background-color: #29abe2;
+}
+
+.headline > span {
+  font-size: 27px;
+  font-weight: 400;
+  color: #2a3647;
+}
+
+.first-row {
+  width: 560px;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 30px;
+}
+
+.to-do,
+.done {
+  width: 264px;
+  height: 168px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(255, 255, 255, 1);
+  border-radius: 30px;
+  padding: 38px 19px;
+  gap: 18px;
+  box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.1);
+}
+
+.to-do:hover,
+.done:hover {
+  background-color: #2a3647;
+  cursor: pointer;
+  color: rgba(255, 255, 255, 1);
+  transform: scale(1.1);
+}
+
+.to-do:hover .number-of span:nth-child(2),
+.done:hover .number-of span:nth-child(2) {
+  color: rgba(255, 255, 255, 1);
+}
+
+.to-do > img {
+  width: 69px;
+  height: 69px;
+}
+
+.number-of {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.number {
+  font-size: 64px;
+  font-weight: 600;
+}
+
+.number-of-text {
+  font-size: 20px;
+  font-weight: 400;
+  color: #2a3647;
+}
+
+.done > img {
+  width: 69px;
+  height: 69px;
+}
+
+.second-row {
+  width: 80%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 30px;
+}
+
+.second-row-left {
+  width: 562px;
+  height: 168px;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  background-color: rgba(255, 255, 255, 1);;
+  border-radius: 30px;
+  gap: 61px;
+  box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.1);
+  padding: 28px 48px;
+}
+
+.second-row-left:hover {
+  background-color: #2a3647;
+  cursor: pointer;
+  color: rgba(255, 255, 255, 1);
+  transform: scale(1.1);
+}
+
+.urgent {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+.urgent > img {
+  width: 60px;
+  height: 60px;
+}
+
+.urgent-line {
+  width: 2px;
+  height: 102.02px;
+  border-radius: 2px;
+  background-color: #d1d1d1;
+}
+
+.dead-line {
+  display: flex;
+  flex-direction: column;
+}
+
+.dead-line-date {
+  font-size: 21px;
+  font-weight: 700;
+  color: #2a3647;
+}
+
+.dead-line-date:hover {
+  color: rgba(255, 255, 255, 1);
+}
+
+.second-row-left:hover .dead-line-date,
+.second-row-left:hover .dead-line-upcoming-deadline {
+  color: rgba(255, 255, 255, 1);
+}
+
+.dead-line-upcoming-deadline {
+  font-size: 16px;
+  font-weight: 400;
+  color: #2a3647;
+  line-height: 24px;
+}
+
+.third-row {
+  width: 560px;
+  height: 170px;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 30px;
+}
+
+.third-row-tasks-in-board,
+.third-row-tasks-in-progress,
+.third-row-awaiting-feedback {
+  width: 168px;
+  height: 168px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  background-color: rgba(255, 255, 255, 1);
+  border-radius: 30px;
+  box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.1);
+  padding: 0 25px;
+}
+
+.third-row-tasks-in-board:hover,
+.third-row-tasks-in-progress:hover,
+.third-row-awaiting-feedback:hover {
+  cursor: pointer;
+  background-color: #2a3647;
+  color: rgba(255, 255, 255, 1);
+  transform: scale(1.1);
+}
+
+
+.third-row-tasks-in-board:hover .number-of-text,
+.third-row-tasks-in-progress:hover .number-of-text,
+.third-row-awaiting-feedback:hover .number-of-text {
+    color: #fff;
+}
+
+.greeting {
+  display: flex;
+  flex-direction: column;
+}
+
+.greeting-message {
+  font-size: 47px;
+  font-weight: 500;
+  color: #2a3647;
+}
+
+.greeting-person {
+  font-size: 64px;
+  font-weight: 700;
+  color: #29abe2;
+}

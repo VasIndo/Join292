@@ -1,0 +1,141 @@
+/*Mid-Content*/
+
+.mid-Content{
+  position: fixed;
+  left: 743px;
+  top: 150px;
+  width: 569px;
+  height: 73px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 30px;
+}
+
+.mid-Content p{
+  font-size: 27px;
+  line-height: 32.4px;
+  font-weight: 400;
+  color: rgba(42, 54, 71, 1);
+  
+}
+
+h2{
+  font-size: 61px;
+  font-weight: 700;
+  line-height: 73.2px;
+  color: rgba(0, 0, 0, 1);
+}
+
+.blue-line{
+  height: 59px;
+  gap: 0px;
+  border: 3px 0px 0px 0px;
+  opacity: 0px;
+  border: 3px solid rgba(41, 171, 226, 1)
+}
+
+/*float-Content*/
+.float-Ctn {
+  position: fixed;
+  top: 270px;
+  width: 461px;
+  height: 364px;
+  left: 750px;
+  transform: translateX(100%);
+  display: none; /* Initially hidden */
+}
+
+.float-Ctn.visible {
+  display: block;
+  animation: slide-in 0.5s forwards;
+}
+
+.float-Ctn.hidden {
+  animation: slide-out 0.5s forwards;
+}
+
+@keyframes slide-in {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+.float-top-Ctn{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 37px;
+}
+
+.edit-delete-Ctn{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 25px;
+}
+
+.edit-delete2{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 12px;
+}
+
+.edit-delete2:hover{
+  color: rgba(41, 171, 226, 1);
+  font-weight: 700;
+  cursor: pointer;
+  filter: brightness(0) saturate(100%) invert(27%) sepia(90%) saturate(3325%) hue-rotate(170deg) brightness(90%) contrast(91%);
+  
+}
+
+.edit-delete2 p{
+  font-size: 16px;
+  line-height: 19.2px;
+  font-weight: 400;
+}
+
+h3{
+  font-size: 47px;
+  font-weight: 500;
+  line-height: 56.4px;
+  margin: 0px;
+}
+
+.float-Edit-Delet-Ctn {
+  display: flex;
+  flex-direction: column;
+  width: 287px;
+  height: 88px;
+  justify-content: flex-start;
+}
+
+.small-img{
+  width: 24px;
+  height: 24px;
+}
+
+.float-img{
+  width: 120px;
+  height: 120px;
+}
+
+.contact-Information{
+  width: 207px;
+  height: 74px;
+  font-size: 20px;
+  line-height: 24px;
+  font-weight: 400;
+  display: flex;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.font-weight{
+  font-size: 16px;
+  font-weight: 700;
+}

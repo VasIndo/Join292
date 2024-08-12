@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="startPage.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
+  <script src="script/startPageScript.js"></script>
+  <title>Join</title>
+</head>
+<body>
+<div class="content">
+  <!--Logo/Sign Up Button-->
+<div class="container">
+<div class="top-Ctn">
+  <div class="logo-Ctn">
+   <img src="./icon/JoinMainLogo.webp" alt="">
+  </div> 
+  <div id="signUpNone" class="signUp-Ctn">
+    <div class="text-line">
+     <span>Not a Join User?</span>
+    </div>
+    <button onclick="signUp()" class="signUp-button">Sign Up</button>
+  </div>
+</div> 
+
+<!--LoadingScreen-->
+ <div class="loadingScreen">
+  <img src="./icon/JoinMainLogo.webp" alt="Loading Logo">
+ </div>
+ 
+ <!--RegisterContainer-->
+ <div id="RegisterWindow"></div>
+ 
+ <!--Sign Up Box-->
+ <div id="formId" class="form-Ctn">
+
+  <div class="LogIn-Ctn">
+    <h1>Log in</h1>
+   <div class="underline-Ctn"></div>
+  </div>
+  
+  <div class="CtnInput" >
+   <form class="form" action="">
+        <div class="input-Ctn">
+          <input class="input" type="text" placeholder="Email">
+          <img src="./icon/mail.webp" alt="">
+        </div>
+        <div class="input-Ctn">
+        <input class="input" type="password" placeholder="Password">
+        <img src="./icon/lock.webp" alt="">
+        </div>
+   </form>
+  
+    <div class="remember-Ctn">
+        <img src="./icon/check.webp" alt="">
+        <p>Remember Me </p>
+    </div>
+
+    <div class="signupBtnCtn">
+       <button class="logBtn">Log in</button>
+       <button class="guestBtn">Guest Log in</button>
+    </div>
+  </div>
+
+</div>
+
+<!--Footer()-->
+<footer>
+  <p>Privacy Policy</p>
+  <p>Legal Notice</p>
+</footer>
+</div>
+</div>  
+</body>
+</html>

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="icon" type="image/x-icon" href="assets/img/favicon.svg">
+
+  <link rel="stylesheet" href="css/login.css">
+  <link rel="stylesheet" href="css/font.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="js/login.js"></script>
+
+<link rel="shortcut icon" href="assets/img/favicon.svg" type="image/x-icon">
+
+  <title>Join</title>
+</head>
+<body>
+<div class="content">
+  <!--Logo/Sign Up Button-->
+<div class="container">
+<div class="top-Ctn">
+  <div class="logo-Ctn">
+   <img src="./icon/JoinMainLogo.webp" alt="">
+  </div> 
+  <div id="signUpNone" class="signUp-Ctn">
+    <div class="text-line">
+     <span>Not a Join User?</span>
+    </div>
+    <button onclick="signUp()" class="signUp-button">Sign Up</button>
+  </div>
+</div> 
+
+<!--LoadingScreen-->
+ <div class="loadingScreen">
+  <img src="./icon/JoinMainLogo.webp" alt="Loading Logo">
+ </div>
+ 
+ <!--RegisterContainer-->
+ <div id="RegisterWindow"></div>
+ 
+ <!--Sign Up Box-->
+ <div id="formId" class="form-Ctn">
+
+  <div class="LogIn-Ctn">
+    <h1>Log in</h1>
+   <div class="underline-Ctn"></div>
+  </div>
+  
+  <div class="CtnInput" >
+   <form class="form" action="">
+        <div class="input-Ctn">
+          <input class="input" type="text" placeholder="Email">
+          <img src="./icon/mail.webp" alt="">
+        </div>
+        <div class="input-Ctn">
+        <input class="input" type="password" placeholder="Password">
+        <img src="./icon/lock.webp" alt="">
+        </div>
+   </form>
+  
+    <div class="remember-Ctn">
+        <img src="./icon/check.webp" alt="">
+        <p>Remember Me </p>
+    </div>
+
+    <div class="signupBtnCtn">
+        <a class="logBtn" href="">Log in</a>
+       <a class="guestBtn" href="summary.html">Guest Log in</a>
+    </div>
+  </div>
+
+</div>
+
+<!--Footer()-->
+<footer>
+  <p>Privacy Policy</p>
+  <p>Legal Notice</p>
+</footer>
+</div>
+</div>  
+</body>
+</html>
