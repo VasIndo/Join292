@@ -40,6 +40,7 @@ header {
 
 .userBtn:hover {
   filter: brightness(90%);
+  cursor: pointer;
 }
 
 nav {
@@ -151,8 +152,54 @@ nav {
   align-items: baseline;
   justify-content: space-between;
   width: 1014px;
+  padding-top: 110px;
+  padding-bottom: 32px;
 }
 
-.conHelp {
+.headerHelp h1 {
+  margin-block-start: 0;
+  margin-block-end: 0;
+  font-size: 61px;
+  font-weight: 700;
+}
+
+.helpCon {
+  width: 100vw;
+  height: 100vh;
+  background-color: #f6f7f8;
+  padding-left: 96px;
+  margin-left: 232px;
+  z-index: 1;
+}
+
+.helpText {
   width: 1014px;
+}
+
+.helpText p {
+  font-size: 16px;
+  font-weight: 400;
+  margin-block-start: 0;
+}
+
+.helpText span {
+  color: rgba(41, 171, 226, 1);
+}
+
+.helpText h2 {
+  margin-block-start: 0;
+  margin-block-end: 0;
+  font-size: 27px;
+  font-weight: 700;
+}
+
+.helpText h3 {
+  font-size: 20px;
+  margin-block-start: 0;
+  margin-block-end: 0;
+}
+
+.helpText li {
+  font-size: 27px;
+  font-weight: 700;
 }
