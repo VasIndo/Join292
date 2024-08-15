@@ -51,10 +51,6 @@ h2{
   animation: slide-in 0.5s forwards;
 }
 
-.float-Ctn.hidden {
-  animation: slide-out 0.5s forwards;
-}
-
 @keyframes slide-in {
   from {
     transform: translateX(100%);

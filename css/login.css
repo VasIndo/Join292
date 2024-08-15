@@ -1,57 +1,54 @@
-* {
-  box-sizing: border-box;
-
-}
-
-body {
-  width: 1440px;
-  height: 1024px;
-  margin-left: auto;
-  margin-right: auto;
-  background-color: #f6f7f8;
-  font-family: "Inter";
+ body, html{
+  margin: 0px;
+  padding: 0px;
+  background-color: #F6F7F8;
+  font-family: Inter;
+  display: flex;
+  justify-content: center;
 }
 
 /* Logo/Sign Up (Button, Text)*/
-.signUp-Ctn {
-  display: flex;
-  align-items: center;
-  width: 300px;
-  height: 50px;
-  margin-top: 67px;
-  margin-left: 862px;
-  gap: 35px;
-  opacity: 0px;
+.signUp-Ctn{
+display: flex;
+align-items: center;
+width: 300px;
+height: 50px;
+margin-top: 67px;
+margin-left: 862px;
+gap: 35px;
+opacity: 0px;
 }
 
-.signUp-Ctn span {
+.signUp-Ctn span{
   display: flex;
-  font-size: 20px;
-  font-weight: 400;
-  line-height: 24px;
-  text-align: left;
-  color: rgba(0, 0, 0, 1);
+ font-size: 20px;
+ font-weight: 400;
+line-height: 24px;
+text-align: left;
+color: 
+rgba(0, 0, 0, 1)
 }
 
-.signUp-button {
-  background-color: #2a3647;
+.signUp-button{
+  background-color: #2A3647;
   border-radius: 8px;
   border: 0px;
   height: 49px;
   padding: 15px 16px 15px 16px;
   gap: 10px;
-  border-radius: 8px;
-  color: #ffffff;
+  border-radius: 8px; 
+  color: #FFFFFF;
   font-size: 16px;
-}
+  }
 
-.signUp-button:hover {
-  transition: 0.1s ease-in-out;
-  background-color: rgba(41, 171, 226, 1);
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+ .signUp-button:hover{
+   transition:  0.1s ease-in-out;
+   background-color: 
+   rgba(41, 171, 226, 1);
+   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
 /* Logo/Sign Up (Button, Text)*/
-.form-Ctn {
+ .form-Ctn{
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -62,156 +59,162 @@ body {
   border-radius: 30px;
   background-color: rgba(255, 255, 255, 1);
   box-shadow: 0px 0px 14px 3px rgba(0, 0, 0, 0.04);
-}
+  }
 
-.LogIn-Ctn {
-  width: 315px;
-  height: 73px;
-  text-align: center;
-  gap: 16px;
-}
+  .LogIn-Ctn{
+    width: 315px;
+    height: 73px;
+    text-align: center;
+    gap: 16px;
+  }
 
-h1 {
-  font-size: 61px;
-  font-weight: 700;
-  line-height: 73.2px;
-  text-align: center;
-  gap: 16px;
-  margin-bottom: 16px;
-}
+  h1{
+    font-size: 61px;
+    font-weight: 700;
+    line-height: 73.2px;
+    text-align: center;
+    gap: 16px;
+    margin-bottom: 16px;
+    }
 
-.underline-Ctn {
-  border: 2px solid rgba(41, 171, 226, 1);
-  margin-right: 80.5px;
-  margin-left: 80.5px;
-}
-/* Input-Field*/
-.CtnInput {
-  margin-top: 100px;
+  .underline-Ctn{
+    border: 2px solid rgba(41, 171, 226, 1);
+    margin-right: 80.5px;
+    margin-left: 80.5px;
+  }
+ /* Input-Field*/
+  .CtnInput{
+    margin-top: 100px;
+    display: flex;
+    flex-direction: column;
+    width: 422px;
+    height:196px;
+    opacity: 0px;
+   }
+
+  .input-Ctn{
+    display: flex;
+    justify-content: center;
+    width: 422px;
+    height: 48px;
+    font-size: 20px;
+    line-height: 24px;
+    border: 1px solid rgba(209, 209, 209, 1);
+    border-radius: 10px;
+    flex-direction: row;
+    align-items: center; 
+    gap: 26px;
+  }
+
+   .input-Ctn img{
+    width: 24px;
+    height: 24px;
+    margin-right: 25px;
+  }
+
+  .input-Ctn:hover{
+    border-color: 
+    rgba(41, 171, 226, 1);
+    cursor: pointer;
+  }
+  
+  .input{
+    width: 356px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    font-size: 20px;
+    outline: none;
+    margin-left: 15px;
+  }
+
+  .input:hover
+  .remember-Ctn img{
+    cursor: pointer;
+  }
+
+  ::placeholder{
+      font-size: 20px;
+      line-height: 24px;
+      font-weight: 400;
+      color: rgba(209, 209, 209, 1);
+      padding: 12px 12px;
+    }
+
+ .form{
+  width: 422px;
   display: flex;
   flex-direction: column;
-  width: 422px;
-  height: 196px;
-  opacity: 0px;
-}
-
-.input-Ctn {
-  display: flex;
-  justify-content: center;
-  width: 422px;
-  height: 48px;
-  font-size: 20px;
-  line-height: 24px;
-  border: 1px solid rgba(209, 209, 209, 1);
-  border-radius: 10px;
-  flex-direction: row;
-  align-items: center;
   gap: 26px;
-}
+ }
 
-.input-Ctn img {
-  width: 24px;
-  height: 24px;
-  margin-right: 25px;
-}
+ .remember-Ctn{
+   display: flex;
+   justify-content: start;
+   flex-direction: row;
+   align-items: center;
+   margin-left: 26px;
+   gap: 10px;
+ }
 
-.input-Ctn:hover {
-  border-color: rgba(41, 171, 226, 1);
-  cursor: pointer;
-}
-
-.input {
-  width: 356px;
-  height: 24px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border: none;
-  font-size: 20px;
-  outline: none;
-  margin-left: 15px;
-}
-
-.input:hover .remember-Ctn img {
-  cursor: pointer;
-}
-
-::placeholder {
-  font-size: 20px;
-  line-height: 24px;
-  font-weight: 400;
-  color: rgba(209, 209, 209, 1);
-  padding: 12px 12px;
-}
-
-.form {
-  width: 422px;
-  height: 152px;
-  display: flex;
-  flex-direction: column;
-  gap: 26px;
-}
-
-.remember-Ctn {
-  margin-top: 30px;
-  display: flex;
-  justify-content: start;
-  flex-direction: row;
-  align-items: center;
-  margin-left: 26px;
-  gap: 10px;
-}
-
-.remember-Ctn p {
+ .remember-Ctn p{
   font-weight: 400;
   font-size: 16px;
   line-height: 19.2px;
 }
 
 /* Button sign In/ Guest Log In*/
-.signupBtnCtn {
+.signupBtnCtn{
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 20px;
   gap: 32px;
 }
 
-.logBtn {
+.logBtn{
+  width: 110px;
+  height: 48px;
   border-radius: 8px;
   background-color: rgba(42, 54, 71, 1);
   font-size: 21px;
+  line-height: 25.2px;
   font-weight: 700;
   color: rgba(255, 255, 255, 1);
+  display: flex;
+  justify-content: center;
+  align-items: center;
   border: none;
-  text-decoration: none;
-  padding: 15px 24px;
 }
 
 .logBtn:hover,
-.SignUpButton:hover {
-  transition: 0.1s ease-in-out;
-  background-color: rgba(41, 171, 226, 1);
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-  cursor: pointer;
+.SignUpButton:hover{
+  transition:  0.1s ease-in-out;
+   background-color: 
+   rgba(41, 171, 226, 1);
+   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+   cursor: pointer;
 }
 
-.guestBtn {
+.guestBtn{
+  width: 177px;
+  height: 48px;
   border-radius: 8px;
   border: 1px solid rgba(42, 54, 71, 1);
   color: rgba(42, 54, 71, 1);
   background-color: rgba(255, 255, 255, 1);
-  padding: 15px 24px;
   font-size: 21px;
+  line-height: 25.2px;
   font-weight: 700;
-  text-decoration: none;
+ 
 }
 
-.guestBtn:hover {
-  transition: 0.1s ease-in-out;
+.guestBtn:hover{
+  transition:  0.1s ease-in-out;
   border-color: rgba(41, 171, 226, 1);
   color: rgba(41, 171, 226, 1);
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); 
   cursor: pointer;
 }
 
@@ -229,7 +232,7 @@ footer {
   margin-left: 597px;
 }
 
-footer p {
+footer p{
   margin: 0px;
   color: rgba(168, 168, 168, 1);
   font-size: 16px;
@@ -237,17 +240,17 @@ footer p {
   font-weight: 400;
 }
 
-footer p:hover {
+footer p:hover{
   cursor: pointer;
   color: rgba(41, 171, 226, 1);
   font-weight: 700;
 }
 
-.d-none {
+.d-none{
   display: none;
 }
 /* Registration(Open with sign Up)*/
-.registration-Ctn {
+.registration-Ctn{
   display: flex;
   flex-direction: column;
   width: 598px;
@@ -258,27 +261,28 @@ footer p:hover {
   margin-left: 430px;
 }
 
-.regiCtn {
+.regiCtn{
   display: flex;
   justify-content: flex-start;
   align-items: center;
   margin-top: 40px;
 }
 
-.h2Ctn {
+.h2Ctn{
   width: 315px;
   height: 89px;
   margin-left: 90px;
 }
 
-.regiCtn h2 {
+.regiCtn h2{
   font-size: 61px;
   line-height: 73.2px;
   font-weight: 700;
   margin: 0px;
+ 
 }
 
-.regiCtn img {
+.regiCtn img{
   width: 32px;
   height: 32px;
   margin-bottom: 20px;
@@ -286,26 +290,25 @@ footer p:hover {
   margin-left: 40px;
 }
 
-.underline-Ctn2 {
-  border: 2px solid rgba(41, 171, 226, 1);
-  margin-right: 222px;
-  margin-left: 222px;
+.underline-Ctn2{
+    border: 2px solid rgba(41, 171, 226, 1);
+    margin-right: 222px;
+    margin-left: 222px;
 }
 
-.CtnInput2 {
+.CtnInput2{
   display: flex;
   justify-content: center;
   margin-top: 35px;
-}
+ }
 
-.formRegi {
+.formRegi{
   display: flex;
   flex-direction: column;
   gap: 25px;
 }
 
-.remember-Ctn2 {
-  margin-top: 25px;
+.remember-Ctn2{
   display: flex;
   justify-content: center;
   flex-direction: row;
@@ -313,26 +316,52 @@ footer p:hover {
   gap: 10px;
 }
 
-.remember-Ctn2 p {
+.remember-Ctn2 img:hover,
+.remember-Ctn img:hover{
+  filter: drop-shadow(0px 0px 5px rgb(182, 182, 182));
+  text-decoration: underline;
+  font-size: 20px;
+}
+
+.remember-Ctn2 img.hover,
+.remember-Ctn img.hover {
+  opacity: 0;
+}
+
+.remember-Ctn2 img.hover + img,
+.remember-Ctn2 img.hover + img  {
+  opacity: 1;
+}
+
+.remember-Ctn2 em{
+  color: #29ABE2;
+}
+
+.remember-Ctn2 em:hover{
+  text-decoration: underline;
+  font-weight: 500;
+  color: #059ddf;
+}
+
+.remember-Ctn2 p{
   color: rgba(168, 168, 168, 1);
   font-size: 16px;
   line-height: 19.2px;
   font-weight: 400;
 }
 
-.remember-Ctn2 a {
+.remember-Ctn2 a{
   text-decoration: none;
   color: rgba(41, 171, 226, 1);
   font-weight: 400;
 }
 
-.remember-Ctn2 a:hover {
+.remember-Ctn2 a:hover{
   text-decoration: underline;
   font-weight: bold;
 }
 
-.SignUpButton {
-  margin-top: 15px;
+.SignUpButton{
   width: 126px;
   height: 55px;
   border-radius: 8px;
@@ -344,19 +373,70 @@ footer p:hover {
   color: rgba(255, 255, 255, 1);
 }
 
-.SignUpButton-Ctn {
+.SignUpButton-Ctn{
   display: flex;
   justify-content: center;
 }
 
-/* Initial styles for the logo */
-.logo-Ctn img {
-  width: 100.03px;
-  height: 121.97px;
-  margin-top: 80px;
-  margin-left: 77px;
-  opacity: 1;
-  transition: transform 1s;
+/* Keyframe-Animation für das Hochgleiten */
+@keyframes slideUp {
+  0% {
+    transform: translateY(100vh); /* Startet von ganz unten am Bildschirmrand */
+    opacity: 0; /* Vollständig transparent */
+  }
+  100% {
+    transform: translateY(0); /* Endet in der Mitte */
+    opacity: 1; /* Vollständig sichtbar */
+  }
+}
+
+/* Container für die Alerts */
+.singUp-Alert {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background-color: rgba(29, 29, 29, 0.267);
+  display: none; /* Standardmäßig ausgeblendet */
+  justify-content: center;
+  align-items: center;
+  z-index: 1000; /* Stellt sicher, dass der Alert über anderen Inhalten angezeigt wird */
+}
+
+/* Gemeinsame Stile für alle Alerts */
+.AlertSignUp, 
+.Emailexists,
+.Nameexists,
+.FailedtoSingUp,
+.PrivacyPolicy,
+.EmailandPassword,
+.UserDontExist{
+  width: 312px;
+  height: 74px;
+  border-radius: 20px;
+  padding: 0px 25px 0px 25px;
+  background-color: #2A3647;
+  box-shadow: 0px 0px 4px 0px #00000026;
+  display: none; /* Standardmäßig ausgeblendet */
+  align-items: center;
+  justify-content: center;
+  animation: slideUp 0.2s forwards; /* Animation hinzufügen */
+}
+
+/* Gemeinsame Stile für den Text in den Alerts */
+.AlertSignUp p,
+.Emailexists p,
+.Nameexists p,
+.FailedtoSingUp p,
+.PrivacyPolicy p,
+.EmailandPassword p,
+.UserDontExist p {
+  font-size: 20px;
+  line-height: 24px;
+  font-weight: 400;
+  color: #FFFFFF;
+  text-align: center;
 }
 
 /* Keyframes for logo movement */
@@ -367,11 +447,9 @@ footer p:hover {
     height: 243.94px; /* Adjust height proportionally */
   }
   100% {
-    transform: translate(-720px, -447.7px) scale(1); /* Adjusted for fixed body dimensions */
+    transform: translate(0, 0) scale(1);
     width: 100.03px;
     height: 121.97px;
-    margin-top: 80px;
-    margin-left: 77px;
   }
 }
 
@@ -394,6 +472,7 @@ footer p:hover {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  display: flex;
 }
 
 /* Initial styles for the loading screen */
@@ -413,7 +492,7 @@ footer p:hover {
 }
 
 .logo-move {
-  animation: logoMove 1s forwards; /* Adjust the animation duration for smoothness */
+  animation: logoMove 0.5s forwards; /* Adjust the animation duration for smoothness */
 }
 
 /* Final logo styles */
@@ -428,4 +507,15 @@ footer p:hover {
 /* Container style */
 .top-Ctn {
   display: flex;
+  width: 1440px;
+  height: 205.969px;
 }
+
+/* Content fixed size */
+.content {
+  width: 1440px;
+  height: 1024px;
+  position: relative;
+}
+
+
