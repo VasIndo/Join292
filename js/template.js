@@ -5,3 +5,6 @@ function openPopUp() {
 function closePopUp() {
     document.getElementById('popUp').classList.add('d-none');
 }
+
+
+function openHelp(){}
