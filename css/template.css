@@ -31,6 +31,7 @@ header {
 
 .helpBtn:hover {
   transform: scale(1.2);
+  cursor: pointer;
 }
 
 .userBtn {
@@ -165,7 +166,6 @@ nav {
 
 .helpCon {
   width: 100vw;
-  height: 100vh;
   background-color: #f6f7f8;
   padding-left: 96px;
   margin-left: 232px;
