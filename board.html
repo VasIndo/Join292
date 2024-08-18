@@ -12,7 +12,7 @@
 
     <title>Join Board</title>
   </head>
-  <body onload="includeHTML()" class="page-board">
+  <body onload="includeHTML(), loadData()" class="page-board">
     <div w3-include-html="template.html"></div>
 
     <div class="board" id="board">
@@ -40,7 +40,7 @@
           </div>
           <div class="to-do-tasks">
             <img src="assets/img/no-tasks.svg" alt="" />
-            <!--add task card here for To Do -->         
+            <!--add task card here for To Do -->
           </div>
         </div>
         <div class="in-progress-split">
@@ -177,31 +177,28 @@
               <label for="assigned-select">Assigned to</label>
               <div onclick="toggleAssignedDropDown()" id="assigned-dropdown">
                 Select contacts to assign
-                <img
-                  class="drop-down-arrow"
-                  src="assets/img/drop-down-arrow.svg"
-                  alt="Arrow"
-                />
+                <img class="drop-down-arrow" src="assets/img/drop-down-arrow.svg" alt="Arrow" />
               </div>
               <div id="person-to-assigned" class="d-none">
                 <!-- add persons -->
-                 <div id="person0" onclick="togglePersonToAssigned(0)" class="person-container">
+                <div id="person0" onclick="togglePersonToAssigned(0)" class="person-container">
                   <div class="person">
                     <span class="person-to-assigned-logo1">SM</span>
-                    <span id="person-to-assigned-name0">Sofia Müller</span> 
-                   </div>
-                   <img id="person0-checkbox" src="assets/img/check-button.svg" class="checkbox">  
-                 </div>
-                 <!-- add person until here -->
-                 <div id="person1" onclick="togglePersonToAssigned(1)" class="person-container">
+                    <span id="person-to-assigned-name0">Sofia Müller</span>
+                  </div>
+                  <img id="person0-checkbox" src="assets/img/check-button.svg" class="checkbox" />
+                </div>
+                <!-- add person until here -->
+                <div id="person1" onclick="togglePersonToAssigned(1)" class="person-container">
                   <div class="person">
                     <span class="person-to-assigned-logo2">AM</span>
-                    <span id="person-to-assigned-name1">Anton Mayer</span> 
-                   </div>
-                   <img id="person1-checkbox" src="assets/img/check-button.svg" class="checkbox">  
-                 </div>
+                    <span id="person-to-assigned-name1">Anton Mayer</span>
+                  </div>
+                  <img id="person1-checkbox" src="assets/img/check-button.svg" class="checkbox" />
+                </div>
               </div>
             </div>
+            <div id="assigned-person"></div>
           </div>
 
           <div class="add-task-line"></div>
@@ -209,7 +206,7 @@
           <div class="add-task-right">
             <div class="date-container">
               <label for="date">Due date <span>*</span></label>
-              <input type="date" id="date" name="date" required/>
+              <input type="date" id="date" name="date" required />
             </div>
 
             <div class="add-task-prio">
@@ -237,7 +234,11 @@
                 />
               </div>
               <div id="categories" class="d-none">
-                <!-- add categories -->
+                <div class="categories-container">
+                  <!-- add categories -->
+                  <span onclick="toggleCategoryDropDown()">Technical Task</span>
+                  <span onclick="toggleCategoryDropDown()">User Story</span>
+                </div>
               </div>
             </div>
 
@@ -257,8 +258,15 @@
           <span>This field is required</span>
         </div>
         <div class="bottom-right">
-            <a href="#" onclick="toggleAddTaskPopUp()" onmouseenter="mouseEnterChangeX()" onmouseleave="mouseLeaveChangeX()" class="cancel-btn">Cancel<img id="cancel-btn-img" src="assets/img/cancel-x.svg"/></a>
-            <a href="#" class="create-task-btn">Create Task<img src="assets/img/create-task-check.svg"/></a>
+          <a
+            href="#"
+            onclick="toggleAddTaskPopUp()"
+            onmouseenter="mouseEnterChangeX()"
+            onmouseleave="mouseLeaveChangeX()"
+            class="cancel-btn"
+            >Cancel<img id="cancel-btn-img" src="assets/img/cancel-x.svg"
+          /></a>
+          <a href="#" class="create-task-btn">Create Task<img src="assets/img/create-task-check.svg" /></a>
         </div>
       </div>
     </div>

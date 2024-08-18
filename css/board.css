@@ -601,6 +601,88 @@ form {
   cursor: pointer;
 }
 
+#assigned-person {
+  display: flex;
+  margin: 10px;
+  margin-right: 15px;
+}
+
+.assigned-person-logo {
+  width: 42px;
+  height: 42px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 12px;
+  background-color: rgba(255, 122, 0);
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 1);
+  color: rgba(255, 255, 255, 1);
+  margin-right: 10px;
+}
+
+.assigned-person-logo-color0{
+  background-color: rgba(255, 122, 0);
+}
+
+.assigned-person-logo-color1{
+  background-color: rgba(255, 94, 179, 1);
+}
+
+.assigned-person-logo-color2{
+  background-color: rgba(110, 82, 255, 1);
+}
+
+.assigned-person-logo-color3{
+  background: rgba(147, 39, 255, 1);
+}
+
+.assigned-person-logo-color4{
+  background: rgba(0, 190, 232, 1);
+}
+
+.assigned-person-logo-color5{
+  background: rgba(31, 215, 193, 1);
+}
+
+.assigned-person-logo-color6{
+  background: rgba(255, 116, 94, 1);
+}
+
+.assigned-person-logo-color7{
+  background: rgba(255, 163, 94, 1);
+}
+
+.assigned-person-logo-color8{
+  background: rgba(252, 113, 255, 1);
+}
+
+.assigned-person-logo-color9{
+  background: rgba(255, 199, 1, 1);
+}
+
+.assigned-person-logo-color10{
+  background: rgba(0, 56, 255, 1);
+}
+
+.assigned-person-logo-color11{
+  background: rgba(195, 255, 43, 1);
+}
+
+.assigned-person-logo-color12{
+  background: rgba(255, 230, 43, 1);
+}
+
+.assigned-person-logo-color13{
+  background: rgba(255, 70, 70, 1);
+}
+
+.assigned-person-logo-color14{
+  background: rgba(255, 187, 43, 1);
+}
+
+
+
 #person-to-assigned,
 #categories {
   width: 440px;
@@ -612,6 +694,7 @@ form {
   border-top-right-radius: 0;
   border-top-left-radius: 0;
   background-color: rgba(255, 255, 255, 1);
+  overflow: scroll;
   z-index: 1;
 }
 
@@ -621,6 +704,21 @@ form {
 
 #categories {
   top: 93px;
+}
+
+.categories-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.categories-container > span {
+  border-radius: 10px;
+  padding: 10px;
+}
+
+.categories-container > span:hover {
+  cursor: pointer;
+  background-color: rgba(0, 0, 0, 0.2);
 }
 
 .person-container {
@@ -642,8 +740,7 @@ form {
   align-items: center;
 }
 
-.person-to-assigned-logo1, 
-.person-to-assigned-logo2 {
+.person-to-assigned-logo {
   width: 42px;
   height: 42px;
   font-size: 12px;
@@ -652,7 +749,6 @@ form {
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: aqua;
   border-radius: 50%;
   margin-right: 10px;
 }
@@ -671,7 +767,6 @@ form {
   background-color: rgb(209, 209, 209);
   border-radius: 50%;
 }
-
 
 .drop-down-arrow {
   width: 32px;
