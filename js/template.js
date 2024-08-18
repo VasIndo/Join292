@@ -7,12 +7,12 @@ function closePopUp() {
 }
 
 
-function openHelp(){
-    document.getElementById('help').innerHTML = `
+function showHelp(site){
+    return`
         <div class="helpCon">
         <div class="headerHelp">
             <h1>Help</h1>
-            <a href="addTask.html"><img src="assets/icon/back.svg" /></a>
+            <a href="${site}.html"><img src="assets/icon/back.svg" /></a>
         </div>
 
         <div class="helpText">
@@ -105,4 +105,17 @@ function openHelp(){
         </div>
     </div>
     `;
+}
+
+function openHelp(){    
+    // Beispiel für eine ID oder Klasse, die den spezifischen Inhalt bestimmt
+    if (document.body.classList.contains('page-addTask')) {
+        document.getElementById('help').innerHTML = showHelp('addTask');
+    } else if (document.body.classList.contains('page-board')) {
+        document.getElementById('board').innerHTML = showHelp('board');
+    } else if (document.body.classList.contains('page-summary')) {
+        document.getElementById('summary').innerHTML = showHelp('summary');
+    } else if (document.body.classList.contains('page-contacts')) {
+        document.getElementById('contacts').innerHTML = showHelp('contacts');
+    } 
 }

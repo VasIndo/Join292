@@ -1,19 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <link rel="icon" type="image/x-icon" href="assets/img/favicon.svg" />
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <title>Summary</title>
+  <link rel="icon" type="image/x-icon" href="assets/img/favicon.svg" />
 
-    <link rel="stylesheet" href="css/summary.css" />
-    <link rel="stylesheet" href="css/font.css" />
-  </head>
-  <body onload="includeHTML()">
-    <div w3-include-html="template.html"></div>
+  <title>Summary</title>
 
+  <link rel="stylesheet" href="css/summary.css" />
+  <link rel="stylesheet" href="css/font.css" />
+</head>
+
+<body onload="includeHTML()" class="page-summary">
+  <div w3-include-html="template.html"></div>
+  <div id="summary">
     <div class="summary">
       <div class="headline">
         <h1>Join 360</h1>
@@ -73,25 +75,26 @@
           <div class="third-row-tasks-in-board">
             <span class="number">5</span>
             <span class="number-of-text">Tasks in Board</span>
-          </div>  
+          </div>
         </a>
         <a href="board.html">
           <div class="third-row-tasks-in-progress">
             <span class="number">2</span>
             <span class="number-of-text">Tasks in Progress</span>
-          </div>  
+          </div>
         </a>
         <a href="board.html">
           <div class="third-row-awaiting-feedback">
             <span class="number">2</span>
             <span class="number-of-text">Awaiting Feedback</span>
-          </div>  
+          </div>
         </a>
       </div>
     </div>
+  </div>
+  <script src="js/include.js"></script>
+  <script src="js/summary.js"></script>
+  <script src="js/template.js"></script>
+</body>
 
-    <script src="js/include.js"></script>
-    <script src="js/summary.js"></script>
-    <script src="js/template.js"></script>
-  </body>
 </html>
