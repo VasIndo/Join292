@@ -321,6 +321,7 @@ footer p:hover{
   filter: drop-shadow(0px 0px 5px rgb(182, 182, 182));
   text-decoration: underline;
   font-size: 20px;
+  cursor: pointer;
 }
 
 .remember-Ctn2 img.hover,

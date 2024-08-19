@@ -64,7 +64,7 @@ h2{
   display: flex;
   flex-direction: row;
   align-items: center;
-  gap: 37px;
+  gap: 80px;
 }
 
 .edit-delete-Ctn{
@@ -100,6 +100,7 @@ h3{
   font-weight: 500;
   line-height: 56.4px;
   margin: 0px;
+  text-wrap: nowrap;
 }
 
 .float-Edit-Delet-Ctn {

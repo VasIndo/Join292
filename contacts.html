@@ -1,214 +1,69 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <script src="./js/contact.js"></script>
   <script src="./js/include.js"></script>
-  <script src="js/template.js"></script>
   <link rel="stylesheet" href="./css/header.css">
-  <link rel="icon" type="image/gif" href="./icon/JoinMainLogo.webp">
+  <link rel="icon" type="image/gif" href="./assets/icon/JoinMainLogo.webp">
   <link rel="stylesheet" href="./css/contactList.css">
   <link rel="stylesheet" href="./css/contact-newContactfloat.css">
   <link rel="stylesheet" href="./css/contact-existingCustomerfloat.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link
-    href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
-    rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
   <title>Join</title>
 </head>
 
-<body onload="includeHTML()" class="page-contacts">
+<body onload="includeHTML()">
   <!--Header-->
-  <div w3-include-html="template.html"></div>
+  <div w3-include-html="./assets/templates/templateNoHeaderInfo.html"></div>
   <!--Header-->
 
-  <!--Add Contact Float-->
-  <div id="FullSize">
+<!--Add Contact Float-->
+<div id="FullSize">
+ 
+</div>
 
+  <!--Scroll-Contacts-Content-->
+<div class="Content-Contacts">
+  
+  <div class="innerContent">
+    <!--Button-->  
+    <div class="Btn-Container"> 
+      <button id="addContactBtn" class="contactBtn">
+        <p>Add new contact</p>
+        <img src="./assets/icon/person_add.svg" alt="">
+      </button>
+    </div>   
+   <!--Contact-List--> 
+   
+    <div class="AtoZ-Content" id="contact-list">
+    <!-- Dynamischer Inhalt wird hier eingefügt -->
+    </div>
+  
   </div>
-  <div id="contacts">
-    <!--Scroll-Contacts-Content-->
-    <div class="Content-Contacts">
+</div>
 
-      <div class="innerContent">
-        <!--Button-->
-        <div class="Btn-Container">
-          <button onclick="floatCard()" class="contactBtn">
-            <p>Add new contact</p>
-            <img src="./icon/person_add.svg" alt="">
-          </button>
-        </div>
-        <!--Contact-List-->
-        <div class="AtoZ-Content">
+<!--Mid Content-->
+<div class="mid-Content">
+  <h2>Contacts</h2>
+  <div class="blue-line"></div>
+  <p>Better with a team</p>
+</div>
 
-          <!--A-->
-          <div class="AtoZ-Ctn">
-            <p>A</p>
-          </div>
-          <div class="line-Ctn">
-            <div class="line"></div>
-          </div>
-          <!--Contact Data-->
-          <div id="contact-data">
-            <img src="./icon/Profil1.svg" alt="">
-            <div>
-              <h1>Anton Mayer</h1>
-              <p>antom@gmail.com</p>
-            </div>
-          </div>
-          <!--Contact Data-->
-          <div id="contact-data">
-            <img src="./icon/Profil2.svg" alt="">
-            <div>
-              <h1>Anja Schulz</h1>
-              <p>Schulz@hotmail.de</p>
-            </div>
-          </div>
+<!--Float Content-->
+<div class="float-Ctn">
 
-          <!--B-->
-          <div class="AtoZ-Ctn">
-            <p>B</p>
-          </div>
-          <div class="line-Ctn">
-            <div class="line"></div>
-          </div>
-          <!--Contact Data-->
-          <div id="contact-data">
-            <img src="./icon/Profil3.svg" alt="">
-            <div>
-              <h1>Benedikt Ziegler</h1>
-              <p>benedikt@gmail.de</p>
-            </div>
-          </div>
+</div>
 
-          <!--D-->
-          <div class="AtoZ-Ctn">
-            <p>D</p>
-          </div>
-          <div class="line-Ctn">
-            <div class="line"></div>
-          </div>
-          <!--Contact Data-->
-          <div id="contact-data">
-            <img src="./icon/Profil4.svg" alt="">
-            <div>
-              <h1>David Eisenberg</h1>
-              <p>davidberg@gmail.com</p>
-            </div>
-          </div>
-          <!--E-->
-          <div class="AtoZ-Ctn">
-            <p>E</p>
-          </div>
-          <div class="line-Ctn">
-            <div class="line"></div>
-          </div>
-          <!--Contact Data-->
-          <div id="contact-data">
-            <img src="./icon/Profil5.svg" alt="">
-            <div>
-              <h1>Eva Fischer</h1>
-              <p>eva@gmail.com</p>
-            </div>
-          </div>
-          <!--Contact Data-->
-          <div id="contact-data">
-            <img src="./icon/Profil6.svg" alt="">
-            <div>
-              <h1>Emmanuel Mauer</h1>
-              <p>emmanuelma@gmail.com</p>
-            </div>
-          </div>
+<!-- Meldung -->
 
-          <!--M-->
-          <div class="AtoZ-Ctn">
-            <p>M</p>
-          </div>
-          <div class="line-Ctn">
-            <div class="line"></div>
-          </div>
-          <!--Contact Data-->
-          <div id="contact-data">
-            <img src="./icon/Profil6.svg" alt="">
-            <div>
-              <h1>Marcel Bauer</h1>
-              <p>bauer@gmail.com</p>
-            </div>
-          </div>
-          <!--T-->
-          <div class="AtoZ-Ctn">
-            <p>T</p>
-          </div>
-          <div class="line-Ctn">
-            <div class="line"></div>
-          </div>
-          <!--Contact Data-->
-          <div id="contact-data">
-            <img src="./icon/Profil6.svg" alt="">
-            <div>
-              <h1>Tatjana Wolf</h1>
-              <p>wolf@gmail.com</p>
-            </div>
-          </div>
-          <!--Contact Data-->
-          <div id="contact-data">
-            <img src="./icon/Profil6.svg" alt="">
-            <div>
-              <h1>Tatjana Wolf</h1>
-              <p>wolf@gmail.com</p>
-            </div>
-          </div>
 
-        </div>
-      </div>
-    </div>
-
-    <!--Mid Content-->
-    <div class="mid-Content">
-      <h2>Contacts</h2>
-      <div class="blue-line"></div>
-      <p>Better with a team</p>
-    </div>
-
-    <!--Float Content-->
-    <div class="float-Ctn">
-      <div class="float-top-Ctn">
-        <img class="float-img" src="./icon/bigProfil.svg" alt="">
-        <div class="float-Edit-Delet-Ctn">
-          <h3>Anton Mayer</h3>
-          <div class="edit-delete-Ctn">
-            <div onclick="floatCard()" class="edit-delete2">
-              <img class="small-img" src="./icon/edit.svg" alt="">
-              <p>Edit</p>
-            </div>
-            <div class="edit-delete2">
-              <img class="small-img" src="./icon/delete.svg" alt="">
-              <p>Delete</p>
-            </div>
-          </div>
-        </div>
-      </div>
-      <!---->
-      <div class="contact-Information">
-        <p>Contact Information</p>
-      </div>
-
-      <div>
-        <p class="font-weight">Email</p>
-        <p class="email-blue">Antom@gmail.com</p>
-
-        <p class="font-weight">Phone</p>
-        <p>+ 49 111 111 11 1</p>
-      </div>
-    </div>
-  </div>
 
 
 
 
 </body>
-
 </html>
