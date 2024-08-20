@@ -582,6 +582,7 @@ form {
 #category-dropdown {
   margin-top: 10px;
   margin-bottom: 30px;
+  cursor: pointer;
 }
 
 #assigned-dropdown,

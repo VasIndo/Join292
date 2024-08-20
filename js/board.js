@@ -1,6 +1,7 @@
-const URL = "https://join-contacts-b0fa3-default-rtdb.europe-west1.firebasedatabase.app";
+const URL = "https://remotestorage-f8df7-default-rtdb.europe-west1.firebasedatabase.app/contacts";
 let contacts;
 let assignedPersons = [];
+let subtasksArr = [];
 
 /**
  * Loads contact data from the Firebase Realtime Database.
@@ -9,7 +10,9 @@ let assignedPersons = [];
 async function loadData() {
   let response = await fetch(URL + "/.json");
   let responseJSON = await response.json();
-  contacts = responseJSON["contacts"];
+
+  contacts = Object.values(responseJSON);
+  console.log(contacts);
 }
 
 /**
@@ -75,27 +78,26 @@ function toggleAssignedDropDown() {
  */
 function renderDropDown() {
   document.getElementById("person-to-assigned").innerHTML = "";
-  for (let i = 0; i < Object.keys(contacts).length; i++) {
-    if (contacts[`contact${i}`]["assignedToTask"]) {
-      let letterForlogo = renderPersonLogoInDropDown(i);
+  for (let i = 0; i < contacts.length; i++) {
+    let letterForlogo = createInitials(i, contacts);
+    if (contacts[i]["assignedToTask"]) {
       document.getElementById("person-to-assigned").innerHTML += `
       <div id="person${i}" style="background-color: rgb(9, 25, 49);" onclick="togglePersonToAssigned(${i})" class="person-container">
         <div class="person">
-          <span class="person-to-assigned-logo assigned-person-logo-color${contacts[`contact${i}`]["id"]}">${letterForlogo}</span>
+          <span class="person-to-assigned-logo" style="background-color:${contacts[i]["color"]}">${letterForlogo}</span>
           <span id="person-to-assigned-name${i}" style="color: rgb(255, 255, 255);">${
-            contacts[`contact${i}`]["firstName"] + " " + contacts[`contact${i}`]["lastName"]
+            contacts[i]["name"]
       }</span>
         </div>
         <img id="person${i}-checkbox" src="assets/img/check-button-checked-white.svg" class="checkbox" />
       </div>
       `;
     } else {
-      let letterForlogo = renderPersonLogoInDropDown(i);
       document.getElementById("person-to-assigned").innerHTML += `
       <div id="person${i}" onclick="togglePersonToAssigned(${i})" class="person-container">
         <div class="person">
-          <span class="person-to-assigned-logo assigned-person-logo-color${contacts[`contact${i}`]["id"]}">${letterForlogo}</span>
-          <span id="person-to-assigned-name${i}">${contacts[`contact${i}`]["firstName"] + " " + contacts[`contact${i}`]["lastName"]}</span>
+          <span class="person-to-assigned-logo" style="background-color:${contacts[i]["color"]}">${letterForlogo}</span>
+          <span id="person-to-assigned-name${i}">${contacts[i]["name"]}</span>
         </div>
         <img id="person${i}-checkbox" src="assets/img/check-button.svg" class="checkbox" />
       </div>
@@ -105,29 +107,17 @@ function renderDropDown() {
 }
 
 /**
- * Generates the initials (first letter of first name and last name) for a contact.
- * 
- * @function renderPersonLogoInDropDown
- * @param {number} i - The index of the contact in the `contacts` object.
- * @returns {string} The initials of the contact.
+ * Creates the initials of a name from an array of objects.
+ *
+ * @param {number} i - The index of the object in the array whose name will be used.
+ * @param {Array<Object>} array - An array of objects, each containing a `name` property as a string.
+ * @returns {string} - The initials of the name in uppercase.
  */
-function renderPersonLogoInDropDown(i) {
-  let firstLetter = contacts[`contact${i}`]["firstName"].charAt(0);
-  let secondLetter = contacts[`contact${i}`]["lastName"].charAt(0);
-  return firstLetter + secondLetter;
-}
-
-/**
- * Generates the initials (first letter of first name and last name) for an assigned person.
- * 
- * @function renderPersonLogoForAssignedPerson
- * @param {number} i - The index of the person in the `assignedPersons` array.
- * @returns {string} The initials of the assigned person.
- */
-function renderPersonLogoForAssignedPerson(i) {
-  let firstLetter = assignedPersons[i]["assignedPerson"]["firstName"].charAt(0);
-  let secondLetter = assignedPersons[i]["assignedPerson"]["lastName"].charAt(0);
-  return firstLetter + secondLetter;
+function createInitials(i, array) {
+  let name = array[i]["name"];
+  let initials = name.split(' ').map(word => word[0]);
+  let initialsString = initials.join('');
+  return initialsString.toUpperCase();
 }
 
 /**
@@ -156,11 +146,11 @@ function mouseLeaveChangeX() {
  * @param {number} i - The index of the contact in the `contacts` object.
  */
 function togglePersonToAssigned(i) {
-  if (!contacts[`contact${i}`]["assignedToTask"]) {
+  if (!contacts[i]["assignedToTask"]) {
     document.getElementById(`person${i}-checkbox`).src = "assets/img/check-button-checked-white.svg";
     document.getElementById(`person${i}`).style.backgroundColor = "rgba(9, 25, 49, 1)";
     document.getElementById(`person-to-assigned-name${i}`).style.color = "rgb(255, 255, 255)";
-    contacts[`contact${i}`]["assignedToTask"] = true;
+    contacts[i]["assignedToTask"] = true;
     assignedPersons = [];
     addPersonsToTask();
     addPersonLogo(i);
@@ -168,7 +158,7 @@ function togglePersonToAssigned(i) {
     document.getElementById(`person${i}-checkbox`).src = "assets/img/check-button.svg";
     document.getElementById(`person${i}`).style.backgroundColor = "unset";
     document.getElementById(`person-to-assigned-name${i}`).style.color = "rgba(0, 0, 0, 1)";
-    contacts[`contact${i}`]["assignedToTask"] = false;
+    contacts[i]["assignedToTask"] = false;
     assignedPersons = [];
     addPersonsToTask();
     addPersonLogo(i);
@@ -179,9 +169,9 @@ function togglePersonToAssigned(i) {
  * Updates the `assignedPersons` array by adding all contacts that are assigned to a task.
  */
 function addPersonsToTask() {
-  for (let i = 0; i < Object.keys(contacts).length; i++) {
-    if (contacts[`contact${i}`]["assignedToTask"]) {
-      assignedPersons.push({ assignedPerson: contacts[`contact${i}`] });
+  for (let i = 0; i < contacts.length; i++) {
+    if (contacts[i]["assignedToTask"]) {
+      assignedPersons.push(contacts[i]);
     }
   }
 }
@@ -191,10 +181,28 @@ function addPersonsToTask() {
  */
 function addPersonLogo() {
   document.getElementById("assigned-person").innerHTML = "";
-  for (let index = 0; index < assignedPersons.length; index++) {
-    let letterForlogo = renderPersonLogoForAssignedPerson(index);
+
+  for (let i = 0; i < assignedPersons.length; i++) {
+    let letterForlogo = createInitials(i, assignedPersons);
     document.getElementById("assigned-person").innerHTML += `
-    <div class="assigned-person-logo assigned-person-logo-color${assignedPersons[index]["assignedPerson"]["id"]}">${letterForlogo}</div>
-  `;
+      <div class="assigned-person-logo" style="background-color: ${assignedPersons[i]["color"]}">
+        ${letterForlogo}
+      </div>
+    `;
   }
+}
+
+function addSubtasks() {
+  if (subtaskValue == "") {
+    console.log("input ist leer");
+  }
+  document.getElementById("added-subtasks-list").innerHTML = ""; 
+  let subtaskValue = document.getElementById("add-subtasks").value;
+  subtasksArr.push(subtaskValue);
+  for (let i = 0; i < subtasksArr.length; i++) {
+    document.getElementById("added-subtasks-list").innerHTML += `
+      <li class = "subtask${i}">${subtasksArr[i]}</li>
+    `;
+  }
+  document.getElementById("add-subtasks").value = ""; 
 }
