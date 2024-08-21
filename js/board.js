@@ -10,9 +10,7 @@ let subtasksArr = [];
 async function loadData() {
   let response = await fetch(URL + "/.json");
   let responseJSON = await response.json();
-
   contacts = Object.values(responseJSON);
-  console.log(contacts);
 }
 
 /**
@@ -191,18 +189,32 @@ function addPersonLogo() {
     `;
   }
 }
+/**
+ * Adds a new subtask to the list.
+ */
 
 function addSubtasks() {
-  if (subtaskValue == "") {
-    console.log("input ist leer");
-  }
-  document.getElementById("added-subtasks-list").innerHTML = ""; 
   let subtaskValue = document.getElementById("add-subtasks").value;
-  subtasksArr.push(subtaskValue);
-  for (let i = 0; i < subtasksArr.length; i++) {
-    document.getElementById("added-subtasks-list").innerHTML += `
-      <li class = "subtask${i}">${subtasksArr[i]}</li>
-    `;
+
+  if (subtaskValue == "") {
+
+  } else {
+    document.getElementById("added-subtasks-list").innerHTML = ""; 
+    subtasksArr.push(subtaskValue);
+    for (let i = 0; i < subtasksArr.length; i++) {
+      document.getElementById("added-subtasks-list").innerHTML += `
+        <li class = "subtask${i}">${subtasksArr[i]}</li>
+      `;
+    }  
   }
   document.getElementById("add-subtasks").value = ""; 
 }
+
+/**
+ * Adds an event listener to the input field that triggers a function when the Enter key is pressed.
+ */
+document.getElementById('add-subtasks').addEventListener('keydown', function(event) {
+  if (event.key === 'Enter') {
+    addSubtasks();
+  }
+});
