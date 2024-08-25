@@ -159,9 +159,9 @@
     </div>
 
     <div class="hide-add-task" id="add-task">
-      <div onclick="toggleAddTaskPopUp()" class="add-task-headline">
+      <div class="add-task-headline">
         <h1>Add Task</h1>
-        <img src="assets/img/close.svg" alt="Close" />
+        <img onclick="toggleAddTaskPopUp()" src="assets/img/close.svg" alt="Close" />
       </div>
       <form action="">
         <div class="form">
@@ -204,7 +204,9 @@
               </div>
             </div>
             <div id="assigned-person"></div>
+            <div class="d-none" id="point-out">Die rot makierten Felder müssen ausgefüllt sein.</div>
           </div>
+
 
           <div class="add-task-line"></div>
 
@@ -217,20 +219,22 @@
             <div class="add-task-prio">
               <label for="prio">Prio</label>
               <div class="prio-btn">
-                <button type="button" id="urgent-btn">
-                  Urgent <img src="assets/img/prio-urgent.svg" alt="Urgent" />
+                <button onclick="togglePrio('high')" class="high-btn" type="button" id="high-btn">
+                  Urgent <img id="high-btn-img" src="assets/img/prio-high.svg" alt="High" />
                 </button>
-                <button type="button" id="medium-btn">
-                  Medium <img src="assets/img/prio-medium.svg" alt="Medium" />
+                <button onclick="togglePrio('medium')" class="medium-btn medium-btn-active" type="button" id="medium-btn">
+                  Medium <img id="medium-btn-img" src="assets/icon/prio_medium_selected.svg" alt="Medium" />
                 </button>
-                <button type="button" id="low-btn">Low <img src="assets/img/prio-low.svg" alt="Low" /></button>
+                <button onclick="togglePrio('low')" class="low-btn" type="button" id="low-btn">
+                  Low <img id="low-btn-img" src="assets/img/prio-low.svg" alt="Low" />
+                </button>
               </div>
             </div>
 
             <div class="category-container">
-              <label for="category-select">Category</label>
+              <label for="category-select">Category <span>*</span></label>
               <div id="category-dropdown" onclick="toggleCategoryDropDown()">
-                Select task category
+                <span id="category">Select task category</span>
                 <img
                   class="drop-down-arrow"
                   src="assets/img/drop-down-arrow.svg"
@@ -240,8 +244,8 @@
               <div id="categories" class="d-none">
                 <div class="categories-container">
                   <!-- add categories -->
-                  <span onclick="toggleCategoryDropDown()">Technical Task</span>
-                  <span onclick="toggleCategoryDropDown()">User Story</span>
+                  <span id="technical-task" onclick="toggleCategoryDropDown(), addCategory('Technical Task', 'technical-task')">Technical Task</span>
+                  <span id="user-story" onclick="toggleCategoryDropDown(), addCategory('User Story', 'user-story')">User Story</span>
                 </div>
               </div>
             </div>
@@ -271,7 +275,7 @@
             class="cancel-btn"
             >Cancel<img id="cancel-btn-img" src="assets/img/cancel-x.svg"
           /></a>
-          <a href="#" class="create-task-btn">Create Task<img src="assets/img/create-task-check.svg" /></a>
+          <a href="#" onclick="pushNewTaskInJson()" class="create-task-btn">Create Task<img src="assets/img/create-task-check.svg" /></a>
         </div>
       </div>
     </div>

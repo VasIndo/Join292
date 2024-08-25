@@ -478,7 +478,7 @@ body {
 /* Add task Pop Up */
 #add-task {
   width: 80%;
-  height: 870px;
+  height: 90%;
   position: fixed;
   background-color: rgba(255, 255, 255, 1);
   left: 50%;
@@ -622,67 +622,65 @@ form {
   margin-right: 10px;
 }
 
-.assigned-person-logo-color0{
+.assigned-person-logo-color0 {
   background-color: rgba(255, 122, 0);
 }
 
-.assigned-person-logo-color1{
+.assigned-person-logo-color1 {
   background-color: rgba(255, 94, 179, 1);
 }
 
-.assigned-person-logo-color2{
+.assigned-person-logo-color2 {
   background-color: rgba(110, 82, 255, 1);
 }
 
-.assigned-person-logo-color3{
+.assigned-person-logo-color3 {
   background: rgba(147, 39, 255, 1);
 }
 
-.assigned-person-logo-color4{
+.assigned-person-logo-color4 {
   background: rgba(0, 190, 232, 1);
 }
 
-.assigned-person-logo-color5{
+.assigned-person-logo-color5 {
   background: rgba(31, 215, 193, 1);
 }
 
-.assigned-person-logo-color6{
+.assigned-person-logo-color6 {
   background: rgba(255, 116, 94, 1);
 }
 
-.assigned-person-logo-color7{
+.assigned-person-logo-color7 {
   background: rgba(255, 163, 94, 1);
 }
 
-.assigned-person-logo-color8{
+.assigned-person-logo-color8 {
   background: rgba(252, 113, 255, 1);
 }
 
-.assigned-person-logo-color9{
+.assigned-person-logo-color9 {
   background: rgba(255, 199, 1, 1);
 }
 
-.assigned-person-logo-color10{
+.assigned-person-logo-color10 {
   background: rgba(0, 56, 255, 1);
 }
 
-.assigned-person-logo-color11{
+.assigned-person-logo-color11 {
   background: rgba(195, 255, 43, 1);
 }
 
-.assigned-person-logo-color12{
+.assigned-person-logo-color12 {
   background: rgba(255, 230, 43, 1);
 }
 
-.assigned-person-logo-color13{
+.assigned-person-logo-color13 {
   background: rgba(255, 70, 70, 1);
 }
 
-.assigned-person-logo-color14{
+.assigned-person-logo-color14 {
   background: rgba(255, 187, 43, 1);
 }
-
-
 
 #person-to-assigned,
 #categories {
@@ -781,6 +779,11 @@ form {
   cursor: pointer;
 }
 
+#point-out {
+  margin-top: 50px;
+  color: red;
+}
+
 .add-task-line {
   width: 1px;
   height: 100%;
@@ -818,9 +821,9 @@ textarea {
   margin-bottom: 30px;
 }
 
-#urgent-btn,
-#medium-btn,
-#low-btn {
+.high-btn,
+.medium-btn,
+.low-btn {
   width: 136px;
   height: 56px;
   display: flex;
@@ -836,10 +839,28 @@ textarea {
   cursor: pointer;
 }
 
-#urgent-btn:hover,
-#medium-btn:hover,
-#low-btn:hover {
+.high-btn:hover,
+.medium-btn:hover,
+.low-btn:hover {
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+}
+
+.high-btn-active {
+  background-color: rgb(255, 61, 0);
+  color: rgb(255, 255, 255);
+  font-weight: 700;
+}
+
+.medium-btn-active {
+  background-color: rgb(255, 168, 0);
+  color: rgb(255, 255, 255);
+  font-weight: 700;
+}
+
+.low-btn-active {
+  background-color: rgb(122, 226, 41);
+  color: rgb(255, 255, 255);
+  font-weight: 700;
 }
 
 .category-container {
@@ -895,8 +916,30 @@ textarea {
 }
 
 .add-subtasks-container > img:hover {
-  background-color: rgba(0, 0, 0, 0.2);
+  background-color: rgba(0, 0, 0, 0.1);
   border-radius: 50%;
+}
+
+#added-subtasks-list {
+  height: 60px;
+  overflow: scroll;
+  padding-left: 0;
+}
+
+#added-subtasks-list > li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 5px 20px;
+}
+
+#added-subtasks-list > li:hover {
+  background-color: rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+}
+
+.subtask > img {
+  cursor: pointer;
 }
 
 .bottom {
