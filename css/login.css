@@ -224,7 +224,7 @@ footer {
   width: 246px;
   height: 35px;
   bottom: 2px;
-  top: 964px;
+  top: 970px;
   gap: 24px;
   opacity: 0px;
   justify-content: center;
@@ -233,15 +233,18 @@ footer {
   margin-left: 597px;
 }
 
-footer p {
+footer a {
   margin: 0px;
   color: rgba(168, 168, 168, 1);
   font-size: 16px;
   line-height: 19.2px;
   font-weight: 400;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
 }
 
-footer p:hover {
+footer a:hover {
   cursor: pointer;
   color: rgba(41, 171, 226, 1);
   font-weight: 700;
@@ -269,8 +272,10 @@ footer p:hover {
   margin-top: 40px;
 }
 
-.regiCtn > img {
+.regiCtn:hover img {
   cursor: pointer;
+  -webkit-transform: scale(1.1);
+
 }
 
 .h2Ctn {

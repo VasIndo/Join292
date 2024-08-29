@@ -54,6 +54,18 @@ window.onload = function() {
       }, 1500);
 };
 
+document.addEventListener('DOMContentLoaded', function() {
+  document.getElementById('privacyLink').addEventListener('click', function(event) {
+      event.preventDefault();
+      window.open(this.href, '_blank');
+  });
+
+  document.getElementById('legalNoticeLink').addEventListener('click', function(event) {
+      event.preventDefault();
+      window.open(this.href, '_blank');
+  });
+});
+
 function renderSignUp(){
 return ` 
         <div class="registration-Ctn">
