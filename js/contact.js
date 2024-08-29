@@ -151,8 +151,8 @@ document.addEventListener('DOMContentLoaded', function() {
                                 </div>
                             </button>
                             <button id="save-contact" class="create" style="${isEditMode ? 'width: 100px;' : ''}">
-                                ${isEditMode ? 'Save' : 'Save contact'}
-                                <img src="./assets/icon/check.svg">
+                                ${isEditMode ? 'Save' : 'Create contact'}
+                                <img src="./assets/icon/check.webp">
                             </button>
                         </div>
                     </div>
@@ -209,10 +209,14 @@ document.addEventListener('DOMContentLoaded', function() {
 
     const addContactToFirebase = async contact => {
         const BASE_URL = "https://remotestorage-f8df7-default-rtdb.europe-west1.firebasedatabase.app/";
+        const newContact = {
+            ...contact,
+            assignedToTask: false  // assignedToTask hinzufügen und auf false setzen
+        };
         await fetch(`${BASE_URL}contacts.json`, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(contact)
+            body: JSON.stringify(newContact)
         });
     };
 
