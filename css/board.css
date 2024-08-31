@@ -165,16 +165,19 @@ body {
   cursor: pointer;
 }
 
-#card {
+#card,
+.to-do-tasks-card {
   width: 252px;
   background-color: rgba(255, 255, 255, 1);
   border-radius: 24px;
   padding: 16px;
   gap: 10px;
   box-shadow: 0px 0px 10px 3px rgba(0, 0, 0, 0.08);
+  margin-bottom: 30px;
 }
 
-#card:hover {
+#card:hover,
+.to-do-tasks-card:hover {
   cursor: pointer;
 }
 
@@ -233,4 +236,21 @@ body {
 
 .assigned-to {
   display: flex;
+}
+
+.position {
+  position: relative;
+}
+
+.card-person-initials {
+  width: 32px;
+  height: 32px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 12px;
+  background-color: rgba(255, 122, 0);
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 1);
+  color: rgba(255, 255, 255, 1);
 }

@@ -1,26 +1,17 @@
-let contacts;
 let assignedPersons = [];
+let colorPerson = [];
 let subtasksArr = [];
 
 let newTask = {
   title: [],
   description: [],
   "assigned persons": [],
+  color: [],
   date: [],
   prio: [],
   category: [],
   subtasks: [],
 };
-
-/**
- * Loads contact data from the Firebase Realtime Database.
- * The data is assigned to the `contacts` variable.
- */
-async function loadData() {
-  let response = await fetch(URL + "contacts" + "/.json");
-  let responseJSON = await response.json();
-  contacts = Object.values(responseJSON);
-}
 
 /**
  * Toggles the visibility of the assigned person dropdown.
@@ -123,6 +114,7 @@ function togglePersonToAssigned(i) {
     document.getElementById(`person-to-assigned-name${i}`).style.color = "rgb(255, 255, 255)";
     contacts[i]["assignedToTask"] = true;
     assignedPersons = [];
+    colorPerson = [];
     addPersonsToTask();
     addPersonLogo(i);
   } else {
@@ -131,6 +123,7 @@ function togglePersonToAssigned(i) {
     document.getElementById(`person-to-assigned-name${i}`).style.color = "rgba(0, 0, 0, 1)";
     contacts[i]["assignedToTask"] = false;
     assignedPersons = [];
+    colorPerson = [];
     addPersonsToTask();
     addPersonLogo(i);
   }
@@ -143,6 +136,7 @@ function addPersonsToTask() {
   for (let i = 0; i < contacts.length; i++) {
     if (contacts[i]["assignedToTask"]) {
       assignedPersons.push(contacts[i]);
+      colorPerson.push(contacts[i]["color"])
     }
   }
 }
@@ -230,7 +224,7 @@ function pushNewTaskInJson() {
   } else {
     push("title");
     push("description");
-    pushAssignedPersons("assigned persons");
+    pushAssignedPersonsAndColor();
     push("date");
     pushPrio("medium");
     pushCatagory("category");
@@ -255,10 +249,10 @@ function push(path) {
   newTask[path].push(data);
 }
 
-function pushAssignedPersons(path) {
+function pushAssignedPersonsAndColor(path) {
   for (let i = 0; i < assignedPersons.length; i++) {
-    assignedPersons[i]["name"];
-    newTask[path].push(assignedPersons[i]["name"]);
+    newTask["assigned persons"].push(assignedPersons[i]["name"]);
+    newTask["color"].push(colorPerson[i]);
   }
 }
 
