@@ -226,7 +226,6 @@ function pushNewTaskInJson() {
     push("description");
     pushAssignedPersonsAndColor();
     push("date");
-    pushPrio("medium");
     pushCatagory("category");
     pushSubtasks("subtasks");
     addTaskInFirebase();

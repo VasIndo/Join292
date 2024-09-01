@@ -41,11 +41,12 @@ function renderToDoTasks() {
                 <div id="assigned-to(${i})" class="assigned-to">
 
                 </div>                
-                <img class="prio" src="assets/img/prio-medium.svg" alt="medium" />
+                <img id="prio${i}" class="prio" src="assets/img/prio-medium.svg" alt="medium" />
               </div>
             </div>
         `;
     renderAssignedPersons(i);
+    renderPrio(i);
   }
 }
 
@@ -57,9 +58,22 @@ function renderAssignedPersons(i) {
     document.getElementById(`assigned-to(${i})`).innerHTML += `
       <span style="background-color: ${color}; right:calc(5px * ${j})"  class="card-person-initials position">${initials}</span>
     `;
-    // margin-left: 6px;
-    console.log(initials);
   }
+}
+
+function renderPrio(i) {
+  let prio = ToDo[i]["prio"];
+  if (prio == "low") {
+    document.getElementById(`prio${i}`).src = "assets/img/prio-low.svg"
+  }
+  if (prio == "medium") {
+    document.getElementById(`prio${i}`).src = "assets/img/prio-medium.svg"
+  }
+  if (prio == "high") {
+    document.getElementById(`prio${i}`).src = "assets/img/prio-high.svg"
+  }
+
+
 }
 
 /**
