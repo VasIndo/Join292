@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="assets/img/favicon.svg">
+    <title>Add Task</title>
+    <link rel="stylesheet" href="css/board.css" />
+    <link rel="stylesheet" href="css/board-add-task-popup-new.css" />
+    <link rel="stylesheet" href="css/board-task-datail-view.css" />
+
+    <link rel="stylesheet" href="css/font.css" />
+    <link rel="stylesheet" href="css/template.css" />
+    <link rel="stylesheet" href="css/addTask.css" />
+
+    <script src="js/include.js" defer></script>
+    <script src="js/template.js" defer></script>
+    <script src="js/board.js" defer></script>
+    <script src="js/board-add-task-popup.js" defer></script>
+    <script src="js/board-task-detail-view.js" defer></script>
+</head>
+
+<body onload="includeHTML()" class="page-addTask">
+    <div w3-include-html="template.html"></div>
+    <div id="help">
+        <div class="addTaskContainer">
+            <div class="add-task-headline">
+                <h1>Add Task</h1>
+            </div>
+            <form action="">
+                <div class="form">
+                    <div class="add-task-left">
+                        <label for="title">Title <span>*</span></label>
+                        <input type="text" id="title" name="task-title" required placeholder="Enter a Title" />
+
+                        <label for="description">Description</label>
+                        <textarea id="description" name="task-description" rows="6" cols="50"
+                            placeholder="Enter a Description"></textarea>
+
+                        <div class="assigned-container">
+                            <label for="assigned-select">Assigned to</label>
+                            <div onclick="toggleAssignedDropDown()" id="assigned-dropdown">
+                                Select contacts to assign
+                                <img class="drop-down-arrow" src="assets/img/drop-down-arrow.svg" alt="Arrow" />
+                            </div>
+                            <div id="person-to-assigned" class="d-none">
+                                <!-- add persons -->
+                                <div id="person0" onclick="togglePersonToAssigned(0)" class="person-container">
+                                    <div class="person">
+                                        <span class="person-to-assigned-logo1">SM</span>
+                                        <span id="person-to-assigned-name0">Sofia Müller</span>
+                                    </div>
+                                    <img id="person0-checkbox" src="assets/img/check-button.svg" class="checkbox" />
+                                </div>
+                                <!-- add person until here -->
+                                <div id="person1" onclick="togglePersonToAssigned(1)" class="person-container">
+                                    <div class="person">
+                                        <span class="person-to-assigned-logo2">AM</span>
+                                        <span id="person-to-assigned-name1">Anton Mayer</span>
+                                    </div>
+                                    <img id="person1-checkbox" src="assets/img/check-button.svg" class="checkbox" />
+                                </div>
+                            </div>
+                        </div>
+                        <div id="assigned-person"></div>
+                        <div class="d-none" id="point-out">Die rot makierten Felder müssen ausgefüllt sein.</div>
+                    </div>
+
+
+                    <div class="devider"></div>
+
+                    <div class="add-task-right">
+                        <div class="date-container">
+                            <label for="date">Due date <span>*</span></label>
+                            <input type="date" id="date" name="date" required />
+                        </div>
+
+                        <div class="add-task-prio">
+                            <label for="prio">Prio</label>
+                            <div class="prio-btn">
+                                <button onclick="togglePrio('high')" class="high-btn" type="button" id="high-btn">
+                                    Urgent <img id="high-btn-img" src="assets/img/prio-high.svg" alt="High" />
+                                </button>
+                                <button onclick="togglePrio('medium')" class="medium-btn medium-btn-active"
+                                    type="button" id="medium-btn">
+                                    Medium <img id="medium-btn-img" src="assets/icon/prio_medium_selected.svg"
+                                        alt="Medium" />
+                                </button>
+                                <button onclick="togglePrio('low')" class="low-btn" type="button" id="low-btn">
+                                    Low <img id="low-btn-img" src="assets/img/prio-low.svg" alt="Low" />
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="category-container">
+                            <label for="category-select">Category <span>*</span></label>
+                            <div id="category-dropdown" onclick="toggleCategoryDropDown()">
+                                <span id="category">Select task category</span>
+                                <img class="drop-down-arrow" src="assets/img/drop-down-arrow.svg" alt="Arrow" />
+                            </div>
+                            <div id="categories" class="d-none">
+                                <div class="categories-container">
+                                    <!-- add categories -->
+                                    <span id="technical-task"
+                                        onclick="toggleCategoryDropDown(), addCategory('Technical Task', 'technical-task')">Technical
+                                        Task</span>
+                                    <span id="user-story"
+                                        onclick="toggleCategoryDropDown(), addCategory('User Story', 'user-story')">User
+                                        Story</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="subtasks-container">
+                            <label for="subtasks">Subtasks</label>
+                            <div class="add-subtasks-container">
+                                <input name="add-subtasks" id="add-subtasks" placeholder="Add new subtasks" />
+                                <img onclick="addSubtasks()" id="add-subtasks-plus" src="assets/img/plus2.svg"
+                                    alt="Plus" />
+                            </div>
+                            <ul id="added-subtasks-list"></ul>
+                        </div>
+                    </div>
+                </div>
+            </form>
+            <div style="padding-left: 710px;">
+                <div class="bottom-right">
+                    <a href="#" onclick="toggleAddTaskPopUp()" onmouseenter="mouseEnterChangeX()"
+                        onmouseleave="mouseLeaveChangeX()" class="cancel-btn">Cancel<img id="cancel-btn-img"
+                            src="assets/img/cancel-x.svg" /></a>
+                    <a href="#" onclick="pushNewTaskInJson()" class="create-task-btn">Create Task<img
+                            src="assets/img/create-task-check.svg" /></a>
+                </div>
+            </div>
+            <p><span>*</span>This fiel is required</p>
+        </div>
+    </div>
+    <script src="js/addTask.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,455 @@
+#add-task {
+  width: 80%;
+  height: 90%;
+  position: fixed;
+  background-color: rgba(255, 255, 255, 1);
+  left: 50%;
+  top: 50%;
+  z-index: 9999;
+  border-radius: 30px;
+  box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.1);
+  padding: 50px;
+  transition: all 300ms ease-in-out;
+}
+
+.add-task-headline {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.add-task-headline > h1 {
+  font-size: 61px;
+  font-weight: 700;
+  color: rgba(0, 0, 0, 1);
+  padding: 2px;
+  margin: 0;
+}
+
+.add-task-headline > img:hover {
+  cursor: pointer;
+  border-radius: 50%;
+  background-color: rgba(0, 0, 0, 0.2);
+}
+
+.form {
+  height: 100%;
+  display: flex;
+}
+
+.add-task-left {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.add-task-left > label {
+  font-size: 20px;
+  color: rgba(71, 82, 96);
+  margin-bottom: 10px;
+}
+
+.add-task-left > label > span {
+  color: rgba(255, 129, 144);
+}
+
+.add-task-left > input,
+.add-task-left > select,
+.add-task-left > textarea,
+.date-container > input {
+  height: 48px;
+  width: 440px;
+  padding: 12px 21px 12px 21px;;
+  border: 1px solid rgba(209, 209, 209, 1);
+  border-radius: 10px;
+  font-size: 20px;
+  margin-bottom: 30px;
+}
+
+.add-task-left > textarea {
+  padding: 18px 16px;
+}
+
+.add-task-left > select {
+  padding: 12px 21px 12px 21px;
+}
+
+.add-task-left > select {
+  appearance: none;
+  background-image: url("/assets/img/drop-down-arrow.svg");
+  background-repeat: no-repeat;
+  background-position: right 16px center;
+  background-size: 24px;
+  padding-right: 40px;
+}
+
+.assigned-container,
+.category-container {
+  position: relative;
+}
+
+#category-dropdown {
+  margin-top: 10px;
+  margin-bottom: 30px;
+  cursor: pointer;
+}
+
+#assigned-dropdown,
+#category-dropdown {
+  width: 440px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border: 1px solid rgba(209, 209, 209, 1);
+  border-radius: 10px;
+  padding: 7px 16px;
+  background-color: white;  
+}
+
+#assigned-dropdown:hover {
+  border: 1px solid rgb(176, 176, 176);
+  cursor: pointer;
+}
+
+#assigned-person {
+  display: flex;
+  margin: 10px;
+  margin-right: 15px;
+}
+
+.assigned-person-logo {
+  width: 42px;
+  height: 42px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 12px;
+  background-color: rgba(255, 122, 0);
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 1);
+  color: rgba(255, 255, 255, 1);
+  margin-right: 10px;
+}
+
+#person-to-assigned,
+#categories {
+  width: 440px;
+  height: 200px;
+  position: absolute;
+  padding: 12px 20px;
+  box-shadow: 0px 0px 14px 3px rgba(0, 0, 0, 0.04);
+  border-radius: 10px;
+  border-top-right-radius: 0;
+  border-top-left-radius: 0;
+  background-color: rgba(255, 255, 255, 1);
+  overflow: scroll;
+  z-index: 1;
+}
+
+#person-to-assigned {
+  top: 73px;
+}
+
+#categories {
+  top: 93px;
+}
+
+.categories-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.categories-container > span {
+  border-radius: 10px;
+  padding: 10px;
+}
+
+.categories-container > span:hover {
+  cursor: pointer;
+  background-color: rgba(0, 0, 0, 0.2);
+}
+
+.person-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 10px;
+  padding: 5px;
+  margin-bottom: 1px;
+}
+
+.person-container:hover {
+  background-color: rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+}
+
+.person {
+  display: flex;
+  align-items: center;
+}
+
+.person-to-assigned-logo {
+  width: 42px;
+  height: 42px;
+  font-size: 12px;
+  color: rgb(255, 255, 255);
+  border: 1px solid rgb(255, 255, 255);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+.person-container > img {
+  width: 24px;
+  height: 24px;
+}
+
+.person-container > img:hover {
+  cursor: pointer;
+  background-color: rgb(209, 209, 209);
+  border-radius: 50%;
+}
+
+.drop-down-arrow {
+  width: 32px;
+  height: 32px;
+  padding: 2px;
+}
+
+.drop-down-arrow:hover {
+  background-color: rgba(0, 0, 0, 0.2);
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+#point-out {
+  margin-top: 50px;
+  color: red;
+}
+
+.add-task-line {
+  width: 1px;
+  height: 100%;
+  background-color: rgba(209, 209, 209, 1);
+}
+
+.date-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.date-container > label,
+.add-task-prio > label,
+.category-container > label,
+.subtasks-container > label {
+  font-size: 20px;
+  color: rgba(71, 82, 96);
+  margin-bottom: 10px;
+}
+
+textarea {
+  height: 100px !important;
+}
+
+.date-container > label > span,
+.category-container > label > span {
+  color: rgba(255, 129, 144);
+}
+
+.prio-btn {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-top: 10px;
+  margin-bottom: 30px;
+}
+
+.high-btn,
+.medium-btn,
+.low-btn {
+  width: 136px;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  border-radius: 10px;
+  padding: 16px 10px;
+  border: none;
+  background-color: rgb(255, 255, 255);
+  box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.1);
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.high-btn:hover,
+.medium-btn:hover,
+.low-btn:hover {
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+}
+
+.high-btn-active {
+  background-color: rgb(255, 61, 0);
+  color: rgb(255, 255, 255);
+  font-weight: 700;
+}
+
+.medium-btn-active {
+  background-color: rgb(255, 168, 0);
+  color: rgb(255, 255, 255);
+  font-weight: 700;
+}
+
+.low-btn-active {
+  background-color: rgb(122, 226, 41);
+  color: rgb(255, 255, 255);
+  font-weight: 700;
+}
+
+.category-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.category-container > select {
+  width: 440px;
+  padding: 12px 21px;
+  border: 1px solid rgba(209, 209, 209, 1);
+  border-radius: 10px;
+  font-size: 20px;
+  margin-bottom: 30px;
+  appearance: none;
+  background-image: url("/assets/img/drop-down-arrow.svg");
+  background-repeat: no-repeat;
+  background-position: right 16px center;
+  background-size: 24px;
+  padding-right: 40px;
+}
+
+.subtasks-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.add-subtasks-container {
+  width: 440px;
+  height: 48px;
+  position: relative;
+}
+
+.add-subtasks-container > input {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  border: 1px solid rgba(209, 209, 209, 1);
+  border-radius: 10px;
+  font-size: 20px;
+  padding: 12px 16px;
+  margin-bottom: 30px;
+}
+
+.add-subtasks-container > img {
+  width: 24px;
+  height: 24px;
+  position: absolute;
+  right: 20px;
+  top: 12px;
+  cursor: pointer;
+  padding: 3px;
+}
+
+.add-subtasks-container > img:hover {
+  background-color: rgba(0, 0, 0, 0.1);
+  border-radius: 50%;
+}
+
+#added-subtasks-list {
+  height: 60px;
+  overflow-x: hidden;
+  padding-left: 0;
+}
+
+#added-subtasks-list > li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 5px 20px;
+}
+
+#added-subtasks-list > li:hover {
+  background-color: rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+}
+
+.subtask > img {
+  cursor: pointer;
+}
+
+.bottom {
+  display: flex;
+  align-items: center;
+}
+
+.bottom-left > span {
+  font-size: 20px;
+  color: rgba(0, 0, 0, 1);
+}
+
+.bottom-left > span:nth-child(1) {
+  color: red;
+}
+
+.bottom-right {
+  width: 334px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.cancel-btn,
+.create-task-btn {
+  width: 126px;
+  height: 56px;
+  color: rgba(42, 54, 71, 1);
+  font-size: 20px;
+  border: 2px solid rgba(42, 54, 71, 1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  text-decoration: none;
+}
+
+.create-task-btn {
+  width: 183px;
+  background-color: rgba(42, 54, 71, 1);
+  color: rgb(255, 255, 255);
+}
+
+.cancel-btn:hover {
+  color: rgba(41, 171, 226, 1);
+  border: 2px solid rgba(41, 171, 226, 1);
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+}
+
+.create-task-btn:hover {
+  background-color: rgba(41, 171, 226, 1);
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  border: none;
+}
+
+.bottom-right > a > img {
+  margin-left: 10px;
+}
+
+.devider {
+  width: 0px;
+  height: 424px;
+  border: 1px solid #D1D1D1;
+  margin-left: 48.25px;
+  margin-right: 48px;
+  margin-bottom: 138px;
+}

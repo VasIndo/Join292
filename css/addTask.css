@@ -24,9 +24,7 @@ body {
     font-size: 20px;
 }
 
-form span {
-    color: #FF8190;
-}
+
 
 .leftForm {
     display: flex;
