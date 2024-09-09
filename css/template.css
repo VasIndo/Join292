@@ -58,6 +58,7 @@ nav {
   justify-content: space-between;
   align-items: center;
   box-sizing: border-box;
+  z-index: 999;
 }
 
 .navLogo {

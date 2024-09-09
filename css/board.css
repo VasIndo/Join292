@@ -177,7 +177,7 @@ body {
 }
 
 #card:hover,
-.to-do-tasks-card:hover {
+.tasks-card:hover {
   cursor: pointer;
 }
 

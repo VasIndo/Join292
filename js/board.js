@@ -1,20 +1,26 @@
+const taskSections = [
+  { id: "to-do-plus", hoverSrc: "assets/img/plus-button-blue.svg", defaultSrc: "assets/img/plus-button.svg" },
+  { id: "in-progress-plus", hoverSrc: "assets/img/plus-button-blue.svg", defaultSrc: "assets/img/plus-button.svg" },
+  {
+    id: "await-feedback-plus",
+    hoverSrc: "assets/img/plus-button-blue.svg",
+    defaultSrc: "assets/img/plus-button.svg",
+  },
+];
+
 let contacts;
-let toDo;
-let inProgress;
-let awaitFeedback;
-let done;
-
-let currentDraggedElement;
-
-let response
-let responseJSON
 let allTasks;
 let toDoTasks;
 let inProgressTasks;
 let awaitFeedbackTasks;
 let doneTasks;
+let currentDraggedElement;
 
 const URL = "https://remotestorage-f8df7-default-rtdb.europe-west1.firebasedatabase.app/";
+
+/**
+ * Calls functions to get all information and to shown them.
+ */
 
 async function loadData() {
   await loadContacts();
@@ -22,13 +28,19 @@ async function loadData() {
   renderTasks();
 }
 
-function renderTasks() {
-  renderTask(toDoTasks, "to-do-tasks");
-  renderTask(inProgressTasks, "in-progress-tasks");
-  renderTask(awaitFeedbackTasks, "await-feedback-tasks");
-  renderTask(doneTasks, "done-tasks");
+/**
+ * Loads contact information from firebase and stores it in the `contacts` variable.
+ */
+async function loadContacts() {
+  let response = await fetch(URL + "contacts" + "/.json");
+  let responseJSON = await response.json();
+  contacts = Object.values(responseJSON);
 }
 
+/**
+ * Loads contact information from firebase and stores it in the `allTasks` variable and
+ * sorts them into the right columns
+ */
 async function loadTasks() {
   response = await fetch(URL + "tasks/.json");
   responseJSON = await response.json();
@@ -40,16 +52,39 @@ async function loadTasks() {
   doneTasks = allTasks.filter((task) => task.taskColumn === "done");
 }
 
-async function loadContacts() {
-  let response = await fetch(URL + "contacts" + "/.json");
-  responseJSON = await response.json();
-  contacts = Object.values(responseJSON);
+/**
+ * Renders tasks for all columns by calling the `renderTask` function for each column.
+ */
+function renderTasks() {
+  renderTask(toDoTasks, "to-do-tasks");
+  renderTask(inProgressTasks, "in-progress-tasks");
+  renderTask(awaitFeedbackTasks, "await-feedback-tasks");
+  renderTask(doneTasks, "done-tasks");
 }
 
+/**
+ * Renders a list of tasks in a specific column on the page.
+ * @param {Array} tasksArr - The array of tasks to be rendered.
+ * @param {string} tasksColumn - The ID of the HTML column where tasks will be rendered.
+ */
 function renderTask(tasksArr, tasksColumn) {
   document.getElementById(tasksColumn).innerHTML = "";
   for (let i = 0; i < tasksArr.length; i++) {
-    document.getElementById(tasksColumn).innerHTML += `
+    document.getElementById(tasksColumn).innerHTML += generateHtml(tasksArr, tasksColumn, i);
+    renderAssignedPersons(tasksArr, i, tasksColumn);
+    renderPrio(tasksArr, i, tasksColumn);
+  }
+}
+
+/**
+ * Generates the HTML for a task card.
+ * @param {Array} tasksArr - The array of tasks.
+ * @param {string} tasksColumn - The ID of the HTML column where tasks will be rendered.
+ * @param {number} i - The index of the task in the array.
+ * @returns {string} The generated HTML string for the task card.
+ */
+function generateHtml(tasksArr, tasksColumn, i) {
+  return `
             <div ondragstart="rotate('${tasksColumn}-card(${i})')" draggable="true" onclick="toggleDetailTaskCard()" class="tasks-card" id="${tasksColumn}-card(${i})">
               <div class="catagory">${tasksArr[i]["category"]}</div>
               <h1 class="title">${tasksArr[i]["title"]}</h1>
@@ -67,64 +102,14 @@ function renderTask(tasksArr, tasksColumn) {
               </div>
             </div>
         `;
-
-    renderAssignedPersons(tasksArr, i, tasksColumn);
-    renderPrio(tasksArr, i, tasksColumn);
-  }
 }
 
-function rotate(card) {
-  document.getElementById(card).classList.add("rotate");
-  currentDraggedElement = card;
-}
-
-function rotateBack(path) {
-  document.getElementById(path).classList.remove("rotate");
-}
-
-function allowDrop(ev) {
-  ev.preventDefault();
-}
-
-async function moveTo(newTaskColumn) {
-  let number = currentDraggedElement.split("(")[1].split(")")[0];
-  let string = currentDraggedElement.split('(')[0];
-  if (string == "to-do-tasks-card") {
-    toDoTasks[number]["taskColumn"] = newTaskColumn;
-  } else if (string == "in-progress-tasks-card") {
-    inProgressTasks[number]["taskColumn"] = newTaskColumn;
-  } else if (string == "await-feedback-tasks-card") {
-    awaitFeedbackTasks[number]["taskColumn"] = newTaskColumn;
-  } else if (string == "done-tasks-card") {
-    doneTasks[number]["taskColumn"] = newTaskColumn;
-  }
-  allTasks = [];
-  toDoTasks.forEach(toDoTasks => {
-    allTasks.push(toDoTasks);
-  });
-  inProgressTasks.forEach(inProgressTasks => {
-    allTasks.push(inProgressTasks);
-  });
-  awaitFeedbackTasks.forEach(awaitFeedbackTasks => {
-    allTasks.push(awaitFeedbackTasks);
-  });
-  doneTasks.forEach(doneTasks => {
-    allTasks.push(doneTasks);
-  });
-  await uploadTasks();
-  loadData();
-}
-
-async function uploadTasks() {
-  let response = await fetch(URL + "tasks/.json", {
-    method: "PUT",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(allTasks),
-  });
-}
-
+/**
+ * Renders the assigned persons on a task card.
+ * @param {Array} tasksArr - The array of tasks.
+ * @param {number} i - The index of the task.
+ * @param {string} idName - The base ID of the HTML element where the assigned persons will be displayed.
+ */
 function renderAssignedPersons(tasksColumn, i, idName) {
   let person = tasksColumn[i]["assigned persons"];
   if (person == undefined) {
@@ -142,6 +127,12 @@ function renderAssignedPersons(tasksColumn, i, idName) {
   }
 }
 
+/**
+ * Updates the priority icon on a task card based on the task's priority level.
+ * @param {Array} tasksArr - The array of tasks.
+ * @param {number} i - The index of the task.
+ * @param {string} idName - The base ID of the HTML element where the priority icon will be updated.
+ */
 function renderPrio(tasksColumn, i, idName) {
   let prio = tasksColumn[i]["prio"];
   if (prio == "low") {
@@ -156,22 +147,91 @@ function renderPrio(tasksColumn, i, idName) {
 }
 
 /**
+ * Rotates the task card when it starts being dragged.
+ * @param {string} card - The ID of the task card to rotate.
+ */
+function rotate(card) {
+  document.getElementById(card).classList.add("rotate");
+  currentDraggedElement = card;
+}
+
+/**
+ * Allows a task to be dropped into a new column.
+ * @param {Event} ev - The drag event.
+ */
+function allowDrop(ev) {
+  ev.preventDefault();
+}
+
+/**
+ * Moves the dragged task to a new column and updates the database.
+ * @param {string} newTaskColumn - The name of the new task column where the task will be moved.
+ */
+async function moveTo(newTaskColumn) {
+  let number = currentDraggedElement.split("(")[1].split(")")[0];
+  let string = currentDraggedElement.split("(")[0];
+  defineNewColumn(string, number, newTaskColumn);
+  allTasks = [];
+  pushTasksInArray();
+  await updateTasksInFirebase();
+  loadData();
+}
+
+/**
+ * Updates the task's column based on its current position and the new column.
+ * @param {string} string - The ID of the current task column.
+ * @param {number} number - The index of the task in the array.
+ * @param {string} newTaskColumn - The name of the new column to move the task to.
+ */
+function defineNewColumn(string, number, newTaskColumn) {
+  if (string == "to-do-tasks-card") {
+    toDoTasks[number]["taskColumn"] = newTaskColumn;
+  } else if (string == "in-progress-tasks-card") {
+    inProgressTasks[number]["taskColumn"] = newTaskColumn;
+  } else if (string == "await-feedback-tasks-card") {
+    awaitFeedbackTasks[number]["taskColumn"] = newTaskColumn;
+  } else if (string == "done-tasks-card") {
+    doneTasks[number]["taskColumn"] = newTaskColumn;
+  }
+}
+
+/**
+ * Pushes all tasks from each column into the `allTasks` array.
+ */
+function pushTasksInArray() {
+  toDoTasks.forEach((toDoTasks) => {
+    allTasks.push(toDoTasks);
+  });
+  inProgressTasks.forEach((inProgressTasks) => {
+    allTasks.push(inProgressTasks);
+  });
+  awaitFeedbackTasks.forEach((awaitFeedbackTasks) => {
+    allTasks.push(awaitFeedbackTasks);
+  });
+  doneTasks.forEach((doneTasks) => {
+    allTasks.push(doneTasks);
+  });
+}
+
+/**
+ * Updates the tasks in the Firebase database with the new task data.
+ */
+async function updateTasksInFirebase() {
+  let response = await fetch(URL + "tasks/.json", {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(allTasks),
+  });
+}
+
+/**
  * Initializes event listeners for the task section buttons when the DOM is fully loaded.
  */
 document.addEventListener("DOMContentLoaded", () => {
-  const taskSections = [
-    { id: "to-do-plus", hoverSrc: "assets/img/plus-button-blue.svg", defaultSrc: "assets/img/plus-button.svg" },
-    { id: "in-progress-plus", hoverSrc: "assets/img/plus-button-blue.svg", defaultSrc: "assets/img/plus-button.svg" },
-    {
-      id: "await-feedback-plus",
-      hoverSrc: "assets/img/plus-button-blue.svg",
-      defaultSrc: "assets/img/plus-button.svg",
-    },
-  ];
-
   taskSections.forEach((section) => {
     const element = document.getElementById(section.id);
-
     if (element) {
       /**
        * Changes the button's image to the hover state when the mouse enters the element.
