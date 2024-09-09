@@ -38,28 +38,32 @@ async function loadContacts() {
 }
 
 /**
- * Loads contact information from firebase and stores it in the `allTasks` variable and
- * sorts them into the right columns
+ * Loads task information from firebase and stores it in the `allTasks` variable and
  */
 async function loadTasks() {
   response = await fetch(URL + "tasks/.json");
   responseJSON = await response.json();
   allTasks = Object.values(responseJSON);
+  sortTasksInColumn(allTasks);
+}
 
+/**
+ * Sorts tasks into the right columns
+ */
+function sortTasksInColumn(allTasks) {
   toDoTasks = allTasks.filter((task) => task.taskColumn === "toDo");
   inProgressTasks = allTasks.filter((task) => task.taskColumn === "inProgress");
   awaitFeedbackTasks = allTasks.filter((task) => task.taskColumn === "awaitFeedback");
   doneTasks = allTasks.filter((task) => task.taskColumn === "done");
 }
-
 /**
  * Renders tasks for all columns by calling the `renderTask` function for each column.
  */
 function renderTasks() {
-  renderTask(toDoTasks, "to-do-tasks");
-  renderTask(inProgressTasks, "in-progress-tasks");
-  renderTask(awaitFeedbackTasks, "await-feedback-tasks");
-  renderTask(doneTasks, "done-tasks");
+  renderTask(toDoTasks, "to-do-tasks", "To do");
+  renderTask(inProgressTasks, "in-progress-tasks", "In progress");
+  renderTask(awaitFeedbackTasks, "await-feedback-tasks", "Await feedback");
+  renderTask(doneTasks, "done-tasks", "done");
 }
 
 /**
@@ -67,8 +71,13 @@ function renderTasks() {
  * @param {Array} tasksArr - The array of tasks to be rendered.
  * @param {string} tasksColumn - The ID of the HTML column where tasks will be rendered.
  */
-function renderTask(tasksArr, tasksColumn) {
+function renderTask(tasksArr, tasksColumn, columnName) {
   document.getElementById(tasksColumn).innerHTML = "";
+  if (tasksArr.length == 0) {
+    document.getElementById(
+      tasksColumn
+    ).innerHTML = `<div id="${tasksColumn}-empty" class="tasks-empty">No tasks ${columnName}</div>`;
+  }
   for (let i = 0; i < tasksArr.length; i++) {
     document.getElementById(tasksColumn).innerHTML += generateHtml(tasksArr, tasksColumn, i);
     renderAssignedPersons(tasksArr, i, tasksColumn);
@@ -260,4 +269,33 @@ function toggleAddTaskPopUp() {
   document.getElementById("category-dropdown").style.border = "1px solid rgba(209, 209, 209, 1)";
   document.getElementById("point-out").classList.add("d-none");
   deleteAllFields();
+}
+
+/**
+ * Adds an event listener to the input field that triggers a function when the Enter key is pressed.
+ */
+document.getElementById("searchbar-field").addEventListener("keydown", function (event) {
+  if (event.key === "Enter") {
+    filterTask();
+  }
+});
+
+/**
+ * Filters tasks based on the search term from the search field.
+ */
+function filterTask() {
+  let searchbarValue = document.getElementById("searchbar-field").value.toLowerCase();
+  
+  let filtered = allTasks.filter((task) => {
+    let titleString = task.title.join(' ').toLowerCase();
+    return titleString.includes(searchbarValue);
+  });
+  
+  if (searchbarValue.length == 0) {
+    loadData();
+  } else {
+    allTasks = filtered;
+    sortTasksInColumn(allTasks);
+    renderTasks();
+  }
 }

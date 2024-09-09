@@ -161,6 +161,25 @@ body {
   color: rgba(66, 82, 110, 1);
 }
 
+#to-do-tasks,
+#in-progress-tasks,
+#await-feedback-tasks,
+#done-tasks {
+  width: 100%;
+}
+
+.tasks-empty {
+  width: 100%;
+  font-size: 16px;
+  color: rgba(168, 168, 168, 1);
+  background-color: rgba(231, 231, 231, 1);
+  border: 2px dotted rgba(168, 168, 168, 1);
+  border-radius: 10px;
+  box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.16);
+  text-align: center;
+  padding: 10px;
+}
+
 .task-plus:hover {
   cursor: pointer;
 }

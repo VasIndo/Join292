@@ -34,7 +34,7 @@
           <form id="searchbar">
             <input id="searchbar-field" type="text" placeholder="Find Task" />
             <div class="line"></div>
-            <img class="magnifying-glass" src="assets/img/magnifying-glass.svg" alt="magnifying glass" />
+            <img onclick="filterTask()" class="magnifying-glass" src="assets/img/magnifying-glass.svg" alt="magnifying glass" />
           </form>
           <a onclick="toggleAddTaskPopUp()" href="#" class="add-task-btn"
             >Add task <img src="assets/img/btn-plus.svg" alt="+"
@@ -49,8 +49,9 @@
             <img class="task-plus" id="to-do-plus" src="assets/img/plus-button.svg" alt="plus" />
           </div>
           <div id="to-do-tasks">
-            <img src="assets/img/no-tasks.svg" alt="" />
-            <!--add task card here for To Do -->
+            <div id="to-do-tasks-empty" class="tasks-empty">
+              No tasks To do
+            </div>
           </div>
         </div>
         <div ondrop="moveTo('inProgress')" ondragover="allowDrop(event)" class="in-progress-split">
@@ -59,7 +60,6 @@
             <img class="task-plus" id="in-progress-plus" src="assets/img/plus-button.svg" alt="plus" />
           </div>
           <div id="in-progress-tasks" class="in-progress-tasks">
-            <!--add task card heren for In progress -->
             <div onclick="toggleDetailTaskCard()" id="card">
               <div class="catagory">User Story</div>
               <h1 class="title">Kochwelt Page & Recipe Recommender</h1>
@@ -75,7 +75,6 @@
                 <img class="prio" src="assets/img/prio-medium.svg" alt="medium" />
               </div>
             </div>
-            <!--add task card until here for in progress -->
           </div>
         </div>
         <div ondrop="moveTo('awaitFeedback')" ondragover="allowDrop(event)" class="await-feedback-split">
@@ -84,7 +83,6 @@
             <img class="task-plus" id="await-feedback-plus" src="assets/img/plus-button.svg" alt="plus" />
           </div>
           <div id="await-feedback-tasks" class="await-feedback-tasks">
-            <!--add task card here Await feedback-->
           </div>
         </div>
         <div ondrop="moveTo('done')" ondragover="allowDrop(event)" class="done-split">
@@ -92,7 +90,6 @@
             <span>Done</span>
           </div>
           <div id="done-tasks" class="done-tasks">
-            <!--add task card here for Done-->
           </div>
         </div>
       </div>
@@ -186,7 +183,6 @@
                 <img class="drop-down-arrow" src="assets/img/drop-down-arrow.svg" alt="Arrow" />
               </div>
               <div id="person-to-assigned" class="d-none">
-                <!-- add persons -->
                 <div id="person0" onclick="togglePersonToAssigned(0)" class="person-container">
                   <div class="person">
                     <span class="person-to-assigned-logo1">SM</span>
@@ -194,7 +190,6 @@
                   </div>
                   <img id="person0-checkbox" src="assets/img/check-button.svg" class="checkbox" />
                 </div>
-                <!-- add person until here -->
                 <div id="person1" onclick="togglePersonToAssigned(1)" class="person-container">
                   <div class="person">
                     <span class="person-to-assigned-logo2">AM</span>
@@ -244,7 +239,6 @@
               </div>
               <div id="categories" class="d-none">
                 <div class="categories-container">
-                  <!-- add categories -->
                   <span id="technical-task" onclick="toggleCategoryDropDown(), addCategory('Technical Task', 'technical-task')">Technical Task</span>
                   <span id="user-story" onclick="toggleCategoryDropDown(), addCategory('User Story', 'user-story')">User Story</span>
                 </div>
