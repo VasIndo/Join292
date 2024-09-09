@@ -11,6 +11,7 @@ let newTask = {
   prio: [],
   category: [],
   subtasks: [],
+  taskColumn: "toDo"
 };
 
 /**
@@ -136,7 +137,7 @@ function addPersonsToTask() {
   for (let i = 0; i < contacts.length; i++) {
     if (contacts[i]["assignedToTask"]) {
       assignedPersons.push(contacts[i]);
-      colorPerson.push(contacts[i]["color"])
+      colorPerson.push(contacts[i]["color"]);
     }
   }
 }
@@ -275,7 +276,7 @@ function pushSubtasks(path) {
 }
 
 async function addTaskInFirebase() {
-  await fetch(URL + "/tasks/toDo" + ".json", {
+  await fetch(URL + "/tasks" + ".json", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",

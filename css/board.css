@@ -166,7 +166,7 @@ body {
 }
 
 #card,
-.to-do-tasks-card {
+.tasks-card {
   width: 252px;
   background-color: rgba(255, 255, 255, 1);
   border-radius: 24px;
@@ -253,4 +253,17 @@ body {
   border-radius: 50%;
   border: 1px solid rgba(255, 255, 255, 1);
   color: rgba(255, 255, 255, 1);
+}
+
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(5deg);
+  }
+}
+
+.rotate {
+  animation: rotate 0.125s linear forwards;
 }
