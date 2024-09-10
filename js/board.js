@@ -1,11 +1,7 @@
 const taskSections = [
   { id: "to-do-plus", hoverSrc: "assets/img/plus-button-blue.svg", defaultSrc: "assets/img/plus-button.svg" },
   { id: "in-progress-plus", hoverSrc: "assets/img/plus-button-blue.svg", defaultSrc: "assets/img/plus-button.svg" },
-  {
-    id: "await-feedback-plus",
-    hoverSrc: "assets/img/plus-button-blue.svg",
-    defaultSrc: "assets/img/plus-button.svg",
-  },
+  {id: "await-feedback-plus",hoverSrc: "assets/img/plus-button-blue.svg",defaultSrc: "assets/img/plus-button.svg"},
 ];
 
 let contacts;
@@ -56,6 +52,7 @@ function sortTasksInColumn(allTasks) {
   awaitFeedbackTasks = allTasks.filter((task) => task.taskColumn === "awaitFeedback");
   doneTasks = allTasks.filter((task) => task.taskColumn === "done");
 }
+
 /**
  * Renders tasks for all columns by calling the `renderTask` function for each column.
  */
@@ -272,15 +269,6 @@ function toggleAddTaskPopUp() {
 }
 
 /**
- * Adds an event listener to the input field that triggers a function when the Enter key is pressed.
- */
-document.getElementById("searchbar-field").addEventListener("keydown", function (event) {
-  if (event.key === "Enter") {
-    filterTask();
-  }
-});
-
-/**
  * Filters tasks based on the search term from the search field.
  */
 function filterTask() {
@@ -290,7 +278,7 @@ function filterTask() {
     let titleString = task.title.join(' ').toLowerCase();
     return titleString.includes(searchbarValue);
   });
-  
+
   if (searchbarValue.length == 0) {
     loadData();
   } else {

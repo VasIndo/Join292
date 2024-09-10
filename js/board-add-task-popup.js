@@ -22,6 +22,9 @@ function toggleAssignedDropDown() {
   renderDropDown();
 }
 
+/**
+ * Clears all input fields, resets assigned persons, priority, and subtasks.
+ */
 function deleteAllFields() {
   document.getElementById("title").value = "";
   document.getElementById("description").value = "";
@@ -157,6 +160,10 @@ function addPersonLogo() {
   }
 }
 
+/**
+ * Toggles the priority selection and updates the button visuals accordingly.
+ * @param {string} path - The selected priority ("high", "medium", or "low").
+ */
 function togglePrio(path) {
   const prios = ["high", "medium", "low"];
 
@@ -173,6 +180,10 @@ function togglePrio(path) {
   pushPrio(path);
 }
 
+/**
+ * Updates the category dropdown with the selected category.
+ * @param {string} category - The selected category.
+ */
 function addCategory(catagory) {
   document.getElementById("category-dropdown").innerHTML = catagory;
 }
@@ -190,6 +201,9 @@ function addSubtasks() {
   document.getElementById("add-subtasks").value = "";
 }
 
+/**
+ * Renders the list of added subtasks.
+ */
 function renderSubtasks() {
   document.getElementById("added-subtasks-list").innerHTML = "";
   for (let i = 0; i < subtasksArr.length; i++) {
@@ -211,11 +225,18 @@ document.getElementById("add-subtasks").addEventListener("keydown", function (ev
   }
 });
 
+/**
+ * Deletes a subtask from the list.
+ * @param {number} i - The index of the subtask to delete.
+ */
 function deletSubtask(i) {
   subtasksArr.splice(i, 1);
   renderSubtasks();
 }
 
+/**
+ * Pushes the current task data to the task object and sends it to Firebase.
+ */
 function pushNewTaskInJson() {
   if (checkEmptyFields()) {
     document.getElementById("title").style.borderColor = "red";
@@ -233,6 +254,10 @@ function pushNewTaskInJson() {
   }
 }
 
+/**
+ * Checks if title, date or category are empty.
+ * @returns {boolean} - Returns true if any field is empty, false otherwise.
+ */
 function checkEmptyFields() {
   let title = document.getElementById("title").value;
   let date = document.getElementById("date").value;
@@ -244,29 +269,48 @@ function checkEmptyFields() {
   }
 }
 
+/**
+ * Pushes the value from an HTML element into the newTask object.
+ * @param {string} path - The path the value should be pushed, in newTask object.
+ */
 function push(path) {
   let data = document.getElementById(path).value;
   newTask[path].push(data);
 }
 
-function pushAssignedPersonsAndColor(path) {
+/**
+ * Adds names and colors of assigned persons to the newTask object.
+ */
+function pushAssignedPersonsAndColor() {
   for (let i = 0; i < assignedPersons.length; i++) {
     newTask["assigned persons"].push(assignedPersons[i]["name"]);
     newTask["color"].push(colorPerson[i]);
   }
 }
 
+/**
+ * Updates the priority field in the newTask object.
+ * @param {string} path - The priority value ("high", "medium", "low").
+ */
 function pushPrio(path) {
   newTask["prio"] = [];
   newTask["prio"].push(path);
 }
 
+/**
+ * Updates the category field in the newTask object.
+ * @param {string} path - The path where the category should be set, in newTask object.
+ */
 function pushCatagory(path) {
   let data = document.getElementById("category-dropdown").innerHTML;
   newTask[path] = [];
   newTask[path].push(data);
 }
 
+/**
+ * Updates the subtasks field in the newTask object.
+ * @param {string} path - The path  where the subtasks should be set, in newTask object.
+ */
 function pushSubtasks(path) {
   newTask[path] = [];
   for (let i = 0; i < subtasksArr.length; i++) {
@@ -275,6 +319,9 @@ function pushSubtasks(path) {
   }
 }
 
+/**
+ * Sends the newTask object to Firebase and resets the input fields.
+ */
 async function addTaskInFirebase() {
   await fetch(URL + "/tasks" + ".json", {
     method: "POST",
