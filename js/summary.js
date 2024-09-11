@@ -31,6 +31,7 @@ function changeDoneIconOnMouseLeave() {
  */
 async function render() {
   await loadTasks();
+  renderGreeting();
   renderTaskNum(toDoTasks, "to-do-number");
   renderTaskNum(doneTasks, "done-number");
   renderTaskNum(allTasks, "all-tasks-number");
@@ -38,6 +39,24 @@ async function render() {
   renderTaskNum(awaitFeedbackTasks, "await-feedback-number");
   renderUrgentNum();
   renderDeadline();
+}
+
+function renderGreeting() {
+  let time = new Date();
+  let hours = time.getHours();
+  document.getElementById('greeting-message').innerHTML = timeOfDay(hours);
+}
+
+function timeOfDay(hours) {
+  if (hours < 12) {
+    return "Good morning"
+  } else if (hours < 18) {
+    return "Good afternoon"
+  } else if (hours <= 21) {
+    return "Good evening"
+  } else {
+    return "Good night"
+  }
 }
 
 /**
