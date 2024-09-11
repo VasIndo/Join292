@@ -1,7 +1,7 @@
 const taskSections = [
   { id: "to-do-plus", hoverSrc: "assets/img/plus-button-blue.svg", defaultSrc: "assets/img/plus-button.svg" },
   { id: "in-progress-plus", hoverSrc: "assets/img/plus-button-blue.svg", defaultSrc: "assets/img/plus-button.svg" },
-  {id: "await-feedback-plus",hoverSrc: "assets/img/plus-button-blue.svg",defaultSrc: "assets/img/plus-button.svg"},
+  { id: "await-feedback-plus", hoverSrc: "assets/img/plus-button-blue.svg", defaultSrc: "assets/img/plus-button.svg" },
 ];
 
 let contacts;
@@ -77,8 +77,10 @@ function renderTask(tasksArr, tasksColumn, columnName) {
   }
   for (let i = 0; i < tasksArr.length; i++) {
     document.getElementById(tasksColumn).innerHTML += generateHtml(tasksArr, tasksColumn, i);
+    setCategoryColor(tasksArr, i, tasksColumn);
     renderAssignedPersons(tasksArr, i, tasksColumn);
     renderPrio(tasksArr, i, tasksColumn);
+    // renderSubtask(tasksArr, i, tasksColumn);
   }
 }
 
@@ -90,16 +92,13 @@ function renderTask(tasksArr, tasksColumn, columnName) {
  * @returns {string} The generated HTML string for the task card.
  */
 function generateHtml(tasksArr, tasksColumn, i) {
+  let arrayAsString = arrayToString(tasksColumn);
   return `
-            <div ondragstart="rotate('${tasksColumn}-card(${i})')" draggable="true" onclick="toggleDetailTaskCard()" class="tasks-card" id="${tasksColumn}-card(${i})">
-              <div class="catagory">${tasksArr[i]["category"]}</div>
+            <div ondragstart="rotate('${tasksColumn}-card(${i})')" draggable="true" onclick="toggleDetailTaskCard(${arrayAsString}, ${i})" class="tasks-card" id="${tasksColumn}-card(${i})">
+              <div id="${tasksColumn}-catagory(${i})" class="catagory">${tasksArr[i]["category"]}</div>
               <h1 class="title">${tasksArr[i]["title"]}</h1>
               <p class="description">${tasksArr[i]["description"]}</p>
-              <div class="subtasks">
-                <div class="subtasks-diagram">
-                  <div class="subtasks-diagram-filled"></div>
-                </div>
-                <span class="subtasks-number">1/2</span>
+              <div id="${tasksColumn}-subtasks(${i})" class="subtasks">
               </div>
               <div class="bottom-card">
                 <div id="${tasksColumn}assigned-to(${i})" class="assigned-to">
@@ -108,6 +107,61 @@ function generateHtml(tasksArr, tasksColumn, i) {
               </div>
             </div>
         `;
+}
+
+/**
+ * Converts a column ID string to a  task array variable name.
+ * @param {string} tasksColumn - The name of the task column.
+ * @returns {string} The name of the task array.
+ */
+function arrayToString(tasksColumn) {
+  if (tasksColumn == "to-do-tasks") {
+    return "toDoTasks";
+  } else if (tasksColumn == "in-progress-tasks") {
+    return "inProgressTasks";
+  } else if (tasksColumn == "await-feedback-tasks") {
+    return "awaitFeedbackTasks";
+  } else if (tasksColumn == "done-tasks") {
+    return "doneTasks";
+  }
+}
+/**
+ * Sets the background color for the category banner.
+ * @param {Array} tasksArr - The array of tasks.
+ * @param {string} tasksColumn - The ID of the HTML column where tasks will be rendered.
+ * @param {number} i - The index of the task in the array.
+ */
+function setCategoryColor(tasksArr, i, tasksColumn) {
+  if (tasksArr[i]["category"] == "User Story") {
+    document.getElementById(`${tasksColumn}-catagory(${i})`).style.backgroundColor = "rgba(0, 56, 255, 1)";
+  } else {
+    document.getElementById(`${tasksColumn}-catagory(${i})`).style.backgroundColor = "rgb(32, 215, 194)";
+  }
+}
+
+/**
+ * Generates the HTML for subtasks overview.
+ * @param {Array} tasksArr - The array of tasks.
+ * @param {number} i - The index of the task in the array.
+ * @param {string} tasksColumn - The ID of the HTML column where tasks will be rendered.
+ */
+function renderSubtask(tasksArr, i, tasksColumn) {
+  if (tasksArr[i]["subtasks"]) {
+    document.getElementById(`${tasksColumn}-subtasks(${i})`).innerHTML = `
+    <div id="${tasksColumn}-subtasks-diagram(${i})" class="subtasks-diagram">
+     <div id="${tasksColumn}-subtasks-diagram-filled(${i})" class="subtasks-diagram-filled"></div>
+    </div>
+    <div class="subtasks-number">
+      <span>0</span>
+      <span>/</span>
+      <span id="all-subtasks">2</span>
+    </div>
+  `;
+    let allSubtasks = tasksArr[i]["subtasks"].length;
+    document.getElementById('all-subtasks').innerHTML = allSubtasks;
+  } else{
+    document.getElementById(`${tasksColumn}-subtasks(${i})`).innerHTML = "";
+  }
 }
 
 /**
@@ -273,9 +327,9 @@ function toggleAddTaskPopUp() {
  */
 function filterTask() {
   let searchbarValue = document.getElementById("searchbar-field").value.toLowerCase();
-  
+
   let filtered = allTasks.filter((task) => {
-    let titleString = task.title.join(' ').toLowerCase();
+    let titleString = task.title.join(" ").toLowerCase();
     return titleString.includes(searchbarValue);
   });
 

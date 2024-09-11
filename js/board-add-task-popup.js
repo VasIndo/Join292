@@ -237,7 +237,7 @@ function deletSubtask(i) {
 /**
  * Pushes the current task data to the task object and sends it to Firebase.
  */
-function pushNewTaskInJson() {
+async function pushNewTaskInJson() {
   if (checkEmptyFields()) {
     document.getElementById("title").style.borderColor = "red";
     document.getElementById("date").style.borderColor = "red";
@@ -250,7 +250,8 @@ function pushNewTaskInJson() {
     push("date");
     pushCatagory("category");
     pushSubtasks("subtasks");
-    addTaskInFirebase();
+    await addTaskInFirebase();
+    loadData();
   }
 }
 
