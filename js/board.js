@@ -325,7 +325,7 @@ function toggleAddTaskPopUp() {
 /**
  * Filters tasks based on the search term from the search field.
  */
-function filterTask() {
+async function filterTask() {
   let searchbarValue = document.getElementById("searchbar-field").value.toLowerCase();
 
   let filtered = allTasks.filter((task) => {
@@ -340,4 +340,12 @@ function filterTask() {
     sortTasksInColumn(allTasks);
     renderTasks();
   }
+}
+
+function addHighLight(split) {
+  document.getElementById(split).classList.add("highlight");
+}
+
+function removeHighLight(split) {
+  document.getElementById(split).classList.remove("highlight");
 }

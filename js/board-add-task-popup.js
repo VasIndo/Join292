@@ -242,7 +242,6 @@ async function pushNewTaskInJson() {
     document.getElementById("title").style.borderColor = "red";
     document.getElementById("date").style.borderColor = "red";
     document.getElementById("category-dropdown").style.borderColor = "red";
-    document.getElementById("point-out").classList.remove("d-none");
   } else {
     push("title");
     push("description");

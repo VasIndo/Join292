@@ -32,7 +32,7 @@
         </div>
         <div class="headline-right">
           <form id="searchbar">
-            <input id="searchbar-field" type="text" placeholder="Find Task" />
+            <input onkeyup="filterTask()" id="searchbar-field" type="text" placeholder="Find Task" />
             <div class="line"></div>
             <img onclick="filterTask()" class="magnifying-glass" src="assets/img/magnifying-glass.svg" alt="magnifying glass" />
           </form>
@@ -43,7 +43,7 @@
       </div>
 
       <div class="tasks">
-        <div ondrop="moveTo('toDo')" ondragover="allowDrop(event)" class="to-do-split">
+        <div ondrop="moveTo('toDo'), removeHighLight('to-do-split')" ondragover="allowDrop(event) ,addHighLight('to-do-split')" ondragleave="removeHighLight('to-do-split')" id="to-do-split" class="to-do-split">
           <div class="to-do-headline">
             <span>To do</span>
             <img class="task-plus" id="to-do-plus" src="assets/img/plus-button.svg" alt="plus" />
@@ -54,7 +54,7 @@
             </div>
           </div>
         </div>
-        <div ondrop="moveTo('inProgress')" ondragover="allowDrop(event)" class="in-progress-split">
+        <div ondrop="moveTo('inProgress'), removeHighLight('in-progress-split')" ondragover="allowDrop(event) ,addHighLight('in-progress-split')" ondragleave="removeHighLight('in-progress-split')" id="in-progress-split" class="in-progress-split">
           <div class="in-progress-headline">
             <span>In progress</span>
             <img class="task-plus" id="in-progress-plus" src="assets/img/plus-button.svg" alt="plus" />
@@ -77,7 +77,7 @@
             </div>
           </div>
         </div>
-        <div ondrop="moveTo('awaitFeedback')" ondragover="allowDrop(event)" class="await-feedback-split">
+        <div ondrop="moveTo('awaitFeedback'), removeHighLight('await-feedback-split')" ondragover="allowDrop(event) ,addHighLight('await-feedback-split')" ondragleave="removeHighLight('await-feedback-split')" id="await-feedback-split" class="await-feedback-split">
           <div class="await-feedback-headline">
             <span>Await feedback</span>
             <img class="task-plus" id="await-feedback-plus" src="assets/img/plus-button.svg" alt="plus" />
@@ -85,7 +85,7 @@
           <div id="await-feedback-tasks" class="await-feedback-tasks">
           </div>
         </div>
-        <div ondrop="moveTo('done')" ondragover="allowDrop(event)" class="done-split">
+        <div ondrop="moveTo('done'), removeHighLight('done-split')" ondragover="allowDrop(event) ,addHighLight('done-split')" ondragleave="removeHighLight('done-split')" id="done-split" class="done-split">
           <div class="done-headline">
             <span>Done</span>
           </div>
@@ -200,7 +200,6 @@
               </div>
             </div>
             <div id="assigned-person"></div>
-            <div class="d-none" id="point-out">This field is required.</div>
           </div>
 
 

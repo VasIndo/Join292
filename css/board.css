@@ -139,6 +139,7 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
+  padding: 10px;
 }
 
 .to-do-headline,
@@ -285,4 +286,9 @@ body {
 
 .rotate {
   animation: rotate 0.125s linear forwards;
+}
+
+.highlight {
+  background-color: rgba(128, 128, 128, 0.2);
+  border-radius: 10px;
 }
