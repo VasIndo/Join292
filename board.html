@@ -36,11 +36,19 @@
             <div class="line"></div>
             <img onclick="filterTask()" class="magnifying-glass" src="assets/img/magnifying-glass.svg" alt="magnifying glass" />
           </form>
-          <a onclick="toggleAddTaskPopUp()" href="#" class="add-task-btn"
-            >Add task <img src="assets/img/btn-plus.svg" alt="+"
-          /></a>
+          <a onclick="toggleAddTaskPopUp()" href="#" id="add-task-btn-desktop" class="add-task-btn"><span>Add task</span><img src="assets/img/btn-plus.svg" alt="+"/></a>
+          <a href="addTask.html" id="add-task-btn-mobile" class="add-task-btn"><span>Add task</span><img src="assets/img/btn-plus.svg" alt="+"/></a>
+
         </div>
       </div>
+      <div class="searchbar-mobile">
+        <form id="searchbar-mobile">
+          <input onkeyup="filterTask()" id="searchbar-field-mobile" type="text" placeholder="Find Task" />
+          <div class="line"></div>
+          <img onclick="filterTask()" class="magnifying-glass" src="assets/img/magnifying-glass.svg" alt="magnifying glass" />
+        </form>
+      </div>
+
 
       <div class="tasks">
         <div ondrop="moveTo('toDo'), removeHighLight('to-do-split')" ondragover="allowDrop(event) ,addHighLight('to-do-split')" ondragleave="removeHighLight('to-do-split')" id="to-do-split" class="to-do-split">

@@ -318,7 +318,6 @@ function toggleAddTaskPopUp() {
   document.getElementById("title").style.border = "1px solid rgba(209, 209, 209, 1)";
   document.getElementById("date").style.border = "1px solid rgba(209, 209, 209, 1)";
   document.getElementById("category-dropdown").style.border = "1px solid rgba(209, 209, 209, 1)";
-  document.getElementById("point-out").classList.add("d-none");
   deleteAllFields();
 }
 
@@ -327,7 +326,9 @@ function toggleAddTaskPopUp() {
  */
 async function filterTask() {
   let searchbarValue = document.getElementById("searchbar-field").value.toLowerCase();
-
+  if (searchbarValue == "") {
+    searchbarValue = document.getElementById("searchbar-field-mobile").value.toLowerCase();
+  }
   let filtered = allTasks.filter((task) => {
     let titleString = task.title.join(" ").toLowerCase();
     return titleString.includes(searchbarValue);
@@ -342,10 +343,18 @@ async function filterTask() {
   }
 }
 
+/**
+ * Adds a class to the split to highlight it.
+ * @param {*} split - The ID from the split
+ */
 function addHighLight(split) {
   document.getElementById(split).classList.add("highlight");
 }
 
+/**
+ * Removes a class from the split to remove the highlight.
+ * @param {*} split - The ID from the split
+ */
 function removeHighLight(split) {
   document.getElementById(split).classList.remove("highlight");
 }
