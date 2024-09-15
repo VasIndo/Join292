@@ -122,7 +122,7 @@
                     </div>
                 </div>
             </form>
-            <div style="padding-left: 710px;">
+            <div class="bottomConPadding">
                 <div class="bottom-right">
                     <a href="#" onclick="toggleAddTaskPopUp()" onmouseenter="mouseEnterChangeX()"
                         onmouseleave="mouseLeaveChangeX()" class="cancel-btn">Cancel<img id="cancel-btn-img"
@@ -131,7 +131,13 @@
                             src="assets/img/create-task-check.svg" /></a>
                 </div>
             </div>
-            <p><span>*</span>This fiel is required</p>
+            <p class="infoP"><span>*</span>This fiel is required</p>
+
+            <div class="bottomMobile">
+                <p><span>*</span>This fiel is required</p>
+                <a href="#" onclick="pushNewTaskInJson()" class="create-task-btn">Create Task<img
+                    src="assets/img/create-task-check.svg" /></a>
+            </div>
         </div>
     </div>
 </body>

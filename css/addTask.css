@@ -4,7 +4,6 @@ body {
 
 .addTaskContainer {
     width: 100vw;
-    height: 100vh;
     background-color: #f6f7f8;
     padding-left: 96px;
     margin-left: 232px;
@@ -146,4 +145,138 @@ body {
 
 .addTaskContainer p span {
     color: #FF8190;
+}
+
+.bottomMobile {
+    display: none;
+}
+
+.bottomConPadding {
+    padding-left: 710px;
+}
+
+@media only screen and (max-width: 1400px) {
+    .addTaskContainer {
+        padding-left: 40px;
+    }
+
+    .add-task-left>input,
+    .add-task-left>select,
+    .add-task-left>textarea,
+    .date-container>input {
+        width: 280px;
+    }
+
+    #assigned-dropdown,
+    #category-dropdown {
+        width: 280px;
+        font-size: 17px;
+    }
+
+    #date {
+        width: 280px;
+    }
+
+    .add-subtasks-container>input {
+        width: 280px;
+    }
+
+    .prio-btn {
+        flex-direction: column;
+        align-items: unset;
+    }
+
+    .devider {
+        height: 570px;
+        margin-bottom: 100px;
+    }
+
+    .add-subtasks-container>img {
+        right: 175px;
+        top: 13px;
+    }
+
+    .addTaskContainer p {
+        position: unset;
+        margin-block-start: 0;
+    }
+
+    .bottom-right {
+        width: 660px;
+        display: flex;
+        justify-content: flex-end;
+        gap: 16px;
+    }
+
+    .bottomConPadding {
+        padding: unset;
+    }
+
+    #added-subtasks-list {
+        width: 280px;
+    }
+
+    #person-to-assigned,
+    #categories {
+        width: 280px;
+    }
+}
+
+@media only screen and (max-width: 960px) {
+    .addTaskContainer {
+        margin-left: 0;
+    }
+
+    .addTaskContainer h1 {
+        padding-top: 20px;
+    }
+}
+
+@media only screen and (max-width: 740px) {
+    .addTaskContainer {
+        padding: 0 16px;
+    }
+
+    .addTaskContainer h1 {
+        font-size: 47px;
+    }
+
+    .devider {
+        display: none;
+    }
+
+    .form {
+        display: block;
+    }
+
+    .add-task-left>input,
+    .add-task-left>select,
+    .add-task-left>textarea,
+    .date-container>input {
+        padding: 0 16px;
+    }
+
+    .bottomConPadding {
+        display: none;
+    }
+
+    .infoP {
+        display: none;
+    }
+
+    .bottomMobile {
+        display: block;
+        display: flex;
+        position: fixed;
+        bottom: 80px;
+        z-index: 1;
+        background-color: #f6f7f8;
+        width: 100%;
+        padding: 10px;
+    }
+
+    .cancel-btn, .create-task-btn {
+        margin-right: 15px;
+        font-size: 15px;
+    }
 }
