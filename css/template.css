@@ -246,6 +246,7 @@ nav {
     background-color: #2a3647;
     position: fixed;
     bottom: 0;
+    z-index: 1;
   }
 
   .navbar-mobile > a {
