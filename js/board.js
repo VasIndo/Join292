@@ -94,7 +94,7 @@ function renderTask(tasksArr, tasksColumn, columnName) {
 function generateHtml(tasksArr, tasksColumn, i) {
   let arrayAsString = arrayToString(tasksColumn);
   return `
-            <div ondragstart="rotate('${tasksColumn}-card(${i})')" draggable="true" onclick="toggleDetailTaskCard(${arrayAsString}, ${i})" class="tasks-card" id="${tasksColumn}-card(${i})">
+            <div ondragstart="rotate('${tasksColumn}-card(${i})')" draggable="true" onclick="renderCardInfo(${arrayAsString}, ${i}); cardAnimation()" class="tasks-card" id="${tasksColumn}-card(${i})">
               <div id="${tasksColumn}-catagory(${i})" class="catagory">${tasksArr[i]["category"]}</div>
               <h1 class="title">${tasksArr[i]["title"]}</h1>
               <p class="description">${tasksArr[i]["description"]}</p>

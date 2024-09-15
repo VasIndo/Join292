@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -18,7 +19,6 @@
     <script src="js/board.js" defer></script>
     <script src="js/board-add-task-popup.js" defer></script>
     <script src="js/board-task-detail-view.js" defer></script>
-
 
     <title>Join Board</title>
   </head>
@@ -104,40 +104,28 @@
 
       <div class="hide-card" id="card-detail-view">
         <div class="card-detail-view-headline">
-          <div class="card-detail-view-catagory">User Story</div>
-          <img onclick="toggleDetailTaskCard()" src="assets/img/close.svg" alt="close" />
+          <div id="card-detail-view-catagory" class="card-detail-view-catagory">User Story</div>
+          <img onclick="cardAnimation()" src="assets/img/close.svg" alt="close" />
         </div>
-        <h1 class="card-detail-view-title">Kochwelt Page & Recipe Recommender</h1>
-        <span class="card-detail-view-description">Build start page with recipe recommendation.</span>
+        <h1 id="card-detail-view-title" class="card-detail-view-title">Kochwelt Page & Recipe Recommender</h1>
+        <span id="card-detail-view-description" class="card-detail-view-description">Build start page with recipe recommendation.</span>
         <div class="card-detail-view-date">
           <span class="card-detail-view-date-text">Due Date:</span>
-          <span class="card-detail-view-date-due-date">10/05/2023</span>
+          <span id="card-detail-view-date-due-date" class="card-detail-view-date-due-date">10/05/2023</span>
         </div>
         <div class="card-detail-view-priority">
           <span class="card-detail-view-priority-text">Priority:</span>
           <div class="card-detail-view-priority-urgency">
-            <span>Medium</span>
-            <img src="assets/img/prio-medium.svg" alt="medium" />
+            <span id="card-detail-view-priority-urgency-span">Medium</span>
+            <img id="card-detail-view-priority-urgency-img" src="assets/img/prio-medium.svg" alt="" />
           </div>
         </div>
-        <div class="card-detail-view-assigned-to">
+        <div id="card-detail-view-assigned-persons" class="card-detail-view-assigned-to">
           <span>Assigned-To:</span>
-          <div class="card-detail-view-assigned-to-person-one">
-            <span class="card-detail-view-assigned-to-person-one-logo">AM</span>
-            <span>Anton Mayer</span>
-          </div>
-          <div class="card-detail-view-assigned-to-person-two">
-            <span class="card-detail-view-assigned-to-person-two-logo">EM</span>
-            <span>Emmanuel Mauer</span>
-          </div>
-          <div class="card-detail-view-assigned-to-person-three">
-            <span class="card-detail-view-assigned-to-person-three-logo">MB</span>
-            <span>Marcel Bauer</span>
-          </div>
         </div>
         <div class="card-detail-view-subtasks">
           <span>Subtasks</span>
-          <div class="card-detail-view-subtasks-enumeration">
+          <div id="card-detail-view-subtasks-container" class="card-detail-view-subtasks-container">
             <div class="card-detail-view-subtasks-enumeration-one">
               <img src="assets/img/check-button-checked.svg" alt="checked" />
               <span>Implement Recipe Recommendation</span>

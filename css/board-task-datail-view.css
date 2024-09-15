@@ -91,6 +91,7 @@
 .card-detail-view-priority-urgency > span {
   font-size: 20px;
   color: rgba(0, 0, 0, 1);
+  margin-right: 10px;
 }
 
 .card-detail-view-assigned-to > span {
@@ -98,18 +99,14 @@
   color: rgba(42, 54, 71, 1);
 }
 
-.card-detail-view-assigned-to-person-one,
-.card-detail-view-assigned-to-person-two,
-.card-detail-view-assigned-to-person-three {
+.card-detail-view-assigned-person {
   display: flex;
   align-items: center;
   padding: 4px 16px;
   margin-top: 20px;
 }
 
-.card-detail-view-assigned-to-person-one-logo,
-.card-detail-view-assigned-to-person-two-logo,
-.card-detail-view-assigned-to-person-three-logo {
+.card-detail-view-assigned-to-person-logo {
   width: 42px;
   height: 42px;
   display: flex;
@@ -123,14 +120,6 @@
   margin-right: 20px;
 }
 
-.card-detail-view-assigned-to-person-two-logo {
-  background-color: rgba(33, 215, 193);
-}
-
-.card-detail-view-assigned-to-person-three-logo {
-  background-color: rgba(70, 47, 138);
-}
-
 .card-detail-view-subtasks {
   margin-top: 20px;
 }
@@ -140,39 +129,38 @@
   color: rgba(42, 54, 71, 1);
 }
 
-.card-detail-view-subtasks-enumeration {
+.card-detail-view-subtasks-container {
   margin-top: 20px;
 }
 
-.card-detail-view-subtasks-enumeration-one,
-.card-detail-view-subtasks-enumeration-two {
+.card-detail-view-subtasks-enumeration {
   display: flex;
   align-items: center;
   padding: 4px 16px;
 }
 
-.card-detail-view-subtasks-enumeration-one:hover,
-.card-detail-view-subtasks-enumeration-two:hover {
+.card-detail-view-subtasks-enumeration:hover {
+  width: 100%;
   background-color: rgba(209, 209, 209, 1);
   border-radius: 10px;
   display: inline-flex;
   cursor: pointer;
 }
 
-.card-detail-view-subtasks-enumeration-one > img,
-.card-detail-view-subtasks-enumeration-two > img {
+.card-detail-view-subtasks-enumeration > img {
   margin-right: 20px;
 }
 
-.card-detail-view-subtasks-enumeration-one > span,
-.card-detail-view-subtasks-enumeration-two > span {
+.card-detail-view-subtasks-enumeration > span {
   font-size: 16px;
   color: rgba(0, 0, 0, 1);
 }
 
 .options-container {
   display: flex;
-  justify-content: flex-end;
+  position: absolute;
+  bottom: 20px;
+  right: 50px;
 }
 
 .options {
