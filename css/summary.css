@@ -7,6 +7,7 @@ body {
   font-family: "Inter";
   padding: 0;
   margin: 0;
+  background-color: #f6f7f8;
 }
 
 .summary-overview {
@@ -291,7 +292,7 @@ body {
 }
 
 @media only screen and (max-width: 960px) {
-  #summar {
+  #summary {
     background-color: #f6f7f8;
   }
 
@@ -321,5 +322,128 @@ body {
     height: 3px;
     margin-top: 16px;
     margin-bottom: 40px;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+
+  .number {
+    font-size: 47px;
+  }
+
+  .number-of-text {
+    font-size: 14px;
+  }
+
+  .to-do>img {
+    width: 40px;
+    height: 40px;
+  }
+
+  .done>img {
+    width: 40px;
+    height: 40px;
+  }
+
+  .urgent>img {
+    width: 40px;
+    height: 40px;
+  }
+
+  .to-do,
+  .done {
+    width: 186px;
+    height: 110px;
+  }
+
+  .first-row {
+    width: unset;
+    margin: 0 16px;
+  }
+
+  .second-row {
+    display: block;
+    width: unset;
+  }
+
+  .second-row-left {
+    width: unset;
+    height: 110px;
+    margin: 0 16px;
+  }
+
+  .dead-line-upcoming-deadline {
+    font-size: 14px;
+  }
+
+  .dead-line-date {
+    font-size: 16px;
+  }
+
+  .number-of span:nth-child(2) {
+    font-size: 14px;
+  }
+
+  .third-row {
+    width: unset;
+  }
+
+  .third-row-tasks-in-board,
+  .third-row-tasks-in-progress,
+  .third-row-awaiting-feedback {
+    width: 116px;
+    height: 116px;
+    margin: 0 16px;
+  }
+
+  .second-row-left:hover .number-of span:nth-child(1),
+  .second-row-left:hover .number-of span:nth-child(2),
+  .second-row-left:hover,
+  .second-row-left:hover {
+    transform: scale(1.0);
+  }
+}
+
+@media only screen and (max-width: 460px) {
+
+  .to-do,
+  .done {
+    width: 120px;
+    height: 110px;
+  }
+
+  .number {
+    font-size: 30px;
+  }
+
+  .number-of span:nth-child(2) {
+    font-size: 10px;
+  }
+
+  .to-do>img {
+    width: 35px;
+    height: 35px;
+  }
+
+  .done>img {
+    width: 35px;
+    height: 35px;
+  }
+
+  .urgent>img {
+    width: 35px;
+    height: 35px;
+  }
+
+  .second-row-left {
+    gap: 8px;
+    padding: 0;
+  }
+
+  .third-row{
+    justify-content: unset;
+    flex-direction: column;
+    align-items: center;
+    gap: 13px;
   }
 }
