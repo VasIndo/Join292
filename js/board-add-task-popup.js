@@ -10,8 +10,9 @@ let newTask = {
   date: [],
   prio: [],
   category: [],
-  subtasks: [],
-  taskColumn: "toDo"
+  subtasksChecked: [""],
+  subtasksNotChecked: [],
+  taskColumn: "toDo",
 };
 
 /**
@@ -248,7 +249,7 @@ async function pushNewTaskInJson() {
     pushAssignedPersonsAndColor();
     push("date");
     pushCatagory("category");
-    pushSubtasks("subtasks");
+    pushSubtasks("subtasksNotChecked");
     await addTaskInFirebase();
     loadData();
   }

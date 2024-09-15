@@ -80,7 +80,7 @@ function renderCardSubtasks(arr, i, id) {
   let subtasksLenght = checkedSubtasks.length + noCheckedSubtasks.length;
   for (let index = 0; index < subtasksLenght; index++) {
     document.getElementById(id).innerHTML += `
-      <div onclick="toggleSubtask(${index})" id="card-detail-view-subtasks(${index})" class="card-detail-view-subtasks-enumeration">
+      <div onclick="toggleSubtask(${index}, ${checkedSubtasks})" id="card-detail-view-subtasks(${index})" class="card-detail-view-subtasks-enumeration">
         <img id="checkbox(${index})" src="assets/img/check-button.svg" />
         <span>${noCheckedSubtasks[index]}</span>
       </div>
@@ -100,5 +100,5 @@ function toggleSubtask(i) {
 }
 
 function setSubtask() {
-  
+  // nach ändereung auf firebase url / tasks [i] subtasksChecked oder eben subtasksNotChecked
 }
