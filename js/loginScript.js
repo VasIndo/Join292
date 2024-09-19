@@ -11,27 +11,37 @@ document.addEventListener('DOMContentLoaded', () => {
     // Setzt den Zustand auf "Remember Default" beim Start
     localStorage.setItem("isRememberDefault", "true");
 
-   // Aktualisiert das Icon des Passwort-Toggles basierend auf dem Eingabeinhalt
-function updatePasswordToggleIcon(inputId, toggleId) {
-    const input = document.getElementById(inputId);
-    document.getElementById(toggleId).src = input.value.length > 0 ? visibilityOffIcon : lockIcon;
-}
-
-// Schaltet die Sichtbarkeit des Passworts um
-function togglePasswordVisibilityIcon(inputId, toggleId) {
-    const field = document.getElementById(inputId);
-    const toggle = document.getElementById(toggleId);
-    if (field.value.length === 0) return;
-    if (toggle.src.includes('visibility_off.svg')) {
-        field.type = "text";
-        toggle.src = visibilityIcon;
-    } else {
-        field.type = "password";
-        toggle.src = visibilityOffIcon;
+    /**
+     * Aktualisiert das Icon des Passwort-Toggles basierend auf dem Eingabeinhalt.
+     * @param {string} inputId - Die ID des Passwortfeldes.
+     * @param {string} toggleId - Die ID des Icons für den Passwort-Toggle.
+     */
+    function updatePasswordToggleIcon(inputId, toggleId) {
+        const input = document.getElementById(inputId);
+        document.getElementById(toggleId).src = input.value.length > 0 ? icons.visibilityOff : icons.lock;
     }
-}
 
-    // Fügt Event-Listener für "Remember Me"-Funktion hinzu
+    /**
+     * Schaltet die Sichtbarkeit des Passworts um und ändert das Icon.
+     * @param {string} inputId - Die ID des Passwortfeldes.
+     * @param {string} toggleId - Die ID des Icons für den Passwort-Toggle.
+     */
+    function togglePasswordVisibilityIcon(inputId, toggleId) {
+        const field = document.getElementById(inputId);
+        const toggle = document.getElementById(toggleId);
+        if (field.value.length === 0) return;
+        if (toggle.src.includes('visibility_off.svg')) {
+            field.type = "text";
+            toggle.src = icons.visibility;
+        } else {
+            field.type = "password";
+            toggle.src = icons.visibilityOff;
+        }
+    }
+
+    /**
+     * Fügt Event-Listener für die "Remember Me"-Funktion hinzu.
+     */
     function addRememberEventListeners() {
         const container = document.getElementById("remember-image-container");
         const image = document.getElementById("remember-main-image");
@@ -62,7 +72,9 @@ function togglePasswordVisibilityIcon(inputId, toggleId) {
         }
     }
 
-    // Überwacht DOM-Änderungen, um Event-Listener hinzuzufügen
+    /**
+     * Überwacht DOM-Änderungen, um Event-Listener hinzuzufügen.
+     */
     const observer = new MutationObserver((mutationsList, observer) => {
         mutationsList.forEach(mutation => {
             if (mutation.type === 'childList' && document.getElementById("remember-image-container") && document.getElementById("remember-main-image")) {
@@ -77,7 +89,10 @@ function togglePasswordVisibilityIcon(inputId, toggleId) {
     document.getElementById('login-email').value = '';
     document.getElementById('login-password').value = '';
 
-    // Abrufen der Benutzerdaten von der Datenbank
+    /**
+     * Ruft die Benutzerdaten von der Datenbank ab.
+     * @returns {Promise<Object>} - Ein Promise, das die Benutzerinformationen zurückgibt.
+     */
     const fetchUsers = async () => {
         try {
             const response = await fetch(`${BASE_URL2}/users.json`);
@@ -89,12 +104,18 @@ function togglePasswordVisibilityIcon(inputId, toggleId) {
         }
     };
 
-    // Validiert Benutzeranmeldedaten
+    /**
+     * Validiert die Benutzeranmeldedaten.
+     * @param {Object} users - Die Benutzerinformationen.
+     * @param {string} email - Die E-Mail-Adresse des Benutzers.
+     * @param {string} password - Das Passwort des Benutzers.
+     * @returns {boolean} - Gibt zurück, ob die Anmeldedaten gültig sind.
+     */
     const validateUser = (users, email, password) => {
         return Object.values(users).some(user => user.email.toLowerCase() === email && user.password === password);
     };
 
-    // Event-Listener für Login-Button
+    // Event-Listener für den Login-Button
     const logBtn = document.getElementById("logBtn");
     if (logBtn) {
         logBtn.onclick = async function(event) {
@@ -116,13 +137,16 @@ function togglePasswordVisibilityIcon(inputId, toggleId) {
         };
     }
 
-    // Event-Listener für Gast-Login-Button
+    // Event-Listener für den Gast-Login-Button
     const guestBtn = document.getElementById("guestBtn");
     if (guestBtn) {
         guestBtn.onclick = () => { window.location.href = "summary.html"; };
     }
 
-    // Zeigt eine Benachrichtigung an
+    /**
+     * Zeigt eine Benachrichtigung an.
+     * @param {string} className - Die Klasse des Benachrichtigungs-Elements.
+     */
     function showMessage(className) {
         const alertContainer = document.querySelector('.singUp-Alert');
         alertContainer.style.display = 'flex';
