@@ -36,7 +36,7 @@ function renderClose() {
   document.getElementById("card-detail-view-headline").innerHTML = "";
   document.getElementById("card-detail-view-headline").innerHTML += `
     <div id="card-detail-view-catagory" class="card-detail-view-catagory">User Story</div>
-    <img onclick="cardAnimation(), updateSubtasksInFirebase('${task}', ${taskNum})" src="assets/img/close.svg" alt="close" />
+    <img onclick="cardAnimation(), updateSubtasksInFirebase()" src="assets/img/close.svg" alt="close" />
   `;
 }
 
@@ -178,4 +178,13 @@ function deletunCheckedSubtask(i) {
 function deleteCheckedSubtask(i) {
   checkedSubtasks.splice(i, 1);
   renderCardSubtasks("card-detail-view-subtasks-container");
+}
+
+async function deleteTask() {
+  array.splice(taskNum, 1);
+  allTasks = [];
+  pushTasksInArray();
+  await updateTasksInFirebase();
+  loadData();
+  cardAnimation();
 }
