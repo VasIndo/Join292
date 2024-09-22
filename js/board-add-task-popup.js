@@ -46,10 +46,10 @@ function deleteAllFields() {
     "assigned persons": [],
     color: [],
     date: [],
-    prio: ["medium  "],
+    prio: ["medium "],
     category: [],
     subtasksChecked: [""],
-    subtasksNotChecked: [""],
+    subtasksNotChecked: ["placeholder"],
     taskColumn: "toDo",
   };
 
@@ -264,7 +264,6 @@ async function pushNewTaskInJson() {
     push("date");
     pushCatagory("category");
     pushSubtasks("subtasksNotChecked");
-    pushSubtasks("subtasksChecked");
     await addTaskInFirebase();
     loadData();
   }
