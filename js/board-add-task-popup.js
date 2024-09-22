@@ -8,10 +8,10 @@ let newTask = {
   "assigned persons": [],
   color: [],
   date: [],
-  prio: [],
+  prio: ["medium"],
   category: [],
   subtasksChecked: [""],
-  subtasksNotChecked: [],
+  subtasksNotChecked: [""],
   taskColumn: "toDo",
 };
 
@@ -40,6 +40,19 @@ function deleteAllFields() {
   togglePrio("medium");
   subtasksArr = [];
   renderSubtasks();
+  newTask = {
+    title: [],
+    description: [],
+    "assigned persons": [],
+    color: [],
+    date: [],
+    prio: ["medium  "],
+    category: [],
+    subtasksChecked: [""],
+    subtasksNotChecked: [""],
+    taskColumn: "toDo",
+  };
+
 }
 
 /**
@@ -166,6 +179,7 @@ function addPersonLogo() {
  * @param {string} path - The selected priority ("high", "medium", or "low").
  */
 function togglePrio(path) {
+  newTask['prio'] = [];
   const prios = ["high", "medium", "low"];
 
   prios.forEach((prio) => {
@@ -211,7 +225,7 @@ function renderSubtasks() {
     document.getElementById("added-subtasks-list").innerHTML += `
         <li id="subtask${i}" class="subtask">
           <span>${subtasksArr[i]}</span>
-            <img onclick="deletSubtask(${i})" src="assets/img/bin.svg" alt="Delet">
+            <img onclick="deletSubtask(${i})" src="assets/img/bin.svg" alt="Delete">
         </li>
       `;
   }
@@ -250,6 +264,7 @@ async function pushNewTaskInJson() {
     push("date");
     pushCatagory("category");
     pushSubtasks("subtasksNotChecked");
+    pushSubtasks("subtasksChecked");
     await addTaskInFirebase();
     loadData();
   }
@@ -313,10 +328,12 @@ function pushCatagory(path) {
  * @param {string} path - The path  where the subtasks should be set, in newTask object.
  */
 function pushSubtasks(path) {
-  newTask[path] = [];
-  for (let i = 0; i < subtasksArr.length; i++) {
-    let data = subtasksArr[i];
-    newTask[path].push(data);
+  if (!subtasksArr.length == 0) {
+    newTask[path] = [];
+    for (let i = 0; i < subtasksArr.length; i++) {
+      let data = subtasksArr[i];
+      newTask[path].push(data);
+    }
   }
 }
 
