@@ -1,5 +1,8 @@
 let checkedSubtasks;
 let unCheckedSubtasks;
+let task;
+let taskNum;
+let array;
 /**
  * Toggles the visibility of the detailed task card view and the main board container.
  */
@@ -8,24 +11,42 @@ function cardAnimation() {
   document.getElementById("board-container").classList.toggle("d-none");
 }
 
-function renderCardInfo(taskColumn, i, arr) {
-  renderClose(taskColumn, i);
-  renderCard(arr, i, "card-detail-view-catagory", "category");
-  setCardCategoryColor(arr, i, "card-detail-view-catagory", "category");
-  renderCard(arr, i, "card-detail-view-title", "title");
-  renderCard(arr, i, "card-detail-view-description", "description");
-  renderCard(arr, i, "card-detail-view-date-due-date", "date");
-  renderCardPrio(arr, i, "card-detail-view-priority-urgency-span", "prio");
-  checkAssignedPersons(arr, i, "card-detail-view-assigned-persons", "assigned persons");
-  renderCardSubtasks(taskColumn, i, "card-detail-view-subtasks-container", arr);
+function init(taskColumn, i, arr) {
+  task = taskColumn
+  taskNum = i;
+  array = arr;
+  renderCardInfo()
+  console.log(taskNum);
+  console.log(array);
 }
 
-function renderCard(taskColumn, i, id, path) {
-  document.getElementById(id).innerHTML = taskColumn[i][path];
+function renderCardInfo() {
+  renderClose();
+  renderCard("card-detail-view-catagory", "category");
+  setCardCategoryColor("card-detail-view-catagory", "category");
+  renderCard("card-detail-view-title", "title");
+  renderCard("card-detail-view-description", "description");
+  renderCard("card-detail-view-date-due-date", "date");
+  renderCardPrio("card-detail-view-priority-urgency-span", "prio");
+  checkAssignedPersons("card-detail-view-assigned-persons", "assigned persons");
+  renderCardSubtasks("card-detail-view-subtasks-container");
 }
 
-function setCardCategoryColor(taskColumn, i, id, path) {
-  let category = taskColumn[i][path];
+function renderClose() {
+  document.getElementById("card-detail-view-headline").innerHTML = "";
+  document.getElementById("card-detail-view-headline").innerHTML += `
+    <div id="card-detail-view-catagory" class="card-detail-view-catagory">User Story</div>
+    <img onclick="cardAnimation(), updateSubtasksInFirebase('${task}', ${taskNum})" src="assets/img/close.svg" alt="close" />
+  `;
+}
+
+
+function renderCard(id, path) {
+  document.getElementById(id).innerHTML = array[taskNum][path];
+}
+
+function setCardCategoryColor(id, path) {
+  let category = array[taskNum][path];
   if (category == "Technical Task") {
     document.getElementById(id).style.backgroundColor = "rgb(32, 215, 194)";
   } else {
@@ -33,34 +54,34 @@ function setCardCategoryColor(taskColumn, i, id, path) {
   }
 }
 
-function renderCardPrio(taskColumn, i, id, path) {
+function renderCardPrio(id, path) {
   let prioImage = document.getElementById("card-detail-view-priority-urgency-img");
-  document.getElementById(id).innerHTML = taskColumn[i][path];
-  if (taskColumn[i][path] == "low") {
+  document.getElementById(id).innerHTML = array[taskNum][path];
+  if (array[taskNum][path] == "low") {
     prioImage.src = "assets/img/prio-low.svg";
-  } else if (taskColumn[i][path] == "medium") {
+  } else if (array[taskNum][path] == "medium") {
     prioImage.src = "assets/img/prio-medium.svg";
-  } else if (taskColumn[i][path] == "high") {
+  } else if (array[taskNum][path] == "high") {
     prioImage.src = "assets/img/prio-high.svg";
   }
 }
 
-function checkAssignedPersons(taskColumn, i, id, path) {
+function checkAssignedPersons(id, path) {
   document.getElementById(id).innerHTML = "";
-  let persons = taskColumn[i][path];
+  let persons = task[taskNum][path];
   if (persons == undefined) {
   } else {
-    renderCardAssignedPersons(taskColumn, i, id, persons);
+    renderCardAssignedPersons(id, persons);
   }
 }
 
-function renderCardAssignedPersons(taskColumn, i, id, persons) {
+function renderCardAssignedPersons(id, persons) {
   for (let index = 0; index < persons.length; index++) {
     let initials = persons[index]
       .split(" ")
       .map((word) => word[0].toUpperCase())
       .join("");
-    let initialsColor = taskColumn[i]["color"][index];
+    let initialsColor = task[taskNum]["color"][index];
 
     document.getElementById(id).innerHTML += `
     <div class="card-detail-view-assigned-person">
@@ -71,10 +92,10 @@ function renderCardAssignedPersons(taskColumn, i, id, persons) {
   }
 }
 
-function renderCardSubtasks(taskColumn, i, id, arr) {
+function renderCardSubtasks(id) {
   document.getElementById(id).innerHTML = "";
-  checkedSubtasks = arr[i]["subtasksChecked"];
-  unCheckedSubtasks = arr[i]["subtasksNotChecked"];
+  checkedSubtasks = array[taskNum]["subtasksChecked"];
+  unCheckedSubtasks = array[taskNum]["subtasksNotChecked"];
 
   if (checkedSubtasks == "" || checkedSubtasks == "placeholder") {
     checkedSubtasks = [];
@@ -84,86 +105,77 @@ function renderCardSubtasks(taskColumn, i, id, arr) {
     unCheckedSubtasks = [];
   }
 
-  if (checkedSubtasks == undefined && unCheckedSubtasks == undefined) {
+  if (checkedSubtasks == undefined || unCheckedSubtasks == undefined) {
     document.getElementById("card-detail-view-subtasks").style.display = "none";
   } else {
     document.getElementById("card-detail-view-subtasks").style.display = "block";
   }
-  // i = nummer der aufgabe im array erste aufgabe array[0] zweite array[1] ...
-  unCheckedSubtasksHtml(taskColumn, i, id);
-  checkedSubtasksHtml(taskColumn, i, id);
+  unCheckedSubtasksHtml(id);
+  checkedSubtasksHtml(id);
 }
 
-function checkedSubtasksHtml(taskColumn, i, id) {
+function checkedSubtasksHtml(id) {
   for (let index = 0; index < checkedSubtasks.length; index++) {
     document.getElementById(id).innerHTML += `
-      <div onclick="uncheckSubtask('${taskColumn}', ${index}, '${id}')" id="card-detail-view-checked-subtasks(${index})" class="card-detail-view-subtasks-enumeration">
-        <img id="checkedCheckbox(${index})" src="assets/img/check-button-checked.svg" />
+      <div id="card-detail-view-checked-subtasks(${index})" class="card-detail-view-subtasks-enumeration">
+        <img onclick="uncheckSubtask(${index}, '${id}')" id="checkedCheckbox(${index})" src="assets/img/check-button-checked.svg" />
         <span>${checkedSubtasks[index]}</span>
+        <img onclick="deleteCheckedSubtask(${index})" class="subtask-bin" src="assets/img/bin.svg" alt="Delete">
       </div>
     `;
   }
 }
 
-function unCheckedSubtasksHtml(taskColumn, i, id) {
+function unCheckedSubtasksHtml(id) {
   for (let index = 0; index < unCheckedSubtasks.length; index++) {
     document.getElementById(id).innerHTML += `
-      <div onclick="checkSubtask('${taskColumn}', ${index}, '${id}')" id="card-detail-view-unchecked-subtasks(${index})" class="card-detail-view-subtasks-enumeration">
-        <img id="unCheckedCheckbox(${index})" src="assets/img/check-button.svg" />
+      <div id="card-detail-view-unchecked-subtasks(${index})" class="card-detail-view-subtasks-enumeration">
+        <img onclick="checkSubtask(${index}, '${id}')" id="unCheckedCheckbox(${index})" src="assets/img/check-button.svg" />
         <span>${unCheckedSubtasks[index]}</span>
+        <img onclick="deletunCheckedSubtask(${index})" class="subtask-bin" src="assets/img/bin.svg" alt="Delete">
       </div>
     `;
   }
 }
-function checkSubtask(taskColumn, i, id) {
+function checkSubtask(i, id) {
   checkedSubtasks.push(unCheckedSubtasks[i]);
   unCheckedSubtasks.splice(i, 1);
   document.getElementById(id).innerHTML = "";
-  unCheckedSubtasksHtml(taskColumn, i, id);
-  checkedSubtasksHtml(taskColumn, i, id);
+  unCheckedSubtasksHtml(id);
+  checkedSubtasksHtml(id);
 }
 
-function uncheckSubtask(taskColumn, i, id) {
+function uncheckSubtask(i, id) {
   unCheckedSubtasks.push(checkedSubtasks[i]);
   checkedSubtasks.splice(i, 1);
   document.getElementById(id).innerHTML = "";
-  unCheckedSubtasksHtml(taskColumn, i, id);
-  checkedSubtasksHtml(taskColumn, i, id);
+  unCheckedSubtasksHtml(id);
+  checkedSubtasksHtml(id);
 }
 
-function convertStringToArray(taskColumn) {
-  if (taskColumn == "to-do-tasks") {
-    return toDoTasks;
-  } else if (taskColumn == "in-progress-tasks") {
-    return inProgressTasks;
-  } else if (taskColumn == "await-feedback-tasks") {
-    return awaitFeedbackTasks;
-  } else if (taskColumn == "done-tasks") {
-    return doneTasks;
-  }
-}
-function renderClose(taskColumn, i) {
-  document.getElementById("card-detail-view-headline").innerHTML = "";
-  document.getElementById("card-detail-view-headline").innerHTML += `
-    <div id="card-detail-view-catagory" class="card-detail-view-catagory">User Story</div>
-    <img onclick="cardAnimation(), updateSubtasksInFirebase('${taskColumn}', ${i})" src="assets/img/close.svg" alt="close" />
-  `;
-}
-
-async function updateSubtasksInFirebase(taskColumn, i) {
-  let arr = convertStringToArray(taskColumn);
+async function updateSubtasksInFirebase() {
   if (checkedSubtasks.length == 0) {
-    arr[i]["subtasksChecked"] = ["placeholder"];
+    array[taskNum]["subtasksChecked"] = ["placeholder"];
   } else {
-    arr[i]["subtasksChecked"] = checkedSubtasks;
+    array[taskNum]["subtasksChecked"] = checkedSubtasks;
   }
   if (unCheckedSubtasks.length == 0) {
-    arr[i]["subtasksNotChecked"] = ["placeholder"];
+    array[taskNum]["subtasksNotChecked"] = ["placeholder"];
   } else {
-    arr[i]["subtasksNotChecked"] = unCheckedSubtasks;
+    array[taskNum]["subtasksNotChecked"] = unCheckedSubtasks;
   }
   allTasks = [];
   pushTasksInArray();
   await updateTasksInFirebase();
-  // loadData();
+  loadData();
+}
+
+function deletunCheckedSubtask(i) {
+  unCheckedSubtasks.splice(i, 1);
+  renderCardSubtasks("card-detail-view-subtasks-container");
+}
+
+function deleteCheckedSubtask(i) {
+  checkedSubtasks.splice(i, 1);
+  renderCardSubtasks("card-detail-view-subtasks-container");
 }

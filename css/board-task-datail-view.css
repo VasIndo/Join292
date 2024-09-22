@@ -136,6 +136,7 @@
 .card-detail-view-subtasks-enumeration {
   display: flex;
   align-items: center;
+  position: relative;
   padding: 4px 16px;
 }
 
@@ -154,6 +155,11 @@
 .card-detail-view-subtasks-enumeration > span {
   font-size: 16px;
   color: rgba(0, 0, 0, 1);
+}
+
+.subtask-bin {
+  position: absolute;
+  right: 0;
 }
 
 .options-container {
