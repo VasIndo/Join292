@@ -328,7 +328,7 @@ function pushCatagory(path) {
  */
 function pushSubtasks(path) {
   if (!subtasksArr.length == 0) {
-    newTask[path] = ["placeholder"];
+    newTask[path] = [];
     for (let i = 0; i < subtasksArr.length; i++) {
       let data = subtasksArr[i];
       newTask[path].push(data);

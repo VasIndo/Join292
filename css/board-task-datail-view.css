@@ -55,7 +55,7 @@
   display: flex;
 }
 
-.card-detail-view-date {
+#card-detail-view-date {
   margin-top: 20px;
   margin-bottom: 20px;
 }
@@ -71,7 +71,7 @@
   margin-left: 30px;
 }
 
-.card-detail-view-priority {
+#card-detail-view-priority {
   display: flex;
   align-items: center;
   margin-bottom: 30px;
@@ -121,6 +121,7 @@
 }
 
 .card-detail-view-subtasks {
+  width: 480px;
   margin-top: 20px;
 }
 
@@ -228,7 +229,7 @@
     font-size: 36px;
   }
 
-  .card-detail-view-catagory, 
+  .card-detail-view-catagory,
   .card-detail-view-description,
   .card-detail-view-date > span,
   .card-detail-view-priority-text,
@@ -240,5 +241,106 @@
   .card-detail-view-catagory {
     padding: 4px 16px;
   }
+}
 
+/* ### edit view ### */
+
+#card-detail-view-title-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.edit-title {
+  color: rgb(96, 105, 117);
+  margin-bottom: 0;
+}
+
+#edit-title-input,
+#edit-date-value,
+#edit-add-subtask {
+  width: 480px;
+  height: 48px;
+  border: 1px solid rgb(209, 209, 209);
+  padding: 12px 21px;
+  border-radius: 10px;
+  font-size: 20px;
+  margin-top: 10px;
+  margin-bottom: 30px;
+}
+
+#edit-description {
+  color: rgb(96, 105, 117);
+}
+
+#edit-description-textarea {
+  width: 480px;
+  border: 1px solid rgb(209, 209, 209);
+  padding: 12px 21px;
+  border-radius: 10px;
+  font-size: 20px;
+  margin-top: 10px;
+}
+
+.edit-date,
+.edit-prio {
+  color: rgb(96, 105, 117);
+}
+
+.edit-prio-btns {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+}
+
+#edit-assigned-dropdown {
+  width: 480px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border: 1px solid rgba(209, 209, 209, 1);
+  border-radius: 10px;
+  padding: 7px 16px;
+}
+
+#edit-assigned-dropdown-container {
+  width: 480px;
+  height: 300px;
+  position: absolute;
+  z-index: 1;
+  overflow: scroll;
+  padding: 4px 16px;
+  box-shadow: 0px 0px 14px 3px rgba(0, 0, 0, 0.04);
+  border-radius: 10px;
+  border-top-right-radius: 0;
+  border-top-left-radius: 0;
+  background-color: rgba(255, 255, 255, 1);
+}
+
+#card-detail-view-assigned-persons {
+  margin-top: 10px;
+}
+
+#card-detail-view-assigned-persons-logo {
+  display: flex;
+  margin-top: 10px;
+}
+
+.edit-subtasks-input {
+  flex-direction: column;
+}
+
+#edit-subtasks-plus {
+  width: 32px;
+  height: 32px;
+  position: absolute;
+  bottom: 320px;
+  right: 106px;
+  cursor: pointer;
+  padding: 4px;
+
+}
+
+#edit-subtasks-plus:hover {
+  background-color: rgba(209, 209, 209, 1);
+  border-radius: 50%;
 }

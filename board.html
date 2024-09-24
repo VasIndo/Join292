@@ -105,21 +105,27 @@
       <div class="hide-card" id="card-detail-view">
         <div id="card-detail-view-headline" class="card-detail-view-headline">
         </div>
-        <h1 id="card-detail-view-title" class="card-detail-view-title">Kochwelt Page & Recipe Recommender</h1>
-        <span id="card-detail-view-description" class="card-detail-view-description">Build start page with recipe recommendation.</span>
-        <div class="card-detail-view-date">
+        <div id="card-detail-view-title-container">
+          <h1 id="card-detail-view-title" class="card-detail-view-title">Kochwelt Page & Recipe Recommender</h1>
+        </div>
+        <div id="card-detail-view-description-container">
+          <span id="card-detail-view-description" class="card-detail-view-description">Build start page with recipe recommendation.</span>
+        </div>
+        <div id="card-detail-view-date">
           <span class="card-detail-view-date-text">Due Date:</span>
           <span id="card-detail-view-date-due-date" class="card-detail-view-date-due-date">10/05/2023</span>
         </div>
-        <div class="card-detail-view-priority">
+        <div id="card-detail-view-priority">
           <span class="card-detail-view-priority-text">Priority:</span>
           <div class="card-detail-view-priority-urgency">
             <span id="card-detail-view-priority-urgency-span">Medium</span>
             <img id="card-detail-view-priority-urgency-img" src="assets/img/prio-medium.svg" alt="" />
           </div>
         </div>
-        <div id="card-detail-view-assigned-persons" class="card-detail-view-assigned-to">
+        <div id="card-detail-view-assigned-persons-container" class="card-detail-view-assigned-to">
           <span>Assigned-To:</span>
+          <div id="card-detail-view-assigned-persons"></div>
+          <div id="card-detail-view-assigned-persons-logo"></div>
         </div>
         <div id="card-detail-view-subtasks" class="card-detail-view-subtasks">
           <span>Subtasks</span>
@@ -141,7 +147,7 @@
               <span>Delete</span>
             </div>
             <div class="options-line"></div>
-            <div class="edit">
+            <div onclick="editTask()" class="edit">
               <img src="assets/img/edit.svg" alt="Pencil" />
               <span>Edit</span>
             </div>
