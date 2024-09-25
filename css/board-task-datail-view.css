@@ -128,6 +128,7 @@
 .card-detail-view-subtasks > span {
   font-size: 20px;
   color: rgba(42, 54, 71, 1);
+  margin-top: 10px;
 }
 
 .card-detail-view-subtasks-container {
@@ -163,7 +164,7 @@
   right: 0;
 }
 
-.options-container {
+#options-container {
   display: flex;
   position: absolute;
   bottom: 20px;
@@ -329,18 +330,21 @@
   flex-direction: column;
 }
 
-#edit-subtasks-plus {
-  width: 32px;
-  height: 32px;
-  position: absolute;
-  bottom: 320px;
-  right: 106px;
-  cursor: pointer;
-  padding: 4px;
-
-}
-
 #edit-subtasks-plus:hover {
   background-color: rgba(209, 209, 209, 1);
   border-radius: 50%;
+}
+
+.edit-save-btn {
+    background-color: rgba(42, 54, 71, 1);
+    border-radius: 10px;
+    font-size: 21px;
+    line-height: 25.2px;
+    display: inline-block;
+    cursor: pointer;
+    color: #ffffff;
+    padding: 10px;
+    text-decoration: none;
+    cursor: pointer;
+
 }

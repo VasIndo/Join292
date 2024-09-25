@@ -3,7 +3,7 @@ let unCheckedSubtasks;
 let task;
 let taskNum;
 let array;
-
+let binNum;
 /**
  * Toggles the visibility of the detailed task card view and the main board container.
  */
@@ -40,6 +40,7 @@ function renderClose() {
 }
 
 function renderCard(id, path) {
+  document.getElementById(path).innerHTML = "";
   document.getElementById(id).innerHTML = array[taskNum][path];
 }
 
@@ -118,7 +119,7 @@ function checkedSubtasksHtml(id) {
       <div id="card-detail-view-checked-subtasks(${index})" class="card-detail-view-subtasks-enumeration">
         <img onclick="uncheckSubtask(${index}, '${id}')" id="checkedCheckbox(${index})" src="assets/img/check-button-checked.svg" />
         <span>${checkedSubtasks[index]}</span>
-        <img onclick="deleteCheckedSubtask(${index})" class="subtask-bin" src="assets/img/bin.svg" alt="Delete">
+        <img onclick="deleteCheckedSubtask(${binNum + index})" class="subtask-bin" src="assets/img/bin.svg" alt="Delete">
       </div>
     `;
   }
@@ -126,6 +127,7 @@ function checkedSubtasksHtml(id) {
 
 function unCheckedSubtasksHtml(id) {
   for (let index = 0; index < unCheckedSubtasks.length; index++) {
+    binNum = index;
     document.getElementById(id).innerHTML += `
       <div id="card-detail-view-unchecked-subtasks(${index})" class="card-detail-view-subtasks-enumeration">
         <img onclick="checkSubtask(${index}, '${id}')" id="unCheckedCheckbox(${index})" src="assets/img/check-button.svg" />
@@ -190,20 +192,24 @@ async function deleteTask() {
 // #### Edit Funktionen ####
 
 function editTask() {
-  hideCategory();
+  editHeadline();
   editTitle();
   editDescription();
   editDate();
   editPrio();
+  let path = array[taskNum]["prio"][0]
+  editTogglePrio(path);
   editAssignedPersons();
   editRenderPersonLogo();
   editSubtasks();
-  hideOptions();
+  changeOptions();
 }
 
-function hideCategory() {
-  document.getElementById("card-detail-view-catagory").classList.toggle("d-none");
-  document.getElementById("card-detail-view-headline").style.justifyContent = "flex-end";
+function editHeadline() {
+  document.getElementById("card-detail-view-headline").innerHTML = "";
+  document.getElementById("card-detail-view-headline").innerHTML = `
+    <img onclick="renderCardInfo()" src="assets/img/close.svg" alt="close">
+  `;
 }
 
 function editTitle() {
@@ -235,18 +241,36 @@ function editPrio() {
   document.getElementById("card-detail-view-priority").innerHTML = `
     <span class="edit-prio">Priority:</span>
     <div class="edit-prio-btns">
-      <button onclick="togglePrio('high')" class="high-btn" type="button" id="high-btn"> Urgent 
-        <img id="high-btn-img" src="assets/img/prio-high.svg" alt="High">
+      <button onclick="editTogglePrio('high')" class="high-btn" type="button" id="edit-high-btn"> Urgent 
+        <img id="edit-high-btn-img" src="assets/img/prio-high.svg" alt="High">
       </button>
-      <button onclick="togglePrio('medium')" class="medium-btn medium-btn-active" type="button" id="medium-btn"> Medium 
-        <img id="medium-btn-img" src="assets/icon/prio_medium_selected.svg" alt="Medium">
+      <button onclick="editTogglePrio('medium')" class="medium-btn medium-btn-active" type="button" id="edit-medium-btn"> Medium 
+        <img id="edit-medium-btn-img" src="assets/icon/prio_medium_selected.svg" alt="Medium">
       </button>
-      <button onclick="togglePrio('low')" class="low-btn" type="button" id="low-btn"> Low 
-        <img id="low-btn-img" src="assets/img/prio-low.svg" alt="Low">
+      <button onclick="editTogglePrio('low')" class="low-btn" type="button" id="edit-low-btn"> Low 
+        <img id="edit-low-btn-img" src="assets/img/prio-low.svg" alt="Low">
       </button>
     </div>
   `;
   document.getElementById("card-detail-view-priority").style.display = "block";
+}
+
+function editTogglePrio(path) {
+  array[taskNum]["prio"] = []
+  array[taskNum]["prio"].push(path);
+
+  const prios = ["high", "medium", "low"];
+
+  prios.forEach((prio) => {
+    const img = document.getElementById(`edit-${prio}-btn-img`);
+    const btn = document.getElementById(`edit-${prio}-btn`);
+    btn.classList.remove(`${prio}-btn-active`);
+    img.src = `assets/img/prio-${prio}.svg`;
+  });
+  const img = document.getElementById(`edit-${path}-btn-img`);
+  const btn = document.getElementById(`edit-${path}-btn`);
+  btn.classList.add(`${path}-btn-active`);
+  img.src = `assets/icon/prio_${path}_selected.svg`;
 }
 
 function editAssignedPersons() {
@@ -359,37 +383,123 @@ function editSubtasks() {
   document.getElementById("card-detail-view-subtasks").innerHTML = `
     <span>Subtasks</span>
     <input type="text" id="edit-add-subtask" name="subtask-input" required="" placeholder="Add new subtask">
-    <img onclick="addSubtasks()" id="edit-subtasks-plus" src="assets/img/plus2.svg" alt="Plus">
+    <div id="edit-subtask-container"></div>
   `;
-  let subtasksChecked = array[taskNum]["subtasksChecked"]
+  let subtasksChecked = array[taskNum]["subtasksChecked"];
   if (subtasksChecked.length !== 0 && subtasksChecked[0] !== "placeholder" && subtasksChecked !== undefined) {
     for (let i = 0; i < subtasksChecked.length; i++) {
-      document.getElementById("card-detail-view-subtasks").innerHTML += `
+      document.getElementById("edit-subtask-container").innerHTML += `
         <div id="edit-checked-subtasks(${i})" class="card-detail-view-subtasks-enumeration">
-          <img onclick="uncheckSubtask(${i})" id="checkedCheckbox(${i})" src="assets/img/check-button-checked.svg" />
+          <img onclick="uncheckSubtask(${i}, 'edit-subtask-container')" id="checkedCheckbox(${i})" src="assets/img/check-button-checked.svg" />
           <span>${checkedSubtasks[i]}</span>
-          <img onclick="deleteCheckedSubtask(${i})" class="subtask-bin" src="assets/img/bin.svg" alt="Delete">
+          <img onclick="editDeleteCheckedSubtask(${i})" class="subtask-bin" src="assets/img/bin.svg" alt="Delete">
         </div>
       `;
     }  
   }
 
-  let subtasksNotChecked = array[taskNum]["subtasksNotChecked"]
+  let subtasksNotChecked = array[taskNum]["subtasksNotChecked"];
   if (subtasksNotChecked.length !== 0 && !subtasksNotChecked[0] !== "placeholder" && subtasksNotChecked !== undefined) {
     for (let i = 0; i < subtasksNotChecked.length; i++) {
-      document.getElementById("card-detail-view-subtasks").innerHTML += `
+      document.getElementById("edit-subtask-container").innerHTML += `
       <div id="edit-unchecked-subtasks(${i})" class="card-detail-view-subtasks-enumeration">
-        <img onclick="checkSubtask(${i})" id="unCheckedCheckbox(${i})" src="assets/img/check-button.svg" />
+        <img onclick="checkSubtask(${i}, 'edit-subtask-container')" id="unCheckedCheckbox(${i})" src="assets/img/check-button.svg" />
         <span>${unCheckedSubtasks[i]}</span>
-        <img onclick="deletunCheckedSubtask(${i})" class="subtask-bin" src="assets/img/bin.svg" alt="Delete">
+        <img onclick="editDeletunCheckedSubtask(${i})" class="subtask-bin" src="assets/img/bin.svg" alt="Delete">
       </div>
     `;
     }      
   }
 }
 
+// eventListener für subtasks und plu icon hinzufügen damit editAddSubtask gestartet wird
 
-function hideOptions() {
-  document.getElementById("options").innerHTML = "";
+function editAddSubtask() {
+  let editInputValue = document.getElementById("edit-add-subtask").value;
+  array[taskNum]["subtasksNotChecked"].push(editInputValue);
+  editSubtasks();
 }
 
+function editDeleteCheckedSubtask(i) {
+  checkedSubtasks.splice(i, 1);
+  editSubtasks();
+}
+
+function editDeletunCheckedSubtask(i) {
+  unCheckedSubtasks.splice(i, 1);
+  editSubtasks();
+}
+
+
+function updateArray() {
+let title = document.getElementById("edit-title-input").value;
+array[taskNum]["title"] = title;
+let description = document.getElementById("edit-description-textarea").value;
+array[taskNum]["description"] = description;
+let date = document.getElementById("edit-date-value").value;
+array[taskNum]["date"] = date;
+updateTasksInFirebase();
+resetCard();
+renderCardInfo();
+}
+
+
+function changeOptions() {
+  document.getElementById("options-container").innerHTML = "";
+  document.getElementById("options-container").innerHTML = `
+    <div class="edit-options">
+      <a onclick="updateArray()" class="edit-save-btn" href="#">Save</a>
+    </div>
+  `;
+}
+
+function resetCard() {
+  document.getElementById("card-detail-view-title-container").innerHTML = `
+    <h1 id="card-detail-view-title" class="card-detail-view-title"></h1>
+  `;
+
+  document.getElementById("card-detail-view-description-container").innerHTML = `
+    <span id="card-detail-view-description" class="card-detail-view-description"></span>
+  `;
+
+
+  document.getElementById("card-detail-view-date").style.display = "block";
+  document.getElementById("card-detail-view-date").innerHTML = `
+    <span class="card-detail-view-date-text">Due Date:</span>
+    <span id="card-detail-view-date-due-date" class="card-detail-view-date-due-date"></span>
+  `;
+
+  document.getElementById("card-detail-view-priority").style.display = "flex";
+  document.getElementById("card-detail-view-priority").innerHTML = `
+    <span class="card-detail-view-priority-text">Priority:</span>
+    <div class="card-detail-view-priority-urgency">
+      <span id="card-detail-view-priority-urgency-span">low</span>
+      <img id="card-detail-view-priority-urgency-img" src="assets/img/prio-low.svg" alt="">
+    </div>
+  `;
+
+  document.getElementById("card-detail-view-assigned-persons-container").innerHTML = `
+    <span>Assigned-To:</span>
+    <div id="card-detail-view-assigned-persons"></div>
+    <div id="card-detail-view-assigned-persons-logo"></div>
+  `;
+
+  document.getElementById("card-detail-view-subtasks").innerHTML = `
+    <span>Subtasks</span>
+    <div id="card-detail-view-subtasks-container" class="card-detail-view-subtasks-container"></div>
+  `;
+
+  document.getElementById("options-container").innerHTML = `
+    <div id="options" class="options">
+      <div onclick="deleteTask()" class="delete">
+        <img src="assets/img/delete.svg" alt="Bin">
+        <span>Delete</span>
+      </div>
+      <div class="options-line"></div>
+        <div onclick="editTask()" class="edit">
+          <img src="assets/img/edit.svg" alt="Pencil">
+          <span>Edit</span>
+      </div>
+    </div>  
+  `;
+}
