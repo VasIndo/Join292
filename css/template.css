@@ -213,7 +213,7 @@ nav {
   }
 }
 
-@media (max-width: 960px) {
+@media (max-width: 768px) {
   header {
     height: 80px;
     padding: 20px;
@@ -285,7 +285,7 @@ nav {
   }
 }
 
-@media only screen and (max-width: 960px) {
+@media only screen and (max-width: 768px) {
   .helpCon {
     margin-left: 0;
   }

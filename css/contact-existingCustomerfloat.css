@@ -4,7 +4,7 @@
   position: fixed;
   left: 743px;
   top: 150px;
-  width: 569px;
+  width: 600px;
   height: 73px;
   display: flex;
   flex-direction: row;
@@ -136,3 +136,198 @@ h3{
   font-size: 16px;
   font-weight: 700;
 }
+
+.initials-avatar {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  color: white;
+  font-weight: bold;
+  text-transform: uppercase;
+ 
+}
+
+
+@media(max-width: 1590px){
+ h2{
+  font-size: 41px;
+ }
+
+ .mid-Content{
+  gap: 15px
+ }
+
+ .float-img{
+  width: 50px;
+  height: 70px;
+ }
+
+ h3{
+  font-size: 36px;
+ }
+
+ .float-top-Ctn{
+  gap: 50px;
+ }
+
+ .initials-avatar {
+  width: 80px;
+  height: 80px;
+}
+}
+
+@media(max-width: 1340px){
+  
+  .blue-line{
+    width: 100px;
+    margin-top: -20px;
+  }
+
+
+
+  .mid-Content{
+    flex-direction: column;
+    position: fixed;
+    left: 520px;
+    top: 120px;
+  }
+
+  .float-top-Ctn {
+    gap: 15px;
+  }
+
+  h2{
+    margin: 0px;
+  }
+
+  .mid-Content p{
+    margin-top: -10px;
+    font-size: 20px;
+    
+  }
+
+  .float-top-Ctn {
+    /* gap: 50px; */
+    flex-direction: column;
+    margin-right: 220px;
+}
+
+.float-Edit-Delet-Ctn{
+  align-items: start;
+}
+
+h3{
+  font-size: 26px;
+}
+
+ .float-img{
+  margin-right: 140px;
+ }
+}
+
+@media(max-width:1090px){
+  .float-Ctn{
+    left: 680px;
+  }
+
+  .mid-Content{
+    left: 445px;
+  }
+
+}
+
+@media(max-width:960px){
+  .mid-Content{
+    left: 330px;
+  }
+
+  h2{
+    font-size: 31px;
+  }
+
+  .blue-line {
+    width: 90px;
+    margin-top: -25px;
+ }
+
+ .mid-Content p {
+  margin-top: -10px;
+  font-size: 20px;
+}
+
+.float-Ctn{
+  left: 580px;
+}
+
+.float-img{
+  margin-right: 170px;
+}
+
+h3{
+  font-size: 20px;
+}
+
+.small-img{
+  width: 16px;
+  height: 16px;
+}
+
+.edit-delete2{
+  gap: 6px;
+}
+
+.edit-delete-Ctn{
+  margin-top: -15px;
+}
+
+.contact-Information{
+  margin-top: -15px;
+  margin-left: -25px;
+}
+
+.contact-Information-box{
+  margin-top: -20px;
+  margin-left: -25px;
+}
+}
+
+@media(max-width:768px){
+  .mid-Content{
+    left: 100px;
+  }
+
+  .float-Ctn{
+    left: 350px;
+  }
+}
+
+@media (max-width: 600px) {
+    .mid-Content{
+      left: 20px;
+      width: auto;
+      flex-direction: row;
+    }
+
+    .mid-Content p {
+      margin: 0px;
+  }
+
+  .blue-line {
+    width: 0px;
+    margin-top: 0px;
+}
+
+.float-Ctn {
+  transform: none;
+  display: none; /* Initially hidden */
+  left: 50px;
+  margin-top: -50px;
+}
+
+}
+
+

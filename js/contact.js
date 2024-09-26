@@ -51,8 +51,10 @@ document.addEventListener('DOMContentLoaded', function() {
                 </div>
             </div>
             <div class="contact-Information"><p>Contact Information</p></div>
+            <div class="contact-Information-box">
             <p class="font-weight">Email</p><p class="email-blue">${contact.email}</p>
             <p class="font-weight">Phone</p><p>${contact.phone}</p>
+            </div>
         `;
 
         document.getElementById('edit-button').addEventListener('click', e => {
@@ -63,6 +65,26 @@ document.addEventListener('DOMContentLoaded', function() {
         document.getElementById('delete-button').addEventListener('click', () => {
             deleteContact(contact.email);
         });
+
+        // Dynamische Änderung der Avatar-Größe und Schriftgröße nur für dieses Bild bei einer Breite von 1590px oder weniger
+        const updateFloatImgSize = () => {
+            const floatImg = card.querySelector('.float-img div'); // Selektiere das Avatar-Bild innerhalb der .float-img
+            if (window.innerWidth <= 1590) {
+                floatImg.style.width = '80px';
+                floatImg.style.height = '80px';
+                floatImg.style.fontSize = '30px'; // Schriftgröße auf 30px setzen
+            } else {
+                floatImg.style.width = '120px'; // Ursprüngliche Größe
+                floatImg.style.height = '120px'; // Ursprüngliche Größe
+                floatImg.style.fontSize = '48px'; // Ursprüngliche Schriftgröße
+            }
+        };
+
+        // Überwachung der Fenstergröße
+        window.addEventListener('resize', updateFloatImgSize);
+
+        // Initiales Setzen der Größe
+        updateFloatImgSize();
     };
 
     const loadContactsFromFirebase = async () => {
@@ -90,8 +112,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 <div class="line-Ctn"><div class="line"></div></div>
                 ${grouped[letter].map(contact => `
                     <div class="contact-data" data-email="${contact.email}">
-                        ${generateInitialsImage(contact.name, 42, contact.color)}
-                        <div><h1>${contact.name}</h1><p>${contact.email}</p></div>
+                        ${generateInitialsImage(contact.name, 60, contact.color)}
+                        <div style="width:200px"><h1>${contact.name}</h1><p>${contact.email}</p></div>
                     </div>`).join('')}
             `;
         }
@@ -180,7 +202,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
         if (!name || !emailValue || !phone) return alert('Alle Felder ausfüllen!');
 
-        // Überprüfen, ob Name oder E-Mail bereits existieren
         const duplicateContact = contacts.find(contact => 
             (contact.name.toLowerCase() === name.toLowerCase() && contact.email !== email) || 
             (contact.email.toLowerCase() === emailValue.toLowerCase() && contact.email !== email)
@@ -211,7 +232,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const BASE_URL = "https://remotestorage-f8df7-default-rtdb.europe-west1.firebasedatabase.app/";
         const newContact = {
             ...contact,
-            assignedToTask: false  // assignedToTask hinzufügen und auf false setzen
+            assignedToTask: false
         };
         await fetch(`${BASE_URL}contacts.json`, {
             method: "POST",
@@ -271,5 +292,21 @@ document.addEventListener('DOMContentLoaded', function() {
         }, 1000);
     };
 
+    // Dynamische Änderung der Avatar-Größe bei einer Breite von 1590px
+    const updateAvatarSize = () => {
+        if (window.innerWidth <= 1590) {
+            document.querySelectorAll('.initials-avatar').forEach(function(avatar) {
+                
+            });
+        }
+    };
+
+    // Überwachung der Fenstergröße
+    window.addEventListener('resize', updateAvatarSize);
+
+    // Initiales Setzen der Größe
+    updateAvatarSize();
+
     loadContactsFromFirebase();
 });
+
