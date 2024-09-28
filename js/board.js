@@ -19,9 +19,13 @@ const URL = "https://remotestorage-f8df7-default-rtdb.europe-west1.firebasedatab
  */
 
 async function loadData() {
-  await loadContacts();
-  await loadTasks();
-  renderTasks();
+  try {
+    await loadContacts();
+    await loadTasks();
+    renderTasks();
+  } catch (error) {
+    loadData();
+  }
 }
 
 /**
@@ -93,19 +97,16 @@ function renderTask(tasksArr, tasksColumn, columnName) {
 function generateHtml(tasksArr, tasksColumn, i) {
   let arrayAsString = arrayToString(tasksColumn);
   return `
-            <div ondragstart="rotate('${tasksColumn}-card(${i})')" draggable="true" onclick="(init('${tasksColumn}', ${i}, ${arrayAsString}), cardAnimation())" 
- class="tasks-card" id="${tasksColumn}-card(${i})">
-              <div id="${tasksColumn}-catagory(${i})" class="catagory">${tasksArr[i]["category"]}</div>
-              <h1 class="title">${tasksArr[i]["title"]}</h1>
-              <p class="description">${tasksArr[i]["description"]}</p>
-              <div id="${tasksColumn}-subtasks(${i})" class="subtasks">
-              </div>
-              <div class="bottom-card">
-                <div id="${tasksColumn}assigned-to(${i})" class="assigned-to">
-              </div>                
+          <div ondragstart="rotate('${tasksColumn}-card(${i})')" draggable="true" onclick="(init('${tasksColumn}', ${i}, ${arrayAsString}), cardAnimation())" class="tasks-card" id="${tasksColumn}-card(${i})">
+            <div id="${tasksColumn}-catagory(${i})" class="catagory">${tasksArr[i]["category"]}</div>
+             <h1 class="title">${tasksArr[i]["title"]}</h1>
+             <p class="description">${tasksArr[i]["description"]}</p>
+             <div id="${tasksColumn}-subtasks(${i})" class="subtasks"></div>
+             <div class="bottom-card">
+                <div id="${tasksColumn}assigned-to(${i})" class="assigned-to"></div>                
                 <img id="${tasksColumn}prio${i}" class="prio" src="assets/img/prio-medium.svg" alt="medium" />
-              </div>
-            </div>
+             </div>
+          </div>
         `;
 }
 
@@ -158,8 +159,8 @@ function renderSubtask(tasksArr, i, tasksColumn) {
     </div>
   `;
     let allSubtasks = tasksArr[i]["subtasks"].length;
-    document.getElementById('all-subtasks').innerHTML = allSubtasks;
-  } else{
+    document.getElementById("all-subtasks").innerHTML = allSubtasks;
+  } else {
     document.getElementById(`${tasksColumn}-subtasks(${i})`).innerHTML = "";
   }
 }
