@@ -207,6 +207,8 @@ function editTask() {
 
 function editHeadline() {
   document.getElementById("card-detail-view-headline").innerHTML = "";
+  document.getElementById("card-detail-view-headline").style.justifyContent = "flex-end";
+
   document.getElementById("card-detail-view-headline").innerHTML = `
     <img onclick="resetCard(), renderCardInfo()" src="assets/img/close.svg" alt="close">
   `;
@@ -461,6 +463,7 @@ function changeOptions() {
 }
 
 function resetCard() {
+  document.getElementById("card-detail-view-headline").style.justifyContent = "space-between";
   document.getElementById("card-detail-view-headline").innerHTML = `
   
   `;

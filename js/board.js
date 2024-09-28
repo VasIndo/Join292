@@ -19,13 +19,9 @@ const URL = "https://remotestorage-f8df7-default-rtdb.europe-west1.firebasedatab
  */
 
 async function loadData() {
-  try {
     await loadContacts();
     await loadTasks();
     renderTasks();
-  } catch (error) {
-    loadData();
-  }
 }
 
 /**
@@ -82,6 +78,7 @@ function renderTask(tasksArr, tasksColumn, columnName) {
   for (let i = 0; i < tasksArr.length; i++) {
     document.getElementById(tasksColumn).innerHTML += generateHtml(tasksArr, tasksColumn, i);
     setCategoryColor(tasksArr, i, tasksColumn);
+    renderSubtask(tasksArr, i, tasksColumn);
     renderAssignedPersons(tasksArr, i, tasksColumn);
     renderPrio(tasksArr, i, tasksColumn);
   }
@@ -147,22 +144,33 @@ function setCategoryColor(tasksArr, i, tasksColumn) {
  * @param {string} tasksColumn - The ID of the HTML column where tasks will be rendered.
  */
 function renderSubtask(tasksArr, i, tasksColumn) {
-  if (tasksArr[i]["subtasks"]) {
+  let subtasksCheckedNum = tasksArr[i]["subtasksChecked"].length;
+  let subtasksChecked = tasksArr[i]["subtasksChecked"];
+  if (subtasksChecked == "" || subtasksChecked =="placeholder" || subtasksChecked == undefined) {
+    subtasksCheckedNum = 0;
+  }
+
+  let subtasksNotCheckedNum = tasksArr[i]["subtasksNotChecked"].length;
+  let subtasksNotChecked = tasksArr[i]["subtasksNotChecked"];
+  if (subtasksNotChecked == "" || subtasksNotChecked == "placeholder" || subtasksNotChecked == undefined) {
+    subtasksNotCheckedNum = 0;
+  }
+
+  let allTasksNum = subtasksCheckedNum + subtasksNotCheckedNum;
+
     document.getElementById(`${tasksColumn}-subtasks(${i})`).innerHTML = `
     <div id="${tasksColumn}-subtasks-diagram(${i})" class="subtasks-diagram">
      <div id="${tasksColumn}-subtasks-diagram-filled(${i})" class="subtasks-diagram-filled"></div>
     </div>
     <div class="subtasks-number">
-      <span>0</span>
+      <span>${subtasksCheckedNum}</span>
       <span>/</span>
-      <span id="all-subtasks">2</span>
+      <span id="all-subtasks">${allTasksNum}</span>
     </div>
   `;
-    let allSubtasks = tasksArr[i]["subtasks"].length;
-    document.getElementById("all-subtasks").innerHTML = allSubtasks;
-  } else {
-    document.getElementById(`${tasksColumn}-subtasks(${i})`).innerHTML = "";
-  }
+
+  let widthInPercent = subtasksCheckedNum / allTasksNum * 100;
+  document.getElementById(`${tasksColumn}-subtasks-diagram-filled(${i})`).style.width = `${widthInPercent}%`;
 }
 
 /**
