@@ -19,9 +19,9 @@ const URL = "https://remotestorage-f8df7-default-rtdb.europe-west1.firebasedatab
  */
 
 async function loadData() {
-  await loadContacts();
-  await loadTasks();
-  renderTasks();
+    await loadContacts();
+    await loadTasks();
+    renderTasks();
 }
 
 /**
@@ -78,6 +78,7 @@ function renderTask(tasksArr, tasksColumn, columnName) {
   for (let i = 0; i < tasksArr.length; i++) {
     document.getElementById(tasksColumn).innerHTML += generateHtml(tasksArr, tasksColumn, i);
     setCategoryColor(tasksArr, i, tasksColumn);
+    checkSubtask(tasksArr, i, tasksColumn);
     renderAssignedPersons(tasksArr, i, tasksColumn);
     renderPrio(tasksArr, i, tasksColumn);
   }
@@ -93,19 +94,16 @@ function renderTask(tasksArr, tasksColumn, columnName) {
 function generateHtml(tasksArr, tasksColumn, i) {
   let arrayAsString = arrayToString(tasksColumn);
   return `
-            <div ondragstart="rotate('${tasksColumn}-card(${i})')" draggable="true" onclick="(init('${tasksColumn}', ${i}, ${arrayAsString}), cardAnimation())" 
- class="tasks-card" id="${tasksColumn}-card(${i})">
-              <div id="${tasksColumn}-catagory(${i})" class="catagory">${tasksArr[i]["category"]}</div>
-              <h1 class="title">${tasksArr[i]["title"]}</h1>
-              <p class="description">${tasksArr[i]["description"]}</p>
-              <div id="${tasksColumn}-subtasks(${i})" class="subtasks">
-              </div>
-              <div class="bottom-card">
-                <div id="${tasksColumn}assigned-to(${i})" class="assigned-to">
-              </div>                
+          <div ondragstart="rotate('${tasksColumn}-card(${i})')" draggable="true" onclick="(init('${tasksColumn}', ${i}, ${arrayAsString}), cardAnimation())" class="tasks-card" id="${tasksColumn}-card(${i})">
+            <div id="${tasksColumn}-catagory(${i})" class="catagory">${tasksArr[i]["category"]}</div>
+             <h1 class="title">${tasksArr[i]["title"]}</h1>
+             <p class="description">${tasksArr[i]["description"]}</p>
+             <div id="${tasksColumn}-subtasks(${i})" class="subtasks"></div>
+             <div class="bottom-card">
+                <div id="${tasksColumn}assigned-to(${i})" class="assigned-to"></div>                
                 <img id="${tasksColumn}prio${i}" class="prio" src="assets/img/prio-medium.svg" alt="medium" />
-              </div>
-            </div>
+             </div>
+          </div>
         `;
 }
 
@@ -140,28 +138,53 @@ function setCategoryColor(tasksArr, i, tasksColumn) {
 }
 
 /**
- * Generates the HTML for subtasks overview.
+ * Checks and calculates the number of completed and incomplete subtasks
+ *
  * @param {Array} tasksArr - The array of tasks.
  * @param {number} i - The index of the task in the array.
  * @param {string} tasksColumn - The ID of the HTML column where tasks will be rendered.
  */
-function renderSubtask(tasksArr, i, tasksColumn) {
-  if (tasksArr[i]["subtasks"]) {
+function checkSubtask(tasksArr, i, tasksColumn) {
+  let subtasksCheckedNum = tasksArr[i]["subtasksChecked"].length;
+  let subtasksChecked = tasksArr[i]["subtasksChecked"];
+  if (subtasksChecked == "" || subtasksChecked =="placeholder" || subtasksChecked == undefined) {
+    subtasksCheckedNum = 0;
+  }
+
+  let subtasksNotCheckedNum = tasksArr[i]["subtasksNotChecked"].length;
+  let subtasksNotChecked = tasksArr[i]["subtasksNotChecked"];
+  if (subtasksNotChecked == "" || subtasksNotChecked == "placeholder" || subtasksNotChecked == undefined) {
+    subtasksNotCheckedNum = 0;
+  }
+
+  renderSubtaskDiagram(subtasksCheckedNum, subtasksNotCheckedNum, i, tasksColumn);
+}
+
+/**
+ * Renders the diagram.
+ *
+ * @param {number} subtasksCheckedNum - The number of completed subtasks.
+ * @param {number} subtasksNotCheckedNum - The number of incomplete subtasks.
+ * @param {number} i - The index of the task in the array.
+ * @param {string} tasksColumn - The ID of the HTML column where tasks will be rendered.
+
+ */
+function renderSubtaskDiagram(subtasksCheckedNum, subtasksNotCheckedNum, i, tasksColumn) {
+  let allTasksNum = subtasksCheckedNum + subtasksNotCheckedNum;
+
     document.getElementById(`${tasksColumn}-subtasks(${i})`).innerHTML = `
     <div id="${tasksColumn}-subtasks-diagram(${i})" class="subtasks-diagram">
      <div id="${tasksColumn}-subtasks-diagram-filled(${i})" class="subtasks-diagram-filled"></div>
     </div>
     <div class="subtasks-number">
-      <span>0</span>
+      <span>${subtasksCheckedNum}</span>
       <span>/</span>
-      <span id="all-subtasks">2</span>
+      <span id="all-subtasks">${allTasksNum}</span>
     </div>
   `;
-    let allSubtasks = tasksArr[i]["subtasks"].length;
-    document.getElementById('all-subtasks').innerHTML = allSubtasks;
-  } else{
-    document.getElementById(`${tasksColumn}-subtasks(${i})`).innerHTML = "";
-  }
+
+  let widthInPercent = subtasksCheckedNum / allTasksNum * 100;
+  document.getElementById(`${tasksColumn}-subtasks-diagram-filled(${i})`).style.width = `${widthInPercent}%`;
 }
 
 /**

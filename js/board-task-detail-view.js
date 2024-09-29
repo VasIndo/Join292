@@ -207,8 +207,10 @@ function editTask() {
 
 function editHeadline() {
   document.getElementById("card-detail-view-headline").innerHTML = "";
+  document.getElementById("card-detail-view-headline").style.justifyContent = "flex-end";
+
   document.getElementById("card-detail-view-headline").innerHTML = `
-    <img onclick="renderCardInfo()" src="assets/img/close.svg" alt="close">
+    <img onclick="resetCard(), renderCardInfo()" src="assets/img/close.svg" alt="close">
   `;
 }
 
@@ -382,15 +384,19 @@ function editSubtasks() {
 
   document.getElementById("card-detail-view-subtasks").innerHTML = `
     <span>Subtasks</span>
-    <input type="text" id="edit-add-subtask" name="subtask-input" required="" placeholder="Add new subtask">
-    <div id="edit-subtask-container"></div>
+    <div id="edit-subtask-input-container">
+      <input type="text" id="edit-add-subtask" name="subtask-input" required="" placeholder="Add new subtask">
+      <img onclick="editAddSubtask()" id="add-subtasks-plus" src="assets/img/plus2.svg" alt="Plus">
+    </div>
+    <div id="card-detail-view-subtasks-container">
+    </div>
   `;
-  let subtasksChecked = array[taskNum]["subtasksChecked"];
-  if (subtasksChecked.length !== 0 && subtasksChecked[0] !== "placeholder" && subtasksChecked !== undefined) {
-    for (let i = 0; i < subtasksChecked.length; i++) {
-      document.getElementById("edit-subtask-container").innerHTML += `
+  checkedSubtasks = array[taskNum]["subtasksChecked"];
+  if (checkedSubtasks.length !== 0 && checkedSubtasks[0] !== "placeholder" && checkedSubtasks !== undefined) {
+    for (let i = 0; i < checkedSubtasks.length; i++) {
+      document.getElementById("card-detail-view-subtasks-container").innerHTML += `
         <div id="edit-checked-subtasks(${i})" class="card-detail-view-subtasks-enumeration">
-          <img onclick="uncheckSubtask(${i}, 'edit-subtask-container')" id="checkedCheckbox(${i})" src="assets/img/check-button-checked.svg" />
+          <img onclick="uncheckSubtask(${i}, 'card-detail-view-subtasks-container')" id="checkedCheckbox(${i})" src="assets/img/check-button-checked.svg" />
           <span>${checkedSubtasks[i]}</span>
           <img onclick="editDeleteCheckedSubtask(${i})" class="subtask-bin" src="assets/img/bin.svg" alt="Delete">
         </div>
@@ -398,12 +404,12 @@ function editSubtasks() {
     }  
   }
 
-  let subtasksNotChecked = array[taskNum]["subtasksNotChecked"];
-  if (subtasksNotChecked.length !== 0 && !subtasksNotChecked[0] !== "placeholder" && subtasksNotChecked !== undefined) {
-    for (let i = 0; i < subtasksNotChecked.length; i++) {
-      document.getElementById("edit-subtask-container").innerHTML += `
+  unCheckedSubtasks = array[taskNum]["subtasksNotChecked"];
+  if (unCheckedSubtasks.length !== 0 && !unCheckedSubtasks[0] !== "placeholder" && unCheckedSubtasks !== undefined) {
+    for (let i = 0; i < unCheckedSubtasks.length; i++) {
+      document.getElementById("card-detail-view-subtasks-container").innerHTML += `
       <div id="edit-unchecked-subtasks(${i})" class="card-detail-view-subtasks-enumeration">
-        <img onclick="checkSubtask(${i}, 'edit-subtask-container')" id="unCheckedCheckbox(${i})" src="assets/img/check-button.svg" />
+        <img onclick="checkSubtask(${i}, 'card-detail-view-subtasks-container')" id="unCheckedCheckbox(${i})" src="assets/img/check-button.svg" />
         <span>${unCheckedSubtasks[i]}</span>
         <img onclick="editDeletunCheckedSubtask(${i})" class="subtask-bin" src="assets/img/bin.svg" alt="Delete">
       </div>
@@ -412,12 +418,15 @@ function editSubtasks() {
   }
 }
 
-// eventListener für subtasks und plu icon hinzufügen damit editAddSubtask gestartet wird
-
 function editAddSubtask() {
   let editInputValue = document.getElementById("edit-add-subtask").value;
-  array[taskNum]["subtasksNotChecked"].push(editInputValue);
-  editSubtasks();
+
+  if (editInputValue == "") {
+    
+  } else {
+    array[taskNum]["subtasksNotChecked"].push(editInputValue);
+    editSubtasks();  
+  }
 }
 
 function editDeleteCheckedSubtask(i) {
@@ -454,6 +463,11 @@ function changeOptions() {
 }
 
 function resetCard() {
+  document.getElementById("card-detail-view-headline").style.justifyContent = "space-between";
+  document.getElementById("card-detail-view-headline").innerHTML = `
+  
+  `;
+
   document.getElementById("card-detail-view-title-container").innerHTML = `
     <h1 id="card-detail-view-title" class="card-detail-view-title"></h1>
   `;

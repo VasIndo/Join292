@@ -166,9 +166,8 @@
 
 #options-container {
   display: flex;
-  position: absolute;
-  bottom: 20px;
-  right: 50px;
+  flex-direction: row-reverse;
+  margin-top: 30px;
 }
 
 .options {
@@ -326,6 +325,11 @@
   margin-top: 10px;
 }
 
+#edit-subtask-input-container {
+  display: flex;
+  position: relative;
+}
+
 .edit-subtasks-input {
   flex-direction: column;
 }
@@ -333,6 +337,15 @@
 #edit-subtasks-plus:hover {
   background-color: rgba(209, 209, 209, 1);
   border-radius: 50%;
+}
+
+#add-subtasks-plus {
+  position: absolute;
+    right: 12px;
+    top: 20px;
+    width: 24px;
+    height: 24px;
+    cursor: pointer;
 }
 
 .edit-save-btn {
