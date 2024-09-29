@@ -78,7 +78,7 @@ function renderTask(tasksArr, tasksColumn, columnName) {
   for (let i = 0; i < tasksArr.length; i++) {
     document.getElementById(tasksColumn).innerHTML += generateHtml(tasksArr, tasksColumn, i);
     setCategoryColor(tasksArr, i, tasksColumn);
-    renderSubtask(tasksArr, i, tasksColumn);
+    checkSubtask(tasksArr, i, tasksColumn);
     renderAssignedPersons(tasksArr, i, tasksColumn);
     renderPrio(tasksArr, i, tasksColumn);
   }
@@ -138,12 +138,13 @@ function setCategoryColor(tasksArr, i, tasksColumn) {
 }
 
 /**
- * Generates the HTML for subtasks overview.
+ * Checks and calculates the number of completed and incomplete subtasks
+ *
  * @param {Array} tasksArr - The array of tasks.
  * @param {number} i - The index of the task in the array.
  * @param {string} tasksColumn - The ID of the HTML column where tasks will be rendered.
  */
-function renderSubtask(tasksArr, i, tasksColumn) {
+function checkSubtask(tasksArr, i, tasksColumn) {
   let subtasksCheckedNum = tasksArr[i]["subtasksChecked"].length;
   let subtasksChecked = tasksArr[i]["subtasksChecked"];
   if (subtasksChecked == "" || subtasksChecked =="placeholder" || subtasksChecked == undefined) {
@@ -156,6 +157,19 @@ function renderSubtask(tasksArr, i, tasksColumn) {
     subtasksNotCheckedNum = 0;
   }
 
+  renderSubtaskDiagram(subtasksCheckedNum, subtasksNotCheckedNum, i, tasksColumn);
+}
+
+/**
+ * Renders the diagram.
+ *
+ * @param {number} subtasksCheckedNum - The number of completed subtasks.
+ * @param {number} subtasksNotCheckedNum - The number of incomplete subtasks.
+ * @param {number} i - The index of the task in the array.
+ * @param {string} tasksColumn - The ID of the HTML column where tasks will be rendered.
+
+ */
+function renderSubtaskDiagram(subtasksCheckedNum, subtasksNotCheckedNum, i, tasksColumn) {
   let allTasksNum = subtasksCheckedNum + subtasksNotCheckedNum;
 
     document.getElementById(`${tasksColumn}-subtasks(${i})`).innerHTML = `
