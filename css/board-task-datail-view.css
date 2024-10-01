@@ -121,7 +121,6 @@
 }
 
 .card-detail-view-subtasks {
-  width: 480px;
   margin-top: 20px;
 }
 
@@ -137,6 +136,7 @@
 
 .card-detail-view-subtasks-enumeration {
   display: flex;
+  justify-content: space-between;
   align-items: center;
   position: relative;
   padding: 4px 16px;
@@ -150,19 +150,22 @@
   cursor: pointer;
 }
 
-.card-detail-view-subtasks-enumeration > img {
-  margin-right: 20px;
-}
-
 .card-detail-view-subtasks-enumeration > span {
   font-size: 16px;
   color: rgba(0, 0, 0, 1);
 }
 
-.subtask-bin {
-  position: absolute;
-  right: 0;
+.card-detail-view-checked-subtasks-left,
+.card-detail-view-unchecked-subtasks-left {
+  display: flex;
+  align-items: center;
 }
+
+.card-detail-view-checked-subtasks-left > img,
+.card-detail-view-unchecked-subtasks-left > img {
+  margin-right: 10px;
+}
+
 
 #options-container {
   display: flex;
@@ -341,23 +344,22 @@
 
 #add-subtasks-plus {
   position: absolute;
-    right: 12px;
-    top: 20px;
-    width: 24px;
-    height: 24px;
-    cursor: pointer;
+  right: 12px;
+  top: 20px;
+  width: 24px;
+  height: 24px;
+  cursor: pointer;
 }
 
 .edit-save-btn {
-    background-color: rgba(42, 54, 71, 1);
-    border-radius: 10px;
-    font-size: 21px;
-    line-height: 25.2px;
-    display: inline-block;
-    cursor: pointer;
-    color: #ffffff;
-    padding: 10px;
-    text-decoration: none;
-    cursor: pointer;
-
+  background-color: rgba(42, 54, 71, 1);
+  border-radius: 10px;
+  font-size: 21px;
+  line-height: 25.2px;
+  display: inline-block;
+  cursor: pointer;
+  color: #ffffff;
+  padding: 10px;
+  text-decoration: none;
+  cursor: pointer;
 }

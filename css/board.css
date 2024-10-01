@@ -138,7 +138,7 @@ body {
 .in-progress-split,
 .await-feedback-split,
 .done-split {
-  width: 244px;
+  width: 253px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -169,6 +169,7 @@ body {
 #in-progress-tasks,
 #await-feedback-tasks,
 #done-tasks {
+  width: 100%;
 }
 
 .tasks-empty {
@@ -185,6 +186,10 @@ body {
 
 .task-plus:hover {
   cursor: pointer;
+}
+
+.tasks-card {
+  height: 215px;
 }
 
 #card,
@@ -326,24 +331,14 @@ body {
   }
 }
 
-@media (max-width: 1050px) {
-  .to-do-headline > span,
-  .in-progress-headline > span,
-  .await-feedback-headline > span,
-  .done-headline > span {
-    font-size: 16px;
+@media (max-width: 1200px) {
+  #to-do-tasks,
+  #in-progress-tasks,
+  #await-feedback-tasks,
+  #done-tasks {
+    width: unset;
   }
 
-  .to-do-headline > img,
-  .in-progress-headline > img,
-  .await-feedback-headline > img,
-  .done-headline > img {
-    width: 18px;
-    height: 18px;
-  }
-}
-
-@media (max-width: 900px) {
   .to-do-headline,
   .in-progress-headline,
   .await-feedback-headline,
@@ -381,6 +376,18 @@ body {
 }
 
 @media (max-width: 768px) {
+  .done-tasks {
+    margin-bottom: 100px;
+  }
+
+  .tasks-card {
+    width: 145px;
+  }
+
+  .subtasks-diagram {
+    width: 70px;
+  }
+
   .board {
     margin-left: 10px;
     margin-right: 10px;
@@ -435,7 +442,7 @@ body {
   }
 
   .magnifying-glass {
-    top: 220px; 
+    top: 220px;
     right: 18px;
   }
 

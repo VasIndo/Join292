@@ -171,7 +171,7 @@ function checkSubtask(tasksArr, i, tasksColumn) {
  */
 function renderSubtaskDiagram(subtasksCheckedNum, subtasksNotCheckedNum, i, tasksColumn) {
   let allTasksNum = subtasksCheckedNum + subtasksNotCheckedNum;
-
+  if (allTasksNum > 0) {
     document.getElementById(`${tasksColumn}-subtasks(${i})`).innerHTML = `
     <div id="${tasksColumn}-subtasks-diagram(${i})" class="subtasks-diagram">
      <div id="${tasksColumn}-subtasks-diagram-filled(${i})" class="subtasks-diagram-filled"></div>
@@ -185,6 +185,7 @@ function renderSubtaskDiagram(subtasksCheckedNum, subtasksNotCheckedNum, i, task
 
   let widthInPercent = subtasksCheckedNum / allTasksNum * 100;
   document.getElementById(`${tasksColumn}-subtasks-diagram-filled(${i})`).style.width = `${widthInPercent}%`;
+  }
 }
 
 /**
@@ -353,7 +354,7 @@ async function filterTask() {
     searchbarValue = document.getElementById("searchbar-field-mobile").value.toLowerCase();
   }
   let filtered = allTasks.filter((task) => {
-    let titleString = task.title.join(" ").toLowerCase();
+    let titleString = task["title"][0].toLowerCase();
     return titleString.includes(searchbarValue);
   });
 
