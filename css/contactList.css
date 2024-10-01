@@ -3,6 +3,8 @@ body{
   background-color: #F6F7F8;
 }
 
+
+
 /*Contact List*/
 .Content-Contacts{
   position: fixed;
@@ -15,7 +17,6 @@ body{
   box-shadow: 4px 0px 6px 0px rgba(0, 0, 0, 0.08);
   overflow-y: scroll;
   overflow-x: hidden;
-  display: flex;
   flex-direction: column;
  
 }
@@ -330,6 +331,15 @@ h3{
   animation: slideInFromTop 0.5s ease-out forwards;
 }
 
+.back-img{
+  display: none;
+  position: fixed;
+  left: 100%;
+    top: 15px;
+}
+  
+
+
 
 @media(max-width:1090px){
   .Content-Contacts{
@@ -392,33 +402,37 @@ h3{
   .Content-Contacts{
     left: 0px;
     top: 80px;
-    height: 868px;
+    height: auto;
   }
 
   .Btn-Container{
     left: 0px;
     top: 80px;
   }
+
 }
 
 @media(max-width: 600px){
+  
+  
   .Content-Contacts {
-    position: fixed;
-    top: 80px;
+    width: 100%;
     bottom: 0px;
     left: 0px;
-    width: 100%;
-    height: 860px;
-    background-color: rgba(255, 255, 255, 1);
-    box-shadow: 4px 0px 6px 0px rgba(0, 0, 0, 0.08);
-    overflow-y: scroll;
-    overflow-x: hidden;
-    display: flex;
-    flex-direction: column;
+    top: 600px;
+    height: 550px;
+    }
+
+ .back-img{
+  position: fixed;
+  left: 100%;
+  top: 15px;
+  display: flex;
  }
 
  .Btn-Container{
   width: 100%;
+  top: 600px;
  }
 
  .innerContent {
@@ -427,12 +441,12 @@ h3{
   display: flex;
   align-items: center;
   justify-content: center;
+  margin-top: 20px;
  }
 
  .AtoZ-Content {
    margin-right: 0px; 
-   margin-top: 30px;
-   width: 100%;
+    width: 100%;
 }
 
 .line-Ctn {
@@ -455,6 +469,29 @@ h3{
 
 h1 {
   font-size: 19px;
+}
+
+
+.float-top-Ctn{
+  flex-direction: row;
+  margin-left: -30px;
+ }
+
+ .float-img{
+  margin-right: 50px;
+ }
+
+ .contact-Information {
+  margin-top: 20px;
+  margin-left: -25px;
+}
+
+h3{
+  font-size: 30px;
+}
+
+.edit-delete-Ctn {
+   margin-top: -15px; 
 }
 }
 

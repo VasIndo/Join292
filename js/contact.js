@@ -1,11 +1,13 @@
 document.addEventListener('DOMContentLoaded', function() {
     let currentContact = null, contacts = [];
 
+    // Event listener for add contact button
     document.getElementById('addContactBtn').addEventListener('click', e => {
         e.stopPropagation();
         editContactCard();
     });
 
+    // Event listener for contact click
     const attachContactClickEvents = () => {
         document.querySelectorAll('.contact-data').forEach(el => {
             el.addEventListener('click', function() {
@@ -23,6 +25,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     };
 
+    // Show contact card
     const showContactCard = email => {
         const contact = contacts.find(c => c.email === email);
         if (contact) renderContactCard(contact);
@@ -31,12 +34,14 @@ document.addEventListener('DOMContentLoaded', function() {
         card.classList.add('visible');
     };
 
+    // Hide contact card
     const hideContactCard = () => {
         const card = document.querySelector('.float-Ctn');
         card.classList.remove('visible');
         card.style.display = 'none';
     };
 
+    // Render the contact card with the selected contact's information
     const renderContactCard = contact => {
         const card = document.querySelector('.float-Ctn');
         card.innerHTML = `
@@ -66,27 +71,24 @@ document.addEventListener('DOMContentLoaded', function() {
             deleteContact(contact.email);
         });
 
-        // Dynamische Änderung der Avatar-Größe und Schriftgröße nur für dieses Bild bei einer Breite von 1590px oder weniger
         const updateFloatImgSize = () => {
-            const floatImg = card.querySelector('.float-img div'); // Selektiere das Avatar-Bild innerhalb der .float-img
+            const floatImg = card.querySelector('.float-img div');
             if (window.innerWidth <= 1590) {
                 floatImg.style.width = '80px';
                 floatImg.style.height = '80px';
-                floatImg.style.fontSize = '30px'; // Schriftgröße auf 30px setzen
+                floatImg.style.fontSize = '30px';
             } else {
-                floatImg.style.width = '120px'; // Ursprüngliche Größe
-                floatImg.style.height = '120px'; // Ursprüngliche Größe
-                floatImg.style.fontSize = '48px'; // Ursprüngliche Schriftgröße
+                floatImg.style.width = '120px';
+                floatImg.style.height = '120px';
+                floatImg.style.fontSize = '48px';
             }
         };
 
-        // Überwachung der Fenstergröße
         window.addEventListener('resize', updateFloatImgSize);
-
-        // Initiales Setzen der Größe
         updateFloatImgSize();
     };
 
+    // Load contacts from Firebase
     const loadContactsFromFirebase = async () => {
         contacts = await getData('contacts').then(data => Object.values(data).map(contact => ({
             ...contact,
@@ -95,12 +97,14 @@ document.addEventListener('DOMContentLoaded', function() {
         renderContactList();
     };
 
+    // Get data from Firebase
     const getData = async path => {
         const BASE_URL = "https://remotestorage-f8df7-default-rtdb.europe-west1.firebasedatabase.app/";
         const res = await fetch(`${BASE_URL}${path}.json`);
         return res.ok ? await res.json() : console.error('Fetch error');
     };
 
+    // Render the contact list
     const renderContactList = () => {
         const contactList = document.getElementById('contact-list');
         contactList.innerHTML = '';
@@ -121,6 +125,7 @@ document.addEventListener('DOMContentLoaded', function() {
         attachContactClickEvents();
     };
 
+    // Group contacts by first letter
     const groupContactsByLetter = contacts => {
         return contacts.sort((a, b) => a.name.localeCompare(b.name))
             .reduce((acc, contact) => {
@@ -130,16 +135,19 @@ document.addEventListener('DOMContentLoaded', function() {
             }, {});
     };
 
+    // Generate initials image for contact
     const generateInitialsImage = (name, size, color) => `
         <div class="initials-avatar" style="background-color: ${color}; width: ${size}px; height: ${size}px; font-size: ${size / 2.5}px;">
             ${name.split(' ').map(n => n[0]).join('').toUpperCase()}
         </div>`;
 
+    // Get a unique color for the contact
     const getUniqueColor = () => {
         const colors = ['#FF5733', '#33FF57', '#3357FF', '#FF33A5', '#FF8F33', '#33FFD1'];
         return colors.find(color => !contacts.some(contact => contact.color === color)) || colors[Math.floor(Math.random() * colors.length)];
     };
 
+    // Edit or add new contact card
     const editContactCard = (email = '', isEditMode = false) => {
         const contact = contacts.find(c => c.email === email) || { name: '', email: '', phone: '', color: getUniqueColor(), img: `<img src="./assets/icon/PersonAddContact.svg">` };
         const isNewContact = !contacts.some(c => c.email === email);
@@ -147,10 +155,11 @@ document.addEventListener('DOMContentLoaded', function() {
         document.body.insertAdjacentHTML('beforeend', `
             <div id="next" class="Full-Container">
                 <div class="AddContactCard">
-                    <div class="leftSide">
-                        <img src="./assets/icon/Join logo vector.svg"><div class="innerAddContact">
+                 <div class="leftSide">
+                            <div class="close-icon2"><img id="closeBtn" src="./assets/icon/closewhite.svg"></div>
+                            <img class="LogoLeftSide" src="./assets/icon/Join logo vector.svg"><div class="innerAddContact">
                             <h1>${isNewContact ? 'Add Contact' : 'Edit Contact'}</h1>
-                            <p>Task are better with a team!</p>
+                            <p>Tasks are better with a team!</p>
                             <div class="TaskLine"></div>
                         </div>
                     </div>
@@ -194,13 +203,14 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     };
 
+    // Save edited or new contact
     const saveEditedContact = async (event, email) => {
         event.preventDefault();
         const name = document.getElementById('contact-name').value.trim(),
               emailValue = document.getElementById('contact-email').value.trim(),
               phone = document.getElementById('contact-phone').value.trim();
 
-        if (!name || !emailValue || !phone) return alert('Alle Felder ausfüllen!');
+        if (!name || !emailValue || !phone) return alert('All fields must be filled!');
 
         const duplicateContact = contacts.find(contact => 
             (contact.name.toLowerCase() === name.toLowerCase() && contact.email !== email) || 
@@ -228,6 +238,7 @@ document.addEventListener('DOMContentLoaded', function() {
         document.getElementById('next').remove();
     };
 
+    // Add new contact to Firebase
     const addContactToFirebase = async contact => {
         const BASE_URL = "https://remotestorage-f8df7-default-rtdb.europe-west1.firebasedatabase.app/";
         const newContact = {
@@ -241,6 +252,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     };
 
+    // Update contact in Firebase
     const updateContactInFirebase = async (email, contact) => {
         const BASE_URL = "https://remotestorage-f8df7-default-rtdb.europe-west1.firebasedatabase.app/";
         const res = await fetch(`${BASE_URL}contacts.json`);
@@ -255,6 +267,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     };
 
+    // Delete contact from Firebase
     const deleteContact = async email => {
         const contactIndex = contacts.findIndex(c => c.email === email);
         if (contactIndex === -1) return;
@@ -292,7 +305,6 @@ document.addEventListener('DOMContentLoaded', function() {
         }, 1000);
     };
 
-    // Dynamische Änderung der Avatar-Größe bei einer Breite von 1590px
     const updateAvatarSize = () => {
         if (window.innerWidth <= 1590) {
             document.querySelectorAll('.initials-avatar').forEach(function(avatar) {
@@ -301,10 +313,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     };
 
-    // Überwachung der Fenstergröße
     window.addEventListener('resize', updateAvatarSize);
-
-    // Initiales Setzen der Größe
     updateAvatarSize();
 
     loadContactsFromFirebase();

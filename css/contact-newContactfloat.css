@@ -52,11 +52,6 @@
   gap: 15px;
 }
 
-.leftSide img{
-  width: 55.6px;
-  height: 66.48px;
-  margin-right: 300px ;
-}
 
 .leftSide h1{
   font-size: 51px;
@@ -112,6 +107,7 @@ form{
   width: 422px;
   height: 215px;
   gap: 30px;
+  align-items: center;
 }
 
 form div{
@@ -129,6 +125,14 @@ form div{
 form div:hover{
   border: 1px solid #29ABE2;
   cursor: pointer;
+}
+
+.close-icon2{
+  width: 12px;
+  height: 12px;
+  position: fixed;
+  left: 670px;
+  top: 50px;
 }
 
 .close-icon{
@@ -260,3 +264,150 @@ form input{
 .d-none{
   display: none;
 }
+
+.LogoLeftSide{
+  width: 55.6px;
+  height: 66.48px;
+  margin-right: 300px ;
+}
+
+
+@media(max-width: 1220px){
+  
+  .AddContactCard {
+    flex-direction: column;
+    height: auto;
+    }
+
+  .leftSide{
+    height: 500px;
+    width: auto;
+    border-radius: 30px 30px 0px 0px
+  }
+   
+  .rightSide {
+    border-radius: 0px 0px 30px 30px;
+    height: 500px;
+  }
+  
+  .close-icon{
+    display: none;
+  }
+
+  .rightSide-middle {
+   margin-top: 100px;
+  }
+
+  .ctn-button {
+    margin-left: 0px; 
+  }
+
+  .profil-img {
+    position: fixed;
+    top: 420px;
+  }
+
+  .profil-img img{
+    width: 150px;
+    height: 150px;
+  }
+
+}
+
+@media(max-width:768px){
+  .leftSide{
+    width: 100%;
+  }
+
+  .rightSide{
+    width: 100%;
+  }
+
+  .AddContactCard{
+    width: 100%;
+  }
+
+  .close-icon2 {
+    left: 430px;
+    }
+
+  .leftSide img{
+    display: none;
+  }
+
+  .cancel{
+    display: none;
+  }
+
+  
+
+}
+
+@media(max-width: 540px){
+.leftSide{
+  width: 100%;
+}
+
+.rightSide{
+  width: 100%;
+}
+
+form div{
+  width: 350px;
+}
+
+.close-icon2{
+  left: 350px;
+}
+
+.leftSide h1{
+  font-size: 31px;
+}
+
+.leftSide p{
+  margin-top: -15px;
+ }
+}
+
+@media(max-width: 400px){
+  .leftSide p{
+    font-size: 20px;
+  }
+
+  .innerAddContact{
+    align-items: center;
+  }
+
+  .leftSide h1{
+    width: 200px;
+  }
+
+  form div{
+    width: 300px;
+  }
+
+}
+
+@media(max-width: 330px){
+  form div{
+    width: 250px;
+  }
+
+  .iconInput{
+    margin-right: 15px;
+  }
+
+  form input{
+    margin-left: 12px;
+  }
+}
+
+
+
+
+
+
+  
+  
+
+

@@ -6,11 +6,12 @@
   top: 150px;
   width: 600px;
   height: 73px;
-  display: flex;
   flex-direction: row;
   align-items: center;
   gap: 30px;
 }
+
+
 
 .mid-Content p{
   font-size: 27px;
@@ -192,8 +193,9 @@ h3{
   .mid-Content{
     flex-direction: column;
     position: fixed;
-    left: 520px;
+    left: 710px;
     top: 120px;
+    width: 200px;
   }
 
   .float-top-Ctn {
@@ -235,14 +237,14 @@ h3{
   }
 
   .mid-Content{
-    left: 445px;
+    left: 650px;
   }
 
 }
 
 @media(max-width:960px){
   .mid-Content{
-    left: 330px;
+    left: 530px;
   }
 
   h2{
@@ -297,7 +299,7 @@ h3{
 
 @media(max-width:768px){
   .mid-Content{
-    left: 100px;
+    left: 300px;
   }
 
   .float-Ctn{
@@ -327,6 +329,36 @@ h3{
   left: 50px;
   margin-top: -50px;
 }
+
+.float-top-Ctn{
+  flex-direction: row;
+ }
+
+ .float-img{
+  margin-right: 50px;
+ }
+
+ .contact-Information {
+  margin-top: 20px;
+  margin-left: -25px;
+}
+
+h3{
+  font-size: 30px;
+}
+
+.edit-delete-Ctn {
+   margin-top: 0px; 
+}
+
+.MidContainer{
+  width: 100%;
+  height: 100%;
+  background-color: rgb(255, 255, 255);
+  
+}
+
+
 
 }
 
