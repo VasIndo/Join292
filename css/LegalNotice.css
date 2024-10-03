@@ -1,8 +1,9 @@
 body{
   font-family: "Inter";
   background: #F6F7F8;
-
+ overflow: scroll
 }
+
 
 .header-LegalNotice{
   margin-top: 100px;
@@ -58,4 +59,95 @@ h2{
   line-height: 32.4px;
   height: 32px;
   margin: 0px;
+}
+
+@media(max-width: 1360px){
+  .text-LegalNotice
+  {
+    width: auto;
+    margin-right: 5px;
+  }
+}
+
+@media(max-width: 1100px){
+  h1{
+    font-size: 41px;
+  }
+
+  .header-LegalNotice img {
+    margin-right: 50px;
+    width: 24px;
+    height: 24px;
+  }
+  .header-LegalNotice{
+    margin-top: 50px;
+  }
+}
+
+@media(max-width: 768px){
+ .header-LegalNotice{
+  margin-left: 15px;
+  margin-top: 10px;
+ }
+
+ .text-LegalNotice{
+  margin-left: 15px;
+  margin-top: 20px;
+ }
+
+ .text-LegalNotice p{
+  font-size: 12px;
+ }
+}
+
+@media(max-width: 600px){
+  .header-LegalNotice{
+    margin-top: 20px;
+    margin-left: 15px;
+    margin-bottom: 0px;
+  }
+
+  .text-LegalNotice{
+    margin-left: 15px;
+    }
+
+  .imprint{
+    font-size: 20px;
+    margin-bottom: 10px;
+  }
+
+   h1{
+    font-size: 24px;
+   }
+
+   .text-LegalNotice p{
+    font-size: 16px;
+    margin-top: 10px;
+   }
+
+   h2{
+    line-height: 20px;
+   }
+
+   .header-LegalNotice img{
+    margin-right: auto;
+    width: 19px;
+    height: 19px;
+   }
+}
+
+@media(max-width: 350px){
+  h2{
+    font-size: 14px;
+  }
+
+  li{
+    font-size: 15px;
+  }
+
+  .header-LegalNotice{
+    margin-top: 0px;
+  }
+
+
 }
