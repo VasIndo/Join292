@@ -49,13 +49,13 @@ function renderGreeting() {
 
 function timeOfDay(hours) {
   if (hours < 12) {
-    return "Good morning,"
+    return "Good morning"
   } else if (hours < 18) {
-    return "Good afternoon,"
+    return "Good afternoon"
   } else if (hours <= 21) {
-    return "Good evening,"
+    return "Good evening"
   } else {
-    return "Good night,"
+    return "Good night"
   }
 }
 

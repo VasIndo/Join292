@@ -121,7 +121,6 @@ function checkedSubtasksHtml(id) {
           <img onclick="uncheckSubtask(${index}, '${id}')" id="checkedCheckbox(${index})" src="assets/img/check-button-checked.svg" />
           <span>${checkedSubtasks[index]}</span>
         </div>
-        <img onclick="deleteCheckedSubtask(${binNum + index})" class="subtask-bin" src="assets/img/bin.svg" alt="Delete">
       </div>
     `;
   }
@@ -132,11 +131,10 @@ function unCheckedSubtasksHtml(id) {
     binNum = index;
     document.getElementById(id).innerHTML += `
       <div id="card-detail-view-unchecked-subtasks(${index})" class="card-detail-view-subtasks-enumeration">
-      <div class="card-detail-view-unchecked-subtasks-left">
-        <img onclick="checkSubtask(${index}, '${id}')" id="unCheckedCheckbox(${index})" src="assets/img/check-button.svg" />
-        <span>${unCheckedSubtasks[index]}</span>
-      </div>
-        <img onclick="deletunCheckedSubtask(${index})" class="subtask-bin" src="assets/img/bin.svg" alt="Delete">
+        <div class="card-detail-view-unchecked-subtasks-left">
+          <img onclick="checkSubtask(${index}, '${id}')" id="unCheckedCheckbox(${index})" src="assets/img/check-button.svg" />
+          <span>${unCheckedSubtasks[index]}</span>
+        </div>
       </div>
     `;
   }
