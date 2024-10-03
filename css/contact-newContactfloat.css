@@ -131,16 +131,16 @@ form div:hover{
   width: 12px;
   height: 12px;
   position: fixed;
-  left: 670px;
   top: 50px;
+  margin-left: 550px;
 }
 
 .close-icon{
-   align-items: center;
-    display: flex;
-    justify-content: end;
-    margin-right: 50px;
-    margin-top: 50px;
+  align-items: center;
+  display: flex;
+  justify-content: end;
+  margin-right: 50px;
+  margin-top: 50px;
 }
 
 .close-icon:hover{
@@ -327,20 +327,19 @@ form input{
     width: 100%;
   }
 
-  .close-icon2 {
-    left: 430px;
-    }
-
-  .leftSide img{
+    .LogoLeftSide{
     display: none;
   }
 
   .cancel{
     display: none;
   }
+}
 
-  
-
+@media(max-width: 600px){
+ .close-icon2{
+  margin-left: 350px;
+ }
 }
 
 @media(max-width: 540px){
@@ -356,10 +355,6 @@ form div{
   width: 350px;
 }
 
-.close-icon2{
-  left: 350px;
-}
-
 .leftSide h1{
   font-size: 31px;
 }
@@ -372,6 +367,10 @@ form div{
 @media(max-width: 400px){
   .leftSide p{
     font-size: 20px;
+  }
+
+  .close-icon2{
+    margin-left: 250px;
   }
 
   .innerAddContact{
@@ -400,6 +399,11 @@ form div{
   form input{
     margin-left: 12px;
   }
+}
+
+@media(max-height: 667px){
+  
+
 }
 
 

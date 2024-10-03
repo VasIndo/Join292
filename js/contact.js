@@ -156,6 +156,7 @@ document.addEventListener('DOMContentLoaded', function() {
             <div id="next" class="Full-Container">
                 <div class="AddContactCard">
                  <div class="leftSide">
+                            
                             <div class="close-icon2"><img id="closeBtn" src="./assets/icon/closewhite.svg"></div>
                             <img class="LogoLeftSide" src="./assets/icon/Join logo vector.svg"><div class="innerAddContact">
                             <h1>${isNewContact ? 'Add Contact' : 'Edit Contact'}</h1>

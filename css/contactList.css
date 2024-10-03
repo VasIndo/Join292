@@ -420,7 +420,7 @@ h3{
     bottom: 0px;
     left: 0px;
     top: 600px;
-    height: 550px;
+    height: 495px;
     }
 
  .back-img{
@@ -441,12 +441,13 @@ h3{
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-top: 20px;
+  margin-top: 150px;
  }
 
  .AtoZ-Content {
    margin-right: 0px; 
-    width: 100%;
+   margin-top: 20px;
+   width: 100%;
 }
 
 .line-Ctn {
@@ -492,6 +493,29 @@ h3{
 
 .edit-delete-Ctn {
    margin-top: -15px; 
-}
+  }
 }
 
+@media(max-width: 320px){
+  .AtoZ-Content{
+    margin-right: 0px;
+    margin-top: 20px;
+    width: auto;
+    }
+
+.innerContent{
+      margin-top:150px;
+    }
+
+}
+
+@media(max-height: 667px){
+  .Content-Contacts{
+    position: sticky;
+    height: 505px;
+  }
+
+  .innerContent{
+    margin-top: 50px;
+  }
+}
