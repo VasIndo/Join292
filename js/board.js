@@ -196,7 +196,7 @@ function renderSubtaskDiagram(subtasksCheckedNum, subtasksNotCheckedNum, i, task
  */
 function renderAssignedPersons(tasksColumn, i, idName) {
   let person = tasksColumn[i]["assigned persons"];
-  if (person == undefined) {
+  if (person == undefined || person[0] == "placeholder" || person == "") {
   } else {
     for (let j = 0; j < person.length; j++) {
       let initials = person[j]

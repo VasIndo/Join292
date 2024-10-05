@@ -5,7 +5,7 @@ let subtasksArr = [];
 let newTask = {
   title: [],
   description: [],
-  "assigned persons": [],
+  "assigned persons": ["placeholder"],
   color: [],
   date: [],
   prio: ["medium"],
@@ -43,10 +43,10 @@ function deleteAllFields() {
   newTask = {
     title: [],
     description: [],
-    "assigned persons": [],
-    color: [],
+    "assigned persons": ["placeholder"],
+    color: ["placeholder"],
     date: [],
-    prio: ["medium "],
+    prio: ["medium"],
     category: [],
     subtasksChecked: [""],
     subtasksNotChecked: ["placeholder"],
@@ -297,9 +297,13 @@ function push(path) {
  * Adds names and colors of assigned persons to the newTask object.
  */
 function pushAssignedPersonsAndColor() {
-  for (let i = 0; i < assignedPersons.length; i++) {
-    newTask["assigned persons"].push(assignedPersons[i]["name"]);
-    newTask["color"].push(colorPerson[i]);
+  if (assignedPersons == "placeholder" || assignedPersons == "") {
+    
+  } else {
+    for (let i = 0; i < assignedPersons.length; i++) {
+      newTask["assigned persons"].push(assignedPersons[i]["name"]);
+      newTask["color"].push(colorPerson[i]);
+    }  
   }
 }
 

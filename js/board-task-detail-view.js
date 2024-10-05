@@ -75,19 +75,23 @@ function checkAssignedPersons(id, path) {
 }
 
 function renderCardAssignedPersons(id, persons) {
-  for (let index = 0; index < persons.length; index++) {
-    let initials = persons[index]
-      .split(" ")
-      .map((word) => word[0].toUpperCase())
-      .join("");
-    let initialsColor = array[taskNum]["color"][index];
-
-    document.getElementById(id).innerHTML += `
-    <div class="card-detail-view-assigned-person">
-      <span id="person(${index})" class="card-detail-view-assigned-to-person-logo" style="background-color: ${initialsColor}">${initials}</span>
-      <span>${persons[index]}</span>
-    </div>
-  `;
+  if (persons[0] == "placeholder" || persons == undefined || persons == "") {
+    
+  } else {
+    for (let index = 0; index < persons.length; index++) {
+      let initials = persons[index]
+        .split(" ")
+        .map((word) => word[0].toUpperCase())
+        .join("");
+      let initialsColor = array[taskNum]["color"][index];
+  
+      document.getElementById(id).innerHTML += `
+      <div class="card-detail-view-assigned-person">
+        <span id="person(${index})" class="card-detail-view-assigned-to-person-logo" style="background-color: ${initialsColor}">${initials}</span>
+        <span>${persons[index]}</span>
+      </div>
+    `;
+    }  
   }
 }
 
@@ -278,15 +282,16 @@ function editTogglePrio(path) {
 }
 
 function editAssignedPersons() {
-  let assignedPersonsContainer = document.getElementById("card-detail-view-assigned-persons");
-  assignedPersonsContainer.innerHTML = "";
-  assignedPersonsContainer.innerHTML = `
-    <div onclick="toggleDropdownEditAssignedPersons()" id="edit-assigned-dropdown">
-      Select contacts to assign
-      <img class="drop-down-arrow" src="assets/img/drop-down-arrow.svg" alt="Arrow">
-    </div>
-    <div id="edit-assigned-dropdown-container" class="d-none"></div>
-  `;
+    let assignedPersonsContainer = document.getElementById("card-detail-view-assigned-persons");
+    assignedPersonsContainer.innerHTML = "";
+    assignedPersonsContainer.innerHTML = `
+      <div onclick="toggleDropdownEditAssignedPersons()" id="edit-assigned-dropdown">
+        Select contacts to assign
+        <img class="drop-down-arrow" src="assets/img/drop-down-arrow.svg" alt="Arrow">
+      </div>
+      <div id="edit-assigned-dropdown-container" class="d-none"></div>
+    `;  
+  
 }
 
 function toggleDropdownEditAssignedPersons() {
@@ -356,20 +361,24 @@ function editAddPersonsToTask() {
       array[taskNum]["color"].push(contacts[i]["color"]);
     }
   }
-  editRenderPersonLogo();
+  editRenderPersonLogo();  
 }
 
 function editRenderPersonLogo() {
-  document.getElementById("card-detail-view-assigned-persons-logo").innerHTML = "";
-  let assignedPersonsArr = array[taskNum]["assigned persons"];
-  let assignedPersonsColor = array[taskNum]["color"];
-
-  for (let i = 0; i < assignedPersonsArr.length; i++) {
-    let initials = editCreateInitials(i, assignedPersonsArr)
-    document.getElementById("card-detail-view-assigned-persons-logo").innerHTML += `
-      <div class="assigned-person-logo" style="background-color: ${assignedPersonsColor[i]}">${initials}</div>
-    `;
+  if (assignedPersons == undefined || assignedPersons == "placeholder" || assignedPersons =="") {
+  } else {
+    document.getElementById("card-detail-view-assigned-persons-logo").innerHTML = "";
+    let assignedPersonsArr = array[taskNum]["assigned persons"];
+    let assignedPersonsColor = array[taskNum]["color"];
+  
+    for (let i = 0; i < assignedPersonsArr.length; i++) {
+      let initials = editCreateInitials(i, assignedPersonsArr)
+      document.getElementById("card-detail-view-assigned-persons-logo").innerHTML += `
+        <div class="assigned-person-logo" style="background-color: ${assignedPersonsColor[i]}">${initials}</div>
+      `;
+    }  
   }
+
 }
 
 function editCreateInitials(i, array) {
