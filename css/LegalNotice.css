@@ -1,7 +1,7 @@
 body{
   font-family: "Inter";
   background: #F6F7F8;
- overflow: scroll
+ 
 }
 
 
@@ -148,6 +148,46 @@ h2{
   .header-LegalNotice{
     margin-top: 0px;
   }
+}
 
+@media(max-width: 320px){
+   h2{
+    font-size: 12px;
+   }
 
+   .text-LegalNotice p{
+    font-size: 10px;
+    margin-top: 0px;
+   }
+
+   .text-LegalNotice{
+    margin-top: -5px;
+   }
+
+   .header-LegalNotice{
+    margin-top: 0px;
+   }
+}
+
+@media(max-width: 667px){
+  h2{
+    font-size: 12px;
+   }
+
+   .text-LegalNotice p{
+    font-size: 10px;
+    margin-top: 0px;
+   }
+
+   .text-LegalNotice{
+    margin-top: -5px;
+   }
+
+   .header-LegalNotice{
+    margin-top: 0px;
+   }
+
+   li{
+    font-size: 12px;
+   }
 }
