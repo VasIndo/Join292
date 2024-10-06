@@ -511,11 +511,18 @@ h3{
 
 @media(max-height: 667px){
   .Content-Contacts{
-    position: sticky;
+    position: static;
     height: 505px;
+    display: flex; /* Standardmäßig sichtbar */
   }
+
+  
 
   .innerContent{
     margin-top: 50px;
   }
+
+
+
+
 }

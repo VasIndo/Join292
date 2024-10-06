@@ -1092,6 +1092,15 @@ footer a:hover {
 .registration-Ctn{
   margin-top: -40px;
 }
+
+::placeholder {
+  font-size: 16px;
+  padding: 2px 2px;
+}
+
+ .input{
+  font-size: 16px;
+}
 }
 
 

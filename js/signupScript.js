@@ -1,119 +1,122 @@
 const BASE_URL = "https://remotestorage-f8df7-default-rtdb.europe-west1.firebasedatabase.app/";
 
 /**
- * Sendet Daten an die angegebene URL und gibt die Serverantwort zurück.
- * @param {string} path - Der Pfad zur Ressource.
- * @param {Object} data - Die zu sendenden Daten.
- * @returns {Promise<Object>} - Die Antwort vom Server.
- * @throws {Error} - Wenn ein Fehler beim Senden der Daten auftritt.
+ * Sends data to the specified URL and returns the server response.
+ * @param {string} path - The path to the resource.
+ * @param {Object} data - The data to be sent.
+ * @returns {Promise<Object>} - The server response.
  */
 async function postData(path = "", data = {}) {
     try {
-        console.log(`Daten werden gesendet an: ${BASE_URL + path + ".json"}`);
-        console.log("Daten: ", JSON.stringify(data));
-        let response = await fetch(BASE_URL + path + ".json", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(data)
-        });
-        if (!response.ok) throw new Error(`HTTP-Fehler! Status: ${response.status}`);
+        const fullUrl = `${BASE_URL}${path}.json`;
+        let response = await sendPostRequest(fullUrl, data);
         let responseToJson = await response.json();
-        console.log("Antwort vom Server: ", responseToJson);
+        console.log("Server response: ", responseToJson);
         return responseToJson;
     } catch (error) {
-        console.error("Fehler beim Senden der Daten:", error);
-        throw error;
+        handlePostError(error);
     }
 }
 
+async function sendPostRequest(url, data) {
+    console.log(`Sending data to: ${url}`);
+    let response = await fetch(url, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data)
+    });
+    if (!response.ok) throw new Error(`HTTP Error! Status: ${response.status}`);
+    return response;
+}
+
+function handlePostError(error) {
+    console.error("Error sending data:", error);
+    throw error;
+}
+
 /**
- * Holt Daten von der angegebenen URL und gibt sie zurück.
- * @param {string} path - Der Pfad zur Ressource.
- * @returns {Promise<Object>} - Die abgerufenen Daten.
- * @throws {Error} - Wenn ein Fehler beim Abrufen der Daten auftritt.
+ * Fetches data from the specified URL and returns it.
+ * @param {string} path - The path to the resource.
+ * @returns {Promise<Object>} - The fetched data.
  */
 async function getData(path = "") {
     try {
-        let response = await fetch(BASE_URL + path + ".json", {
+        const fullUrl = `${BASE_URL}${path}.json`;
+        let response = await fetch(fullUrl, {
             method: "GET",
             headers: { "Content-Type": "application/json" }
         });
-        if (!response.ok) throw new Error(`HTTP-Fehler! Status: ${response.status}`);
-        let responseToJson = await response.json();
-        console.log("Daten vom Server: ", responseToJson);
-        return responseToJson;
+        if (!response.ok) throw new Error(`HTTP Error! Status: ${response.status}`);
+        return await response.json();
     } catch (error) {
-        console.error("Fehler beim Abrufen der Daten:", error);
-        throw error;
+        handleGetError(error);
     }
 }
 
+function handleGetError(error) {
+    console.error("Error fetching data:", error);
+    throw error;
+}
+
 /**
- * Fügt einen neuen Benutzer hinzu, nachdem die Eingaben überprüft wurden.
- * @param {Event} event - Das Ereignis, das das Formular gesendet hat.
- * @returns {Promise<void>}
+ * Adds a new user after validating the input.
+ * @param {Event} event - The form submission event.
  */
 async function addUser(event) {
     event.preventDefault();
-    if (!isImageClicked) {
-        showMessage("PrivacyPolicy");
-        return;
-    }
+    if (!isImageClicked) return showMessage("PrivacyPolicy");
+
     let name = document.getElementById('signup-name').value,
         email = document.getElementById('signup-email').value,
         password = document.getElementById('signup-password').value,
         confirmPassword = document.getElementById('confirm-password').value;
 
-    if (password !== confirmPassword) {
-        showMessage("FailedtoSingUp");
-        return;
+    if (password !== confirmPassword) return showMessage("FailedtoSingUp");
+    await processNewUser({ name, email, password });
+}
+
+async function processNewUser(userData) {
+    console.log("Sending user data: ", userData);
+    let users = await getData("users");
+
+    for (let userId in users) {
+        if (users[userId].email === userData.email) return showMessage("Emailexists");
+        if (users[userId].name === userData.name) return showMessage("Nameexists");
     }
+    let response = await postData("users", userData);
+    handleUserResponse(response);
+}
 
-    let userData = { name: name, email: email, password: password };
-    console.log("Zu sendende Benutzerdaten: ", userData);
-
-    try {
-        let users = await getData("users");
-        for (let userId in users) {
-            if (users[userId].email === email) {
-                showMessage("Emailexists");
-                return;
-            }
-            if (users[userId].name === name) {
-                showMessage("Nameexists");
-                return;
-            }
-        }
-
-        let response = await postData("users", userData);
-        if (response) {
-            console.log("Antwort vom Server:", response);
-            showMessage("AlertSignUp", true);
-        } else {
-            showMessage("FailedtoSingUp");
-        }
-    } catch (error) {
-        console.error("Fehler:", error);
+function handleUserResponse(response) {
+    if (response) {
+        console.log("Server response:", response);
+        showMessage("AlertSignUp", true);
+    } else {
         showMessage("FailedtoSingUp");
     }
 }
 
 /**
- * Zeigt eine Nachricht an und leitet gegebenenfalls zur Login-Seite weiter.
- * @param {string} className - Die Klasse des Benachrichtigungs-Elements.
- * @param {boolean} redirectToLogin - Ob zur Login-Seite weitergeleitet werden soll.
+ * Displays a message and optionally redirects to the login page.
+ * @param {string} className - The class of the notification element.
+ * @param {boolean} [redirectToLogin=false] - Whether to redirect to the login page.
  */
 function showMessage(className, redirectToLogin = false) {
     let alertContainer = document.querySelector('.singUp-Alert');
     alertContainer.style.display = 'flex';
-    let messages = alertContainer.children;
-    for (let i = 0; i < messages.length; i++) messages[i].style.display = 'none';
-    let alertMessage = document.querySelector(`.${className}`);
-    alertMessage.style.display = 'flex';
+    hideOtherMessages(alertContainer);
+    document.querySelector(`.${className}`).style.display = 'flex';
     setTimeout(() => {
         alertContainer.style.display = 'none';
         if (redirectToLogin) window.location.href = 'login.html';
     }, 1000);
+}
+
+function hideOtherMessages(alertContainer) {
+    let messages = alertContainer.children;
+    for (let i = 0; i < messages.length; i++) {
+        messages[i].style.display = 'none';
+    }
 }
 
 const visibilityOffIcon = "./assets/icon/visibility_off.svg",
@@ -121,29 +124,29 @@ const visibilityOffIcon = "./assets/icon/visibility_off.svg",
     lockIcon = "./assets/icon/lock.webp";
 
 /**
- * Aktualisiert das Symbol zum Umschalten der Passwortsichtbarkeit basierend auf der Eingabelänge.
- * @param {string} inputId - Die ID des Passwortfeldes.
- * @param {string} toggleId - Die ID des Icons für den Passwort-Toggle.
+ * Updates the password toggle icon based on input length.
+ * @param {string} inputId - The ID of the password field.
+ * @param {string} toggleId - The ID of the toggle icon.
  */
 function updateToggleIcon(inputId, toggleId) {
-    const passwordInput = document.getElementById(inputId),
-        passwordToggle = document.getElementById(toggleId);
+    const passwordInput = document.getElementById(inputId);
+    const passwordToggle = document.getElementById(toggleId);
     passwordToggle.src = passwordInput.value.length > 0 ? visibilityOffIcon : lockIcon;
 }
 
 /**
- * Schaltet die Sichtbarkeit des Passworts um und aktualisiert das Symbol entsprechend.
- * @param {string} inputId - Die ID des Passwortfeldes.
- * @param {string} toggleId - Die ID des Icons für den Passwort-Toggle.
+ * Toggles the password visibility and updates the icon accordingly.
+ * @param {string} inputId - The ID of the password field.
+ * @param {string} toggleId - The ID of the toggle icon.
  */
 function togglePasswordVisibility(inputId, toggleId) {
-    const passwordField = document.getElementById(inputId),
-        passwordToggle = document.getElementById(toggleId);
+    const passwordField = document.getElementById(inputId);
+    const passwordToggle = document.getElementById(toggleId);
     if (passwordField.value.length === 0) return;
     if (passwordToggle.src.includes('visibility_off.svg')) {
         passwordField.type = "text";
         passwordToggle.src = visibilityIcon;
-    } else if (passwordToggle.src.includes('visibility.svg')) {
+    } else {
         passwordField.type = "password";
         passwordToggle.src = visibilityOffIcon;
     }
@@ -152,32 +155,39 @@ function togglePasswordVisibility(inputId, toggleId) {
 let isImageClicked = false;
 
 /**
- * Fügt Event-Listener für das Bild hinzu, um dessen Zustand bei Hover und Klick zu ändern.
+ * Adds event listeners to the image container for hover and click behavior.
  */
 function addEventListeners() {
-    const imageContainer = document.getElementById("image-container"),
-        mainImage = document.getElementById("main-image");
-    if (imageContainer && mainImage) {
-        let isDefault = true,
-            defaultSrc = "./assets/icon/Property 1=Default.svg",
-            hoverSrc = "./assets/icon/Property 1=checked.svg";
-        mainImage.src = defaultSrc;
-        isImageClicked = false;
+    const imageContainer = document.getElementById("image-container");
+    const mainImage = document.getElementById("main-image");
 
-        imageContainer.addEventListener("mouseover", () => { if (isDefault) mainImage.src = hoverSrc; });
-        imageContainer.addEventListener("mouseout", () => { if (isDefault) mainImage.src = defaultSrc; });
-        imageContainer.addEventListener("click", () => {
-            isDefault = !isDefault;
-            mainImage.src = isDefault ? defaultSrc : hoverSrc;
-            isImageClicked = !isDefault;
-        });
+    if (imageContainer && mainImage) {
+        setupImageBehavior(imageContainer, mainImage);
     } else {
-        console.error("Elemente wurden nicht gefunden. Überprüfen Sie die IDs.");
+        console.error("Elements not found. Check the IDs.");
     }
 }
 
+function setupImageBehavior(container, image) {
+    let isDefault = true;
+    const defaultSrc = "./assets/icon/Property 1=Default.svg";
+    const hoverSrc = "./assets/icon/Property 1=checked.svg";
+    image.src = defaultSrc;
+    isImageClicked = false;
+
+    container.addEventListener("mouseover", () => { if (isDefault) image.src = hoverSrc; });
+    container.addEventListener("mouseout", () => { if (isDefault) image.src = defaultSrc; });
+    container.addEventListener("click", () => toggleImageState(image, defaultSrc, hoverSrc, isDefault));
+}
+
+function toggleImageState(image, defaultSrc, hoverSrc, isDefault) {
+    isDefault = !isDefault;
+    image.src = isDefault ? defaultSrc : hoverSrc;
+    isImageClicked = !isDefault;
+}
+
 /**
- * Stellt sicher, dass das DOM geladen ist, bevor die Event-Listener hinzugefügt werden.
+ * Ensures that the DOM is loaded before adding event listeners.
  */
 document.addEventListener("DOMContentLoaded", function() {
     const observer = new MutationObserver(function(mutationsList, observer) {
