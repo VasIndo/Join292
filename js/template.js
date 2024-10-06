@@ -1,14 +1,25 @@
+/**
+ * Öffnet das Pop-up-Fenster, indem die Klasse 'd-none' vom Element mit der ID 'popUp' entfernt wird.
+ */
 function openPopUp() {
     document.getElementById('popUp').classList.remove('d-none');
 }
 
+/**
+ * Schließt das Pop-up-Fenster, indem die Klasse 'd-none' zum Element mit der ID 'popUp' hinzugefügt wird.
+ */
 function closePopUp() {
     document.getElementById('popUp').classList.add('d-none');
 }
 
-
-function showHelp(site){
-    return`
+/**
+ * Zeigt den Hilfetext für eine spezifische Seite an.
+ * 
+ * @param {string} site - Der Name der Seite, für die der Hilfetext angezeigt wird.
+ * @returns {string} HTML-String, der den Hilfetext enthält.
+ */
+function showHelp(site) {
+    return `
         <div class="helpCon">
         <div class="headerHelp">
             <h1>Help</h1>
@@ -107,6 +118,10 @@ function showHelp(site){
     `;
 }
 
+/**
+ * Öffnet die Hilfeseite basierend auf der aktuellen Seite, auf der sich der Benutzer befindet.
+ * Der Hilfetext wird entsprechend der spezifischen Seite dynamisch eingefügt.
+ */
 function openHelp(){    
     // Beispiel für eine ID oder Klasse, die den spezifischen Inhalt bestimmt
     if (document.body.classList.contains('page-addTask')) {
