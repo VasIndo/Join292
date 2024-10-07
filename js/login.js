@@ -52,29 +52,34 @@ window.onload = function() {
 * @returns {{targetX: number, targetY: number, scaleX: number, scaleY: number}} - Berechnete Werte für die Animation.
 */
 function calculateAnimationParameters(topCtn) {
-  const topCtnRect = topCtn.getBoundingClientRect();
-  let targetX, targetY, scaleX, scaleY;
-
-  if (window.innerWidth <= 400) {
-      targetX = topCtnRect.left - 80;
-      targetY = topCtnRect.top - 102;
-      scaleX = 80 / 200;
-      scaleY = 90 / 243.94;
-  } else if (window.innerWidth <= 680) {
-      targetX = topCtnRect.left - 59.4;
-      targetY = topCtnRect.top - 42.35;
-      scaleX = 100.03 / 200;
-      scaleY = 121.97 / 243.94;
-  } else {
-      targetX = topCtnRect.left - 23.29;
-      targetY = topCtnRect.top - 42.35;
-      scaleX = 100.03 / 200;
-      scaleY = 121.97 / 243.94;
+    const topCtnRect = topCtn.getBoundingClientRect();
+    let targetX, targetY, scaleX, scaleY;
+  
+    if (window.innerWidth <= 400) {
+        targetX = topCtnRect.left - 80;
+        targetY = topCtnRect.top - 102;
+        scaleX = 80 / 200;
+        scaleY = 90 / 243.94;
+    } else if (window.innerWidth <= 680) {
+        targetX = topCtnRect.left - 59.4;
+        targetY = topCtnRect.top - 42.35;
+        scaleX = 100.03 / 200;
+        scaleY = 121.97 / 243.94;
+    } else if(window.innerHeight <= 667){
+        targetX = topCtnRect.left - 10;
+        targetY = topCtnRect.top - 10;
+        scaleX = 60 / 200;  // Bildbreite auf 60px anpassen
+        scaleY = 70 / 243.94; // Bildhöhe auf 70px anpassen
+    } else {
+        targetX = topCtnRect.left - 23.29;
+        targetY = topCtnRect.top - 42.35;
+        scaleX = 100.03 / 200;
+        scaleY = 121.97 / 243.94;
+    }
+  
+    return { targetX, targetY, scaleX, scaleY };
   }
-
-  return { targetX, targetY, scaleX, scaleY };
-}
-
+  
 /**
 * Animiert das Lade-Logo und ändert den Hintergrund des Ladebildschirms.
 * @param {HTMLElement} loadingLogo - Das Lade-Logo-Element.

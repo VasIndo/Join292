@@ -732,7 +732,7 @@ footer a:hover {
   }
 
   .registration-Ctn{
-    height: 500px;
+    height: 480px;
     width: 300px;
     margin-top: 50px;
   }
@@ -784,15 +784,6 @@ footer a:hover {
    }
   }
 
-@media(min-width: 768px){}
-
-  
-  @media(max-width:768px){
-     
-  }
-  
-
-  
 @media(max-width: 750px) {
   .form-Ctn{
     margin-left: auto;
@@ -1055,10 +1046,7 @@ footer a:hover {
 }
 
 @media(max-height: 667px){
-  .logo-Ctn img{
-    width: 60px;
-    height: 70px;
-  }
+ 
 
   footer{
     top: 650px;
@@ -1090,7 +1078,7 @@ footer a:hover {
 }
 
 .registration-Ctn{
-  margin-top: -40px;
+  margin-top: -30px;
 }
 
 ::placeholder {
