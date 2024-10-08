@@ -37,10 +37,15 @@ async function loadContacts() {
  * Loads task information from firebase and stores it in the `allTasks` variable and
  */
 async function loadTasks() {
-  response = await fetch(URL + "tasks/.json");
-  responseJSON = await response.json();
-  allTasks = Object.values(responseJSON);
-  sortTasksInColumn(allTasks);
+  try {
+    response = await fetch(URL + "tasks/.json");
+    responseJSON = await response.json();
+    allTasks = Object.values(responseJSON);
+    sortTasksInColumn(allTasks);  
+  } catch(err) {
+    console.log(err)
+    loadData();
+  }
 }
 
 /**
