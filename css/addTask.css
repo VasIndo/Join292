@@ -182,12 +182,10 @@ body {
     }
 
     .prio-btn {
-        flex-direction: column;
         align-items: unset;
     }
 
     .devider {
-        height: 570px;
         margin-bottom: 100px;
     }
 
