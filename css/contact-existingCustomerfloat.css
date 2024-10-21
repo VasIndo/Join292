@@ -382,11 +382,7 @@ h3{
 
 @media(max-height: 667px){
  
-  /* MidContainer */
-.mid-Content{
-  position: static;
-  display: none;
-}
+ 
 
 
   

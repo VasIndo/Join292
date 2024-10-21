@@ -414,13 +414,12 @@ h3{
 
 @media(max-width: 600px){
   
-  
   .Content-Contacts {
     width: 100%;
     bottom: 0px;
     left: 0px;
-    top: 600px;
-    height: 495px;
+    top: 680px;
+    height: 568px;
     }
 
  .back-img{
@@ -441,7 +440,7 @@ h3{
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-top: 150px;
+  margin-top: 100px;
  }
 
  .AtoZ-Content {
@@ -504,19 +503,17 @@ h3{
     }
 
 .innerContent{
-      margin-top:150px;
+      margin-top: 100px;
     }
 
 }
 
 @media(max-height: 667px){
   .Content-Contacts{
-    position: static;
     height: 505px;
     display: flex; /* Standardmäßig sichtbar */
+    
   }
-
-  
 
   .innerContent{
     margin-top: 50px;

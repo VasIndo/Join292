@@ -44,23 +44,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Render the contact card with the selected contact's information
     const renderContactCard = contact => {
         const card = document.querySelector('.float-Ctn');
-        card.innerHTML = `
-            <div class="float-top-Ctn">
-                <div class="float-img">${generateInitialsImage(contact.name, 120, contact.color)}</div>
-                <div class="float-Edit-Delet-Ctn">
-                    <h3>${contact.name}</h3>
-                    <div class="edit-delete-Ctn">
-                        <div class="edit-delete2" id="edit-button"><img class="small-img" src="./assets/icon/edit.svg"><p>Edit</p></div>
-                        <div class="edit-delete2" id="delete-button"><img class="small-img" src="./assets/icon/delete.svg"><p>Delete</p></div>
-                    </div>
-                </div>
-            </div>
-            <div class="contact-Information"><p>Contact Information</p></div>
-            <div class="contact-Information-box">
-            <p class="font-weight">Email</p><p class="email-blue">${contact.email}</p>
-            <p class="font-weight">Phone</p><p>${contact.phone}</p>
-            </div>
-        `;
+        card.innerHTML = generateContactCardHtml(contact);
 
         document.getElementById('edit-button').addEventListener('click', e => {
             e.stopPropagation();
@@ -97,31 +81,21 @@ document.addEventListener('DOMContentLoaded', function() {
         renderContactList();
     };
 
-    // Get data from Firebase
+    // Fetch data from Firebase
     const getData = async path => {
         const BASE_URL = "https://remotestorage-f8df7-default-rtdb.europe-west1.firebasedatabase.app/";
         const res = await fetch(`${BASE_URL}${path}.json`);
-        return res.ok ? await res.json() : console.error('Fetch error');
+        if (res.ok) {
+            return await res.json();
+        } else {
+            console.error('Fetch error');
+        }
     };
 
     // Render the contact list
     const renderContactList = () => {
         const contactList = document.getElementById('contact-list');
-        contactList.innerHTML = '';
-        const grouped = groupContactsByLetter(contacts);
-
-        for (const letter in grouped) {
-            contactList.innerHTML += `
-                <div class="AtoZ-Ctn"><p>${letter}</p></div>
-                <div class="line-Ctn"><div class="line"></div></div>
-                ${grouped[letter].map(contact => `
-                    <div class="contact-data" data-email="${contact.email}">
-                        ${generateInitialsImage(contact.name, 60, contact.color)}
-                        <div style="width:200px"><h1>${contact.name}</h1><p>${contact.email}</p></div>
-                    </div>`).join('')}
-            `;
-        }
-
+        contactList.innerHTML = generateContactListHtml(contacts);
         attachContactClickEvents();
     };
 
@@ -151,57 +125,14 @@ document.addEventListener('DOMContentLoaded', function() {
     const editContactCard = (email = '', isEditMode = false) => {
         const contact = contacts.find(c => c.email === email) || { name: '', email: '', phone: '', color: getUniqueColor(), img: `<img src="./assets/icon/PersonAddContact.svg">` };
         const isNewContact = !contacts.some(c => c.email === email);
-
-        document.body.insertAdjacentHTML('beforeend', `
-            <div id="next" class="Full-Container">
-                <div class="AddContactCard">
-                 <div class="leftSide">
-                            
-                            <div class="close-icon2"><img id="closeBtn" src="./assets/icon/closewhite.svg"></div>
-                            <img class="LogoLeftSide" src="./assets/icon/Join logo vector.svg"><div class="innerAddContact">
-                            <h1>${isNewContact ? 'Add Contact' : 'Edit Contact'}</h1>
-                            <p>Tasks are better with a team!</p>
-                            <div class="TaskLine"></div>
-                        </div>
-                    </div>
-                    <div class="rightSide">
-                        <div class="close-icon"><img id="closeBtn" src="./assets/icon/close.svg"></div>
-                        <div class="rightSide-middle">
-                            <div class="profil-img">${isNewContact ? contact.img : generateInitialsImage(contact.name, 120, contact.color)}</div>
-                            <form id="contact-form">
-                                <div><input id="contact-name" type="text" placeholder="Name" value="${contact.name}"><img class="iconInput" src="./assets/icon/Person1.webp"></div>
-                                <div><input id="contact-email" type="email" placeholder="Email" value="${contact.email}"><img class="iconInput" src="./assets/icon/mail.webp"></div>
-                                <div><input id="contact-phone" type="text" placeholder="Phone" value="${contact.phone}"><img class="iconInput" src="./assets/icon/call.svg"></div>
-                            </form>
-                        </div>
-                        <div class="ctn-button" style="${isEditMode ? 'margin-left: 0;' : ''}">
-                            <button id="Cancel-Btn" class="cancel">
-                                ${isEditMode ? 'Delete' : 'Cancel'}
-                                <div class="icon-container">
-                                    <img class="default-icon" src="./assets/icon/close.svg">
-                                    <img class="hover-icon" src="./assets/icon/closeBlue.svg">
-                                </div>
-                            </button>
-                            <button id="save-contact" class="create" style="${isEditMode ? 'width: 100px;' : ''}">
-                                ${isEditMode ? 'Save' : 'Create contact'}
-                                <img src="./assets/icon/check.webp">
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        `);
-
+    
+        document.body.insertAdjacentHTML('beforeend', generateAddContactHtml(contact, isNewContact, isEditMode));
+    
         document.getElementById('closeBtn').addEventListener('click', () => document.getElementById('next').remove());
-        document.getElementById('Cancel-Btn').addEventListener('click', () => isEditMode ? deleteContact(email) : document.getElementById('next').remove());
-        document.getElementById('save-contact').addEventListener('click', e => saveEditedContact(e, email));
-
-        document.getElementById('contact-form').addEventListener('keydown', e => {
-            if (e.key === 'Enter') {
-                e.preventDefault();
-                saveEditedContact(e, email);
-            }
-        });
+        document.getElementById('Cancel-Btn').addEventListener('click', () => document.getElementById('next').remove());
+        
+        // Füge den Listener hinzu, um zu überprüfen, ob außerhalb geklickt wird
+        closeOnOutsideClick();
     };
 
     // Save edited or new contact
@@ -318,9 +249,97 @@ document.addEventListener('DOMContentLoaded', function() {
     updateAvatarSize();
 
     loadContactsFromFirebase();
+
+    // All HTML generation functions are placed here as requested
+    const generateContactCardHtml = contact => `
+        <div class="float-top-Ctn">
+            <div class="float-img">${generateInitialsImage(contact.name, 120, contact.color)}</div>
+            <div class="float-Edit-Delet-Ctn">
+                <h3>${contact.name}</h3>
+                <div class="edit-delete-Ctn">
+                    <div class="edit-delete2" id="edit-button"><img class="small-img" src="./assets/icon/edit.svg"><p>Edit</p></div>
+                    <div class="edit-delete2" id="delete-button"><img class="small-img" src="./assets/icon/delete.svg"><p>Delete</p></div>
+                </div>
+            </div>
+        </div>
+        <div class="contact-Information"><p>Contact Information</p></div>
+        <div class="contact-Information-box">
+            <p class="font-weight">Email</p><p class="email-blue">${contact.email}</p>
+            <p class="font-weight">Phone</p><p>${contact.phone}</p>
+        </div>
+    `;
+
+    const generateContactListHtml = contacts => {
+        const grouped = groupContactsByLetter(contacts);
+        let html = '';
+
+        for (const letter in grouped) {
+            html += `
+                <div class="AtoZ-Ctn"><p>${letter}</p></div>
+                <div class="line-Ctn"><div class="line"></div></div>
+                ${grouped[letter].map(contact => `
+                    <div class="contact-data" data-email="${contact.email}">
+                        ${generateInitialsImage(contact.name, 60, contact.color)}
+                        <div style="width:200px"><h1>${contact.name}</h1><p>${contact.email}</p></div>
+                    </div>`).join('')}
+            `;
+        }
+
+        return html;
+    };
+
+    const generateAddContactHtml = (contact, isNewContact, isEditMode) => `
+        <div id="next" class="Full-Container">
+            <div class="AddContactCard">
+                <div class="leftSide">
+                    <div class="close-icon2"><img id="closeBtn" src="./assets/icon/closewhite.svg"></div>
+                    <img class="LogoLeftSide" src="./assets/icon/Join logo vector.svg">
+                    <div class="innerAddContact">
+                        <h1>${isNewContact ? 'Add Contact' : 'Edit Contact'}</h1>
+                        <p>Tasks are better with a team!</p>
+                        <div class="TaskLine"></div>
+                    </div>
+                </div>
+                <div class="rightSide">
+                    <div class="close-icon"><img id="closeBtn" src="./assets/icon/close.svg"></div>
+                    <div class="rightSide-middle">
+                        <div class="profil-img">${isNewContact ? contact.img : generateInitialsImage(contact.name, 120, contact.color)}</div>
+                        <form id="contact-form">
+                            <div><input id="contact-name" type="text" placeholder="Name" value="${contact.name}"><img class="iconInput" src="./assets/icon/Person1.webp"></div>
+                            <div><input id="contact-email" type="email" placeholder="Email" value="${contact.email}"><img class="iconInput" src="./assets/icon/mail.webp"></div>
+                            <div><input id="contact-phone" type="text" placeholder="Phone" value="${contact.phone}"><img class="iconInput" src="./assets/icon/call.svg"></div>
+                        </form>
+                    </div>
+                    <div class="ctn-button" style="${isEditMode ? 'margin-left: 0;' : ''}">
+                        <button id="Cancel-Btn" class="cancel">
+                            ${isEditMode ? 'Delete' : 'Cancel'}
+                            <div class="icon-container">
+                                <img class="default-icon" src="./assets/icon/close.svg">
+                                <img class="hover-icon" src="./assets/icon/closeBlue.svg">
+                            </div>
+                        </button>
+                        <button id="save-contact" class="create" style="${isEditMode ? 'width: 100px;' : ''}">
+                            ${isEditMode ? 'Save' : 'Create contact'}
+                            <img src="./assets/icon/check.webp">
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    `;
 });
 
 
+// Funktion, um das AddContactCard zu schließen, wenn außerhalb geklickt wird
+const closeOnOutsideClick = () => {
+    document.addEventListener('click', function(event) {
+        const addContactCard = document.querySelector('.AddContactCard');
+        const nextContainer = document.getElementById('next');
 
-
+        // Überprüfe, ob das geklickte Element außerhalb des AddContactCard-Containers ist
+        if (nextContainer && addContactCard && !addContactCard.contains(event.target) && !event.target.closest('.AddContactCard')) {
+            nextContainer.remove();
+        }
+    });
+};
 

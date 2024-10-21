@@ -46,7 +46,7 @@ h2 {
   font-size: 27px;
   font-weight: 700;
   line-height: 32.4px;
-  width: 346px;
+  width: auto;
   height: 32px;
   margin: 0px;
 }
@@ -81,7 +81,7 @@ h2 {
     }
 
     h2{
-      width: 0px;
+      width: auto;
     }
   } 
 
