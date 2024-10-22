@@ -188,10 +188,6 @@ body {
   cursor: pointer;
 }
 
-.tasks-card {
-  height: 215px;
-}
-
 #card,
 .tasks-card {
   background-color: rgba(255, 255, 255, 1);
@@ -254,10 +250,36 @@ body {
   color: rgba(0, 0, 0, 1);
 }
 
-.bottom-card {
+#person-and-prio {
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+
+.mobile-menu {
+  width: 24px;
+  height: 24px;
+  border: 2px solid black;
+  border-radius: 50%;
+  display: none;
+  margin-top: 10px;
+}
+
+.splits-to-move-container {
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  padding: 10px;
+  position: absolute;
+  font-size: 16px;
+  border-radius: 10px;
+  box-shadow: 0px 0px 10px 3px rgba(0, 0, 0, 0.08);
+}
+
+.splits-to-move-container > span {
+  background-color: rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  padding: 5px;
 }
 
 .assigned-to {
@@ -473,5 +495,9 @@ body {
   .done-headline > img {
     width: 30px;
     height: 30px;
+  }
+
+  .mobile-menu {
+    display: block;
   }
 }

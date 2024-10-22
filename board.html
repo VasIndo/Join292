@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -35,35 +34,57 @@
           <form id="searchbar">
             <input onkeyup="filterTask()" id="searchbar-field" type="text" placeholder="Find Task" />
             <div class="line"></div>
-            <img onclick="filterTask()" class="magnifying-glass" src="assets/img/magnifying-glass.svg" alt="magnifying glass" />
+            <img
+              onclick="filterTask()"
+              class="magnifying-glass"
+              src="assets/img/magnifying-glass.svg"
+              alt="magnifying glass"
+            />
           </form>
-          <a onclick="toggleAddTaskPopUp()" href="#" id="add-task-btn-desktop" class="add-task-btn"><span>Add task</span><img src="assets/img/btn-plus.svg" alt="+"/></a>
-          <a href="addTask.html" id="add-task-btn-mobile" class="add-task-btn"><span>Add task</span><img src="assets/img/btn-plus.svg" alt="+"/></a>
-
+          <a onclick="toggleAddTaskPopUp()" href="#" id="add-task-btn-desktop" class="add-task-btn"
+            ><span>Add task</span><img src="assets/img/btn-plus.svg" alt="+"
+          /></a>
+          <a href="addTask.html" id="add-task-btn-mobile" class="add-task-btn"
+            ><span>Add task</span><img src="assets/img/btn-plus.svg" alt="+"
+          /></a>
         </div>
       </div>
       <div class="searchbar-mobile">
         <form id="searchbar-mobile">
           <input onkeyup="filterTask()" id="searchbar-field-mobile" type="text" placeholder="Find Task" />
           <div class="line"></div>
-          <img onclick="filterTask()" class="magnifying-glass" src="assets/img/magnifying-glass.svg" alt="magnifying glass" />
+          <img
+            onclick="filterTask()"
+            class="magnifying-glass"
+            src="assets/img/magnifying-glass.svg"
+            alt="magnifying glass"
+          />
         </form>
       </div>
 
-
       <div class="tasks">
-        <div ondrop="moveTo('toDo'), removeHighLight('to-do-split')" ondragover="allowDrop(event) ,addHighLight('to-do-split')" ondragleave="removeHighLight('to-do-split')"  ontouchend="moveTo('toDo'), removeHighLight('to-do-split')"  id="to-do-split" class="to-do-split">
+        <div
+          ondrop="moveTo('toDo'); removeHighLight('to-do-split')"
+          ondragover="allowDrop(event); addHighLight('to-do-split')"
+          ondragleave="removeHighLight('to-do-split')"
+          id="to-do-split"
+          class="to-do-split"
+        >
           <div class="to-do-headline">
             <span>To do</span>
             <img class="task-plus" id="to-do-plus" src="assets/img/plus-button.svg" alt="plus" />
           </div>
           <div id="to-do-tasks">
-            <div id="to-do-tasks-empty" class="tasks-empty">
-              No tasks To do
-            </div>
+            <div id="to-do-tasks-empty" class="tasks-empty">No tasks To do</div>
           </div>
         </div>
-        <div ondrop="moveTo('inProgress'), removeHighLight('in-progress-split')" ondragover="allowDrop(event) ,addHighLight('in-progress-split')" ondragleave="removeHighLight('in-progress-split')" ontouchend="moveTo('inProgress'), removeHighLight('in-progress-split')" id="in-progress-split" class="in-progress-split">
+        <div
+          ondrop="moveTo('inProgress'); removeHighLight('in-progress-split')"
+          ondragover="allowDrop(event); addHighLight('in-progress-split')"
+          ondragleave="removeHighLight('in-progress-split')"
+          id="in-progress-split"
+          class="in-progress-split"
+        >
           <div class="in-progress-headline">
             <span>In progress</span>
             <img class="task-plus" id="in-progress-plus" src="assets/img/plus-button.svg" alt="plus" />
@@ -86,20 +107,29 @@
             </div>
           </div>
         </div>
-        <div ondrop="moveTo('awaitFeedback'), removeHighLight('await-feedback-split')" ondragover="allowDrop(event) ,addHighLight('await-feedback-split')" ondragleave="removeHighLight('await-feedback-split')" ontouchend="moveTo('awaitFeedback'), removeHighLight('await-feedback-split')" id="await-feedback-split" class="await-feedback-split">
-          <div class="await-feedback-headline">
+        <div
+        ondrop="moveTo('awaitFeedback'); removeHighLight('await-feedback-split')"
+        ondragover="allowDrop(event); addHighLight('await-feedback-split')"
+        ondragleave="removeHighLight('await-feedback-split')"
+        id="await-feedback-split"
+        class="await-feedback-split"
+      >          <div class="await-feedback-headline">
             <span>Await feedback</span>
             <img class="task-plus" id="await-feedback-plus" src="assets/img/plus-button.svg" alt="plus" />
           </div>
-          <div id="await-feedback-tasks" class="await-feedback-tasks">
-          </div>
+          <div id="await-feedback-tasks" class="await-feedback-tasks"></div>
         </div>
-        <div ondrop="moveTo('done'), removeHighLight('done-split')" ondragover="allowDrop(event) ,addHighLight('done-split')" ondragleave="removeHighLight('done-split')" ontouchend="moveTo('done'), removeHighLight('done-split')" id="done-split" class="done-split">
+        <div
+          ondrop="moveTo('done'), removeHighLight('done-split')"
+          ondragover="allowDrop(event) ,addHighLight('done-split')"
+          ondragleave="removeHighLight('done-split')"
+          id="done-split"
+          class="done-split"
+        >
           <div class="done-headline">
             <span>Done</span>
           </div>
-          <div id="done-tasks" class="done-tasks">
-          </div>
+          <div id="done-tasks" class="done-tasks"></div>
         </div>
       </div>
 
@@ -109,7 +139,9 @@
           <h1 id="card-detail-view-title" class="card-detail-view-title">Kochwelt Page & Recipe Recommender</h1>
         </div>
         <div id="card-detail-view-description-container">
-          <span id="card-detail-view-description" class="card-detail-view-description">Build start page with recipe recommendation.</span>
+          <span id="card-detail-view-description" class="card-detail-view-description"
+            >Build start page with recipe recommendation.</span
+          >
         </div>
         <div id="card-detail-view-date">
           <span class="card-detail-view-date-text">Due Date:</span>
@@ -202,7 +234,6 @@
             <div id="assigned-person"></div>
           </div>
 
-
           <div class="add-task-line"></div>
 
           <div class="add-task-right">
@@ -217,7 +248,12 @@
                 <button onclick="togglePrio('high')" class="high-btn" type="button" id="high-btn">
                   Urgent <img id="high-btn-img" src="assets/img/prio-high.svg" alt="High" />
                 </button>
-                <button onclick="togglePrio('medium')" class="medium-btn medium-btn-active" type="button" id="medium-btn">
+                <button
+                  onclick="togglePrio('medium')"
+                  class="medium-btn medium-btn-active"
+                  type="button"
+                  id="medium-btn"
+                >
                   Medium <img id="medium-btn-img" src="assets/icon/prio_medium_selected.svg" alt="Medium" />
                 </button>
                 <button onclick="togglePrio('low')" class="low-btn" type="button" id="low-btn">
@@ -230,16 +266,18 @@
               <label for="category-select">Category <span>*</span></label>
               <div id="category-dropdown" onclick="toggleCategoryDropDown()">
                 <span id="category">Select task category</span>
-                <img
-                  class="drop-down-arrow"
-                  src="assets/img/drop-down-arrow.svg"
-                  alt="Arrow"
-                />
+                <img class="drop-down-arrow" src="assets/img/drop-down-arrow.svg" alt="Arrow" />
               </div>
               <div id="categories" class="d-none">
                 <div class="categories-container">
-                  <span id="technical-task" onclick="toggleCategoryDropDown(), addCategory('Technical Task', 'technical-task')">Technical Task</span>
-                  <span id="user-story" onclick="toggleCategoryDropDown(), addCategory('User Story', 'user-story')">User Story</span>
+                  <span
+                    id="technical-task"
+                    onclick="toggleCategoryDropDown(), addCategory('Technical Task', 'technical-task')"
+                    >Technical Task</span
+                  >
+                  <span id="user-story" onclick="toggleCategoryDropDown(), addCategory('User Story', 'user-story')"
+                    >User Story</span
+                  >
                 </div>
               </div>
             </div>
@@ -269,7 +307,9 @@
             class="cancel-btn"
             >Cancel<img id="cancel-btn-img" src="assets/img/cancel-x.svg"
           /></a>
-          <a href="#" onclick="pushNewTaskInJson()" class="create-task-btn">Create Task<img src="assets/img/create-task-check.svg" /></a>
+          <a href="#" onclick="pushNewTaskInJson()" class="create-task-btn"
+            >Create Task<img src="assets/img/create-task-check.svg"
+          /></a>
         </div>
       </div>
     </div>

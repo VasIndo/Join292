@@ -99,23 +99,26 @@ function renderTask(tasksArr, tasksColumn, columnName) {
 function generateHtml(tasksArr, tasksColumn, i) {
   let arrayAsString = arrayToString(tasksColumn);
   return `
-          <div ondragstart="rotate('${tasksColumn}-card(${i})')" 
-              draggable="true" 
-              ontouchstart="rotate('${tasksColumn}-card(${i})')" 
-              ontouchmove="allowDrop(event)" 
-              ontouchcancel="removeHighLight('${tasksColumn}-card(${i})')" 
-              onclick="(init('${tasksColumn}', ${i}, ${arrayAsString}), cardAnimation())" 
-              class="tasks-card" 
-              id="${tasksColumn}-card(${i})">
-            <div id="${tasksColumn}-catagory(${i})" class="catagory">${tasksArr[i]["category"]}</div>
-             <h1 class="title">${tasksArr[i]["title"]}</h1>
-             <p class="description">${tasksArr[i]["description"]}</p>
-             <div id="${tasksColumn}-subtasks(${i})" class="subtasks"></div>
-             <div class="bottom-card">
-                <div id="${tasksColumn}assigned-to(${i})" class="assigned-to"></div>                
-                <img id="${tasksColumn}prio${i}" class="prio" src="assets/img/prio-medium.svg" alt="medium" />
-             </div>
-          </div>
+<div onclick="(init('${tasksColumn}', ${i}, ${arrayAsString}), cardAnimation())" class="tasks-card" id="${tasksColumn}-card(${i})" draggable="true" ondragstart="rotate('${tasksColumn}-card(${i})')">
+    <div id="${tasksColumn}-catagory(${i})" class="catagory">${tasksArr[i]["category"]}</div>
+    <h1 class="title">${tasksArr[i]["title"]}</h1>
+    <p class="description">${tasksArr[i]["description"]}</p>
+    <div id="${tasksColumn}-subtasks(${i})" class="subtasks"></div>
+
+    <div class="bottom-card">
+        <div onclick="showSplitsToMove(event)" id="person-and-prio">
+            <div id="${tasksColumn}assigned-to(${i})" class="assigned-to"></div>                
+            <img id="${tasksColumn}prio${i}" class="prio" src="assets/img/prio-medium.svg" alt="medium" />
+        </div>
+        <img onclick="event.stopPropagation(), toggleSplitsToMove('${tasksColumn}', ${i}), rotate('${tasksColumn}-card(${i})')" class="mobile-menu" src="assets/img/mobile-menu.svg">
+        <div id="splits-to-move-container-${tasksColumn}-${i}" class="splits-to-move-container d-none">
+        <span onclick="event.stopPropagation(), moveTo('toDo')">To do</span><br>
+        <span onclick="event.stopPropagation(), moveTo('inProgress')">In Progress</span><br>
+        <span onclick="event.stopPropagation(), moveTo('awaitFeedback')">Await feedback</span><br>
+        <span onclick="event.stopPropagation(), moveTo('done')">Done</span><br>
+        </div>
+    </div>
+</div>
         `;
 }
 
@@ -274,6 +277,16 @@ async function moveTo(newTaskColumn) {
 }
 
 /**
+ * Show the container to push the task to a new column.
+ * @param {string} tasksColumn - The ID of the HTML column.
+ * @param {number} i - The index of the task.
+ */
+function toggleSplitsToMove(tasksColumn, i) {
+  document.getElementById(`splits-to-move-container-${tasksColumn}-${i}`).classList.toggle("d-none");
+}
+
+
+/**
  * Updates the task's column based on its current position and the new column.
  * @param {string} string - The ID of the current task column.
  * @param {number} number - The index of the task in the array.
@@ -394,3 +407,5 @@ function addHighLight(split) {
 function removeHighLight(split) {
   document.getElementById(split).classList.remove("highlight");
 }
+
+
