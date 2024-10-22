@@ -177,13 +177,11 @@ function setupImageBehavior(container, image) {
 
     container.addEventListener("mouseover", () => { if (isDefault) image.src = hoverSrc; });
     container.addEventListener("mouseout", () => { if (isDefault) image.src = defaultSrc; });
-    container.addEventListener("click", () => toggleImageState(image, defaultSrc, hoverSrc, isDefault));
-}
-
-function toggleImageState(image, defaultSrc, hoverSrc, isDefault) {
-    isDefault = !isDefault;
-    image.src = isDefault ? defaultSrc : hoverSrc;
-    isImageClicked = !isDefault;
+    container.addEventListener("click", () => {
+        isDefault = !isDefault;
+        image.src = isDefault ? defaultSrc : hoverSrc;
+        isImageClicked = !isDefault;
+    });
 }
 
 /**
