@@ -19,7 +19,7 @@
   margin-bottom: 20px;
 }
 
-.add-task-headline > h1 {
+.add-task-headline>h1 {
   font-size: 61px;
   font-weight: 700;
   color: rgba(0, 0, 0, 1);
@@ -27,7 +27,7 @@
   margin: 0;
 }
 
-.add-task-headline > img:hover {
+.add-task-headline>img:hover {
   cursor: pointer;
   border-radius: 50%;
   background-color: rgba(0, 0, 0, 0.2);
@@ -44,38 +44,39 @@
   gap: 8px;
 }
 
-.add-task-left > label {
+.add-task-left>label {
   font-size: 20px;
   color: rgba(71, 82, 96);
   margin-bottom: 10px;
 }
 
-.add-task-left > label > span {
+.add-task-left>label>span {
   color: rgba(255, 129, 144);
 }
 
-.add-task-left > input,
-.add-task-left > select,
-.add-task-left > textarea,
-.date-container > input {
+.add-task-left>input,
+.add-task-left>select,
+.add-task-left>textarea,
+.date-container>input {
   height: 48px;
   width: 440px;
-  padding: 12px 21px 12px 21px;;
+  padding: 12px 21px 12px 21px;
+  ;
   border: 1px solid rgba(209, 209, 209, 1);
   border-radius: 10px;
   font-size: 20px;
   margin-bottom: 30px;
 }
 
-.add-task-left > textarea {
+.add-task-left>textarea {
   padding: 18px 16px;
 }
 
-.add-task-left > select {
+.add-task-left>select {
   padding: 12px 21px 12px 21px;
 }
 
-.add-task-left > select {
+.add-task-left>select {
   appearance: none;
   background-image: url("/assets/img/drop-down-arrow.svg");
   background-repeat: no-repeat;
@@ -105,7 +106,7 @@
   border: 1px solid rgba(209, 209, 209, 1);
   border-radius: 10px;
   padding: 7px 16px;
-  background-color: white;  
+  background-color: white;
 }
 
 #assigned-dropdown:hover {
@@ -161,12 +162,12 @@
   flex-direction: column;
 }
 
-.categories-container > span {
+.categories-container>span {
   border-radius: 10px;
   padding: 10px;
 }
 
-.categories-container > span:hover {
+.categories-container>span:hover {
   cursor: pointer;
   background-color: rgba(0, 0, 0, 0.2);
 }
@@ -203,12 +204,12 @@
   margin-right: 10px;
 }
 
-.person-container > img {
+.person-container>img {
   width: 24px;
   height: 24px;
 }
 
-.person-container > img:hover {
+.person-container>img:hover {
   cursor: pointer;
   background-color: rgb(209, 209, 209);
   border-radius: 50%;
@@ -242,10 +243,10 @@
   flex-direction: column;
 }
 
-.date-container > label,
-.add-task-prio > label,
-.category-container > label,
-.subtasks-container > label {
+.date-container>label,
+.add-task-prio>label,
+.category-container>label,
+.subtasks-container>label {
   font-size: 20px;
   color: rgba(71, 82, 96);
   margin-bottom: 10px;
@@ -255,8 +256,8 @@ textarea {
   height: 100px !important;
 }
 
-.date-container > label > span,
-.category-container > label > span {
+.date-container>label>span,
+.category-container>label>span {
   color: rgba(255, 129, 144);
 }
 
@@ -315,7 +316,7 @@ textarea {
   flex-direction: column;
 }
 
-.category-container > select {
+.category-container>select {
   width: 440px;
   padding: 12px 21px;
   border: 1px solid rgba(209, 209, 209, 1);
@@ -341,7 +342,7 @@ textarea {
   position: relative;
 }
 
-.add-subtasks-container > input {
+.add-subtasks-container>input {
   width: 100%;
   height: 100%;
   position: relative;
@@ -352,7 +353,7 @@ textarea {
   margin-bottom: 30px;
 }
 
-.add-subtasks-container > img {
+.add-subtasks-container>img {
   width: 24px;
   height: 24px;
   position: absolute;
@@ -362,7 +363,7 @@ textarea {
   padding: 3px;
 }
 
-.add-subtasks-container > img:hover {
+.add-subtasks-container>img:hover {
   background-color: rgba(0, 0, 0, 0.1);
   border-radius: 50%;
 }
@@ -373,19 +374,19 @@ textarea {
   padding-left: 0;
 }
 
-#added-subtasks-list > li {
+#added-subtasks-list>li {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 5px 20px;
 }
 
-#added-subtasks-list > li:hover {
+#added-subtasks-list>li:hover {
   background-color: rgba(0, 0, 0, 0.1);
   border-radius: 10px;
 }
 
-.subtask > img {
+.subtask>img {
   cursor: pointer;
 }
 
@@ -394,12 +395,12 @@ textarea {
   align-items: center;
 }
 
-.bottom-left > span {
+.bottom-left>span {
   font-size: 20px;
   color: rgba(0, 0, 0, 1);
 }
 
-.bottom-left > span:nth-child(1) {
+.bottom-left>span:nth-child(1) {
   color: red;
 }
 
@@ -441,7 +442,7 @@ textarea {
   border: none;
 }
 
-.bottom-right > a > img {
+.bottom-right>a>img {
   margin-left: 10px;
 }
 
@@ -452,4 +453,14 @@ textarea {
   margin-left: 48.25px;
   margin-right: 48px;
   margin-bottom: 138px;
+}
+
+@media only screen and (max-width: 1400px) {
+  .high-btn,
+  .medium-btn,
+  .low-btn {
+    width: 82px;
+    gap: 4px;
+    font-size: 13px;
+  }
 }
