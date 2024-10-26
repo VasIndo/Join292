@@ -456,11 +456,18 @@ textarea {
 }
 
 @media only screen and (max-width: 1400px) {
+
   .high-btn,
   .medium-btn,
   .low-btn {
     width: 82px;
     gap: 4px;
     font-size: 13px;
+  }
+}
+
+@media only screen and (max-width: 320px) {
+  .subtasks-container {
+    padding-bottom: 140px;
   }
 }
