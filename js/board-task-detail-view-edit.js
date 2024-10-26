@@ -275,7 +275,7 @@ function renderEditSubtaskContainer() {
  */
 function renderEditCheckedSubtasks() {
   checkedSubtasks = array[taskNum]["subtasksChecked"];
-  if (checkedSubtasks.length !== 0 && checkedSubtasks[0] !== "placeholder" && checkedSubtasks !== undefined) {
+  if (checkedSubtasks.length !== 0 && checkedSubtasks[0] !== "placeholder" && checkedSubtasks !== undefined && checkedSubtasks[0] !== "") {
     for (let i = 0; i < checkedSubtasks.length; i++) {
       document.getElementById("card-detail-view-subtasks-container").innerHTML += `
             <div id="edit-checked-subtasks(${i})" class="card-detail-view-subtasks-enumeration">
@@ -294,7 +294,7 @@ function renderEditCheckedSubtasks() {
  */
 function renderEditUnCheckedSubtasks() {
   unCheckedSubtasks = array[taskNum]["subtasksNotChecked"];
-  if (unCheckedSubtasks.length !== 0 && unCheckedSubtasks[0] !== "placeholder" && unCheckedSubtasks !== undefined) {
+  if (unCheckedSubtasks.length !== 0 && unCheckedSubtasks[0] !== "placeholder" && unCheckedSubtasks !== undefined && checkedSubtasks[0] !== "") {
     for (let i = 0; i < unCheckedSubtasks.length; i++) {
       document.getElementById("card-detail-view-subtasks-container").innerHTML += `
           <div id="edit-unchecked-subtasks(${i})" class="card-detail-view-subtasks-enumeration">
