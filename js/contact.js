@@ -343,3 +343,20 @@ const closeOnOutsideClick = () => {
     });
 };
 
+const editContactCard = (email = '', isEditMode = false) => {
+    const contact = contacts.find(c => c.email === email) || { name: '', email: '', phone: '', color: getUniqueColor(), img: `<img src="./assets/icon/PersonAddContact.svg">` };
+    const isNewContact = !contacts.some(c => c.email === email);
+
+    document.body.insertAdjacentHTML('beforeend', generateAddContactHtml(contact, isNewContact, isEditMode));
+
+    // Schließen des Fensters bei Klick auf das X oder Cancel
+    document.getElementById('closeBtn').addEventListener('click', () => document.getElementById('next').remove());
+    document.getElementById('Cancel-Btn').addEventListener('click', () => document.getElementById('next').remove());
+
+    // Füge den Listener für den Save-Button hinzu
+    document.getElementById('save-contact').addEventListener('click', (e) => saveEditedContact(e, email));
+    
+    // Füge den Listener hinzu, um zu überprüfen, ob außerhalb geklickt wird
+    closeOnOutsideClick();
+};
+
