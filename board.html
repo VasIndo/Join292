@@ -72,7 +72,7 @@
         >
           <div class="to-do-headline">
             <span>To do</span>
-            <img class="task-plus" id="to-do-plus" src="assets/img/plus-button.svg" alt="plus" />
+            <img onclick="toggleAddTaskPopUp()" class="task-plus" id="to-do-plus" src="assets/img/plus-button.svg" alt="plus" />
           </div>
           <div id="to-do-tasks">
             <div id="to-do-tasks-empty" class="tasks-empty">No tasks To do</div>
@@ -87,7 +87,7 @@
         >
           <div class="in-progress-headline">
             <span>In progress</span>
-            <img class="task-plus" id="in-progress-plus" src="assets/img/plus-button.svg" alt="plus" />
+            <img onclick="toggleAddTaskPopUp()" class="task-plus" id="in-progress-plus" src="assets/img/plus-button.svg" alt="plus" />
           </div>
           <div id="in-progress-tasks" class="in-progress-tasks">
             <div onclick="toggleDetailTaskCard()" id="card">
@@ -115,7 +115,7 @@
         class="await-feedback-split"
       >          <div class="await-feedback-headline">
             <span>Await feedback</span>
-            <img class="task-plus" id="await-feedback-plus" src="assets/img/plus-button.svg" alt="plus" />
+            <img onclick="toggleAddTaskPopUp()" class="task-plus" id="await-feedback-plus" src="assets/img/plus-button.svg" alt="plus" />
           </div>
           <div id="await-feedback-tasks" class="await-feedback-tasks"></div>
         </div>
@@ -246,7 +246,7 @@
               <label for="prio">Prio</label>
               <div class="prio-btn">
                 <button onclick="togglePrio('high')" class="high-btn" type="button" id="high-btn">
-                  Urgent <img id="high-btn-img" src="assets/img/prio-high.svg" alt="High" />
+                  High <img id="high-btn-img" src="assets/img/prio-high.svg" alt="High" />
                 </button>
                 <button
                   onclick="togglePrio('medium')"

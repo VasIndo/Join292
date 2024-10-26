@@ -300,6 +300,8 @@ function pushAssignedPersonsAndColor() {
   if (assignedPersons == "placeholder" || assignedPersons == "") {
     
   } else {
+    newTask["assigned persons"] = [];
+    newTask["color"] = [];
     for (let i = 0; i < assignedPersons.length; i++) {
       newTask["assigned persons"].push(assignedPersons[i]["name"]);
       newTask["color"].push(colorPerson[i]);

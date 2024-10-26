@@ -57,7 +57,6 @@ function renderClose() {
  * @param {string} path - The property name of the task to be rendered.
  */
 function renderCard(id, path) {
-  document.getElementById(path).innerHTML = "";
   document.getElementById(id).innerHTML = array[taskNum][path];
 }
 
