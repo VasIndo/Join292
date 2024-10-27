@@ -83,7 +83,7 @@ function renderTask(tasksArr, tasksColumn, columnName) {
   for (let i = 0; i < tasksArr.length; i++) {
     document.getElementById(tasksColumn).innerHTML += generateHtml(tasksArr, tasksColumn, i);
     setCategoryColor(tasksArr, i, tasksColumn);
-    checkSubtask(tasksArr, i, tasksColumn);
+    calculatedCheckedSubtasks(tasksArr, i, tasksColumn);
     renderAssignedPersons(tasksArr, i, tasksColumn);
     renderPrio(tasksArr, i, tasksColumn);
   }
@@ -159,7 +159,7 @@ function setCategoryColor(tasksArr, i, tasksColumn) {
  * @param {number} i - The index of the task in the array.
  * @param {string} tasksColumn - The ID of the HTML column where tasks will be rendered.
  */
-function checkSubtask(tasksArr, i, tasksColumn) {
+function calculatedCheckedSubtasks(tasksArr, i, tasksColumn) {
   let subtasksCheckedNum = tasksArr[i]["subtasksChecked"].length;
   let subtasksChecked = tasksArr[i]["subtasksChecked"];
   if (subtasksChecked == "" || subtasksChecked =="placeholder" || subtasksChecked == undefined) {
