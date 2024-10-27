@@ -3,8 +3,6 @@ body{
   background-color: #F6F7F8;
 }
 
-
-
 /*Contact List*/
 .Content-Contacts{
   position: fixed;
@@ -68,7 +66,7 @@ body{
 
 .innerContent{
   width: 400px;
-  height: 1188px;
+  height: auto;
   padding: 32px 24px 32px 24px;
   margin-top: 50px;
 }
@@ -418,8 +416,8 @@ h3{
     width: 100%;
     bottom: 0px;
     left: 0px;
-    top: 680px;
-    height: 568px;
+    top: 620px;
+    height:480px;
     }
 
  .back-img{
@@ -431,7 +429,7 @@ h3{
 
  .Btn-Container{
   width: 100%;
-  top: 600px;
+  top: 560px;
  }
 
  .innerContent {
@@ -440,8 +438,8 @@ h3{
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-top: 100px;
- }
+  margin-top: 0px;
+  }
 
  .AtoZ-Content {
    margin-right: 0px; 

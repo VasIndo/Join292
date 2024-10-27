@@ -129,7 +129,16 @@ document.addEventListener('DOMContentLoaded', function() {
         document.body.insertAdjacentHTML('beforeend', generateAddContactHtml(contact, isNewContact, isEditMode));
     
         document.getElementById('closeBtn').addEventListener('click', () => document.getElementById('next').remove());
-        document.getElementById('Cancel-Btn').addEventListener('click', () => document.getElementById('next').remove());
+        document.getElementById('Cancel-Btn').addEventListener('click', () => {
+            if (isEditMode) {
+                deleteContact(email);
+            } else {
+                document.getElementById('next').remove();
+            }
+        });
+        
+        // Save contact button listener
+        document.getElementById('save-contact').addEventListener('click', (e) => saveEditedContact(e, email));
         
         // Füge den Listener hinzu, um zu überprüfen, ob außerhalb geklickt wird
         closeOnOutsideClick();
@@ -138,6 +147,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Save edited or new contact
     const saveEditedContact = async (event, email) => {
         event.preventDefault();
+        console.log('Save button clicked'); // Debug-Ausgabe
         const name = document.getElementById('contact-name').value.trim(),
               emailValue = document.getElementById('contact-email').value.trim(),
               phone = document.getElementById('contact-phone').value.trim();
@@ -167,7 +177,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
 
         renderContactList();
-        document.getElementById('next').remove();
+        document.getElementById('next').remove(); // Schließe das Popup nach dem Speichern
     };
 
     // Add new contact to Firebase
@@ -240,7 +250,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const updateAvatarSize = () => {
         if (window.innerWidth <= 1590) {
             document.querySelectorAll('.initials-avatar').forEach(function(avatar) {
-                
+                // Größe anpassen, wenn nötig
             });
         }
     };
@@ -342,21 +352,3 @@ const closeOnOutsideClick = () => {
         }
     });
 };
-
-const editContactCard = (email = '', isEditMode = false) => {
-    const contact = contacts.find(c => c.email === email) || { name: '', email: '', phone: '', color: getUniqueColor(), img: `<img src="./assets/icon/PersonAddContact.svg">` };
-    const isNewContact = !contacts.some(c => c.email === email);
-
-    document.body.insertAdjacentHTML('beforeend', generateAddContactHtml(contact, isNewContact, isEditMode));
-
-    // Schließen des Fensters bei Klick auf das X oder Cancel
-    document.getElementById('closeBtn').addEventListener('click', () => document.getElementById('next').remove());
-    document.getElementById('Cancel-Btn').addEventListener('click', () => document.getElementById('next').remove());
-
-    // Füge den Listener für den Save-Button hinzu
-    document.getElementById('save-contact').addEventListener('click', (e) => saveEditedContact(e, email));
-    
-    // Füge den Listener hinzu, um zu überprüfen, ob außerhalb geklickt wird
-    closeOnOutsideClick();
-};
-
