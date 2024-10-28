@@ -110,7 +110,7 @@ function checkAssignedPersons(id, path) {
  * @param {Array<string>} persons - The array of assigned persons.
  */
 function renderCardAssignedPersons(id, persons) {
-  if (persons[0] !== "placeholder" || persons !== undefined || persons !== "") {
+  if (persons[0] !== "placeholder") {
     for (let index = 0; index < persons.length; index++) {
       let initials = persons[index]
         .split(" ")
