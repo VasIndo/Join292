@@ -466,7 +466,7 @@ textarea {
   }
 }
 
-@media only screen and (max-width: 320px) {
+@media only screen and (max-width: 740px) {
   .subtasks-container {
     padding-bottom: 140px;
   }

@@ -220,7 +220,7 @@ body {
     }
 }
 
-@media only screen and (max-width: 960px) {
+@media only screen and (max-width: 768px) {
     .addTaskContainer {
         margin-left: 0;
     }
