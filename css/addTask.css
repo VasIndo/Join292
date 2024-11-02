@@ -65,8 +65,8 @@ body {
     width: 0px;
     height: 424px;
     border: 1px solid #D1D1D1;
-    margin-left: 48.25px;
-    margin-right: 48px;
+    margin-left: 30px;
+    margin-right: 30px;
     margin-bottom: 138px;
 }
 
@@ -156,7 +156,7 @@ body {
 
 @media only screen and (max-width: 1400px) {
     .addTaskContainer {
-        padding-left: 40px;
+        padding-left: 20px;
     }
 
     .add-task-left>input,
@@ -198,7 +198,7 @@ body {
     }
 
     .bottom-right {
-        width: 660px;
+        width: 623px;
         display: flex;
         justify-content: flex-end;
         gap: 16px;
@@ -218,6 +218,24 @@ body {
     }
 }
 
+@media only screen and (max-width: 900px) {
+    .form {
+        display: unset;
+    }
+
+    .devider {
+        display: none;
+    }
+    
+    .bottom-right {
+        justify-content: flex-start;
+    }
+
+    .bottomConPadding {
+        margin-bottom: 30px;
+    }
+}
+
 @media only screen and (max-width: 768px) {
     .addTaskContainer {
         margin-left: 0;
@@ -226,6 +244,7 @@ body {
     .addTaskContainer h1 {
         padding-top: 20px;
     }
+
 }
 
 @media only screen and (max-width: 740px) {
