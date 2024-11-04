@@ -213,7 +213,7 @@ nav {
   }
 }
 
-@media (max-width: 874px) {
+@media (max-width: 768px) {
   header {
     height: 80px;
     padding: 20px;
