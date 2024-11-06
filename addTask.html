@@ -6,8 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/x-icon" href="assets/img/favicon.svg">
     <title>Add Task</title>
-    <link rel="stylesheet" href="css/board.css" />
-    <link rel="stylesheet" href="css/board-add-task-popup-new.css" />
 
     <link rel="stylesheet" href="css/font.css" />
     <link rel="stylesheet" href="css/template.css" />
@@ -16,6 +14,7 @@
     <script src="js/include.js" defer></script>
     <script src="js/template.js" defer></script>
     <script src="js/board.js" defer></script>
+    <script src="js/addTask.js"></script>
     <script src="js/board-add-task-popup.js" defer></script>
 </head>
 
@@ -25,10 +24,10 @@
             <div class="add-task-headline">
                 <h1>Add Task</h1>
             </div>
-            <form action="">
+            <form id="formAddTask" action="">
                 <div class="form">
                     <div class="add-task-left">
-                        <label for="title">Title <span>*</span></label>
+                        <label for="title">Title<span>*</span></label>
                         <input type="text" id="title" name="task-title" required placeholder="Enter a Title" />
 
                         <label for="description">Description</label>
@@ -36,7 +35,7 @@
                             placeholder="Enter a Description"></textarea>
 
                         <div class="assigned-container">
-                            <label for="assigned-select">Assigned to</label>
+                            <label for="assigned-dropdown">Assigned to</label>
                             <div onclick="toggleAssignedDropDown()" id="assigned-dropdown">
                                 Select contacts to assign
                                 <img class="drop-down-arrow" src="assets/img/drop-down-arrow.svg" alt="Arrow" />
@@ -68,7 +67,7 @@
 
                     <div class="add-task-right">
                         <div class="date-container">
-                            <label for="date">Due date <span>*</span></label>
+                            <label for="date">Due date<span>*</span></label>
                             <input type="date" id="date" name="date" required />
                         </div>
 
@@ -90,26 +89,26 @@
                         </div>
 
                         <div class="category-container">
-                            <label for="category-select">Category <span>*</span></label>
+                            <label for="category-dropdown">Category<span>*</span></label>
                             <div id="category-dropdown" onclick="toggleCategoryDropDown()">
-                                <span id="category">Select task category</span>
+                                <p id="category">Select task category</p>
                                 <img class="drop-down-arrow" src="assets/img/drop-down-arrow.svg" alt="Arrow" />
                             </div>
                             <div id="categories" class="d-none">
                                 <div class="categories-container">
                                     <!-- add categories -->
-                                    <span id="technical-task"
+                                    <p id="technical-task"
                                         onclick="toggleCategoryDropDown(), addCategory('Technical Task', 'technical-task')">Technical
-                                        Task</span>
-                                    <span id="user-story"
+                                        Task</p>
+                                    <p id="user-story"
                                         onclick="toggleCategoryDropDown(), addCategory('User Story', 'user-story')">User
-                                        Story</span>
+                                        Story</p>
                                 </div>
                             </div>
                         </div>
 
                         <div class="subtasks-container">
-                            <label for="subtasks">Subtasks</label>
+                            <label for="add-subtasks">Subtasks</label>
                             <div class="add-subtasks-container">
                                 <input name="add-subtasks" id="add-subtasks" placeholder="Add new subtasks" />
                                 <img onclick="addSubtasks()" id="add-subtasks-plus" src="assets/img/plus2.svg"
@@ -120,22 +119,15 @@
                     </div>
                 </div>
             </form>
-            <div class="bottomConPadding">
-                <div class="bottom-right">
-                    <a href="#" onclick="toggleAddTaskPopUp()" onmouseenter="mouseEnterChangeX()"
-                        onmouseleave="mouseLeaveChangeX()" class="cancel-btn">Cancel<img id="cancel-btn-img"
-                            src="assets/img/cancel-x.svg" /></a>
-                    <a href="#" onclick="pushNewTaskInJson()" class="create-task-btn">Create Task<img
-                            src="assets/img/create-task-check.svg" /></a>
+            <div class="bottom">
+                <div class="bottom-left">
+                  <span>*</span><span>This field is required</span>
                 </div>
-            </div>
-            <p class="infoP"><span>*</span>This fiel is required</p>
-
-            <div class="bottomMobile">
-                <p><span>*</span>This fiel is required</p>
-                <a href="#" onclick="pushNewTaskInJson()" class="create-task-btn">Create Task<img
-                    src="assets/img/create-task-check.svg" /></a>
-            </div>
+                <div class="bottom-right">
+                  <a href="#" onclick="resetForm()" class="cancel-btn">Cancel<img id="cancel-btn-img" src="assets/img/cancel-x.svg"></a>
+                  <a href="#" onclick="pushNewTaskInJson()" class="create-task-btn">Create Task<img src="assets/img/create-task-check.svg"></a>
+                </div>
+              </div>
     </div>
 </body>
 
