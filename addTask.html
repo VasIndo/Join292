@@ -27,7 +27,7 @@
             <form id="formAddTask" action="">
                 <div class="form">
                     <div class="add-task-left">
-                        <label for="title">Title<span>*</span></label>
+                        <label for="title">Title<span class="highlighter">*</span></label>
                         <input type="text" id="title" name="task-title" required placeholder="Enter a Title" />
 
                         <label for="description">Description</label>
@@ -67,7 +67,7 @@
 
                     <div class="add-task-right">
                         <div class="date-container">
-                            <label for="date">Due date<span>*</span></label>
+                            <label for="date">Due date<span class="highlighter">*</span></label>
                             <input type="date" id="date" name="date" required />
                         </div>
 
@@ -89,7 +89,7 @@
                         </div>
 
                         <div class="category-container">
-                            <label for="category-dropdown">Category<span>*</span></label>
+                            <label for="category-dropdown">Category<span class="highlighter">*</span></label>
                             <div id="category-dropdown" onclick="toggleCategoryDropDown()">
                                 <p id="category">Select task category</p>
                                 <img class="drop-down-arrow" src="assets/img/drop-down-arrow.svg" alt="Arrow" />
@@ -121,7 +121,7 @@
             </form>
             <div class="bottom">
                 <div class="bottom-left">
-                  <span>*</span><span>This field is required</span>
+                  <span class="highlighter">*</span><span>This field is required</span>
                 </div>
                 <div class="bottom-right">
                   <a href="#" onclick="resetForm()" class="cancel-btn">Cancel<img id="cancel-btn-img" src="assets/img/cancel-x.svg"></a>
