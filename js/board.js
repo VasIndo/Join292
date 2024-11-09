@@ -210,19 +210,34 @@ function renderSubtaskDiagram(subtasksCheckedNum, subtasksNotCheckedNum, i, task
  * @param {string} idName - The base ID of the HTML element where the assigned persons will be displayed.
  */
 function renderAssignedPersons(tasksColumn, i, idName) {
-  let person = tasksColumn[i]["assigned persons"];
-  if (person == undefined || person[0] == "placeholder" || person == "") {
-  } else {
-    for (let j = 0; j < person.length; j++) {
-      let initials = person[j]
-        .split(" ")
-        .map((word) => word[0].toUpperCase())
-        .join("");
-      let color = tasksColumn[i]["color"][j];
+  const person = tasksColumn[i]["assigned persons"];
+  const morePersons = person.length - 4;
+  if (person !== undefined && person[0] !== "placeholder" && person !== "") {
+    if (person.length > 4) {
+      for (let j = 0; j < 4; j++) {
+        let initials = person[j]
+          .split(" ")
+          .map((word) => word[0].toUpperCase())
+          .join("");
+        let color = tasksColumn[i]["color"][j];
+        document.getElementById(`${idName}assigned-to(${i})`).innerHTML += `
+          <span style="background-color: ${color}; right:calc(5px * ${j})"  class="card-person-initials position">${initials}</span>
+        `;
+      }
       document.getElementById(`${idName}assigned-to(${i})`).innerHTML += `
-        <span style="background-color: ${color}; right:calc(5px * ${j})"  class="card-person-initials position">${initials}</span>
-      `;
-    }
+      <span class="card-more-persons">+${morePersons}</span>
+    `;
+      } else {
+      for (let j = 0; j < person.length; j++) {
+        let initials = person[j]
+          .split(" ")
+          .map((word) => word[0].toUpperCase())
+          .join("");
+        let color = tasksColumn[i]["color"][j];
+        document.getElementById(`${idName}assigned-to(${i})`).innerHTML += `
+          <span style="background-color: ${color}; right:calc(5px * ${j})"  class="card-person-initials position">${initials}</span>
+        `;
+      }    }
   }
 }
 
