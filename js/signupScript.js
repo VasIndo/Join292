@@ -71,11 +71,26 @@ async function addUser(event) {
         password = document.getElementById('signup-password').value,
         confirmPassword = document.getElementById('confirm-password').value;
 
+    if (!validateEmail(email)) return showMessage("InvalidEmail");
     if (password !== confirmPassword) return showMessage("FailedtoSingUp");
     await processNewUser({ name, email, password });
 }
 
+/**
+ * Validates the email format.
+ * @param {string} email - The email address to validate.
+ * @returns {boolean} - True if the email is valid, otherwise false.
+ */
+function validateEmail(email) {
+    const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.(com|de)$/;
+    return emailPattern.test(email);
+}
+
 async function processNewUser(userData) {
+    if (!validateEmail(userData.email)) {
+        showMessage("InvalidEmail");
+        return;
+    }
     console.log("Sending user data: ", userData);
     let users = await getData("users");
 
@@ -103,9 +118,19 @@ function handleUserResponse(response) {
  */
 function showMessage(className, redirectToLogin = false) {
     let alertContainer = document.querySelector('.singUp-Alert');
+    if (!alertContainer) {
+        console.error("Alert container not found");
+        return;
+    }
     alertContainer.style.display = 'flex';
     hideOtherMessages(alertContainer);
-    document.querySelector(`.${className}`).style.display = 'flex';
+    const messageElement = document.querySelector(`.${className}`);
+    if (messageElement) {
+        messageElement.style.display = 'flex';
+    } else {
+        console.error(`Message element with class ${className} not found`);
+        return;
+    }
     setTimeout(() => {
         alertContainer.style.display = 'none';
         if (redirectToLogin) window.location.href = 'login.html';
@@ -199,3 +224,4 @@ document.addEventListener("DOMContentLoaded", function() {
     observer.observe(document.body, { childList: true, subtree: true });
     if (document.getElementById("image-container") && document.getElementById("main-image")) addEventListeners();
 });
+

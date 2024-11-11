@@ -248,3 +248,22 @@ document.addEventListener('DOMContentLoaded', () => {
         setTimeout(() => { alertContainer.style.display = 'none'; }, 2000);
     }
 });
+
+/**
+ * Fügt eine Validierung für die E-Mail-Adresse beim Absenden des Formulars hinzu.
+ * @param {Event} event - Das Absende-Event des Formulars.
+ */
+function addUser(event) {
+    event.preventDefault(); // Verhindert das Standardverhalten des Formulars
+    const emailInput = document.getElementById('signup-email');
+    const emailPattern = /^[^ ]+@[^ ]+\.[a-z]{2,3}$/;
+
+    if (!emailInput.value.match(emailPattern)) {
+        alert('Bitte geben Sie eine gültige E-Mail-Adresse ein.');
+        return; // Verhindert das Absenden des Formulars, wenn die E-Mail ungültig ist
+    }
+
+    // Weitere Logik zum Hinzufügen des Benutzers...
+    console.log("User registration successful");
+    // Hier kannst du die Funktion zur Registrierung des Benutzers hinzufügen
+}

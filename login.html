@@ -51,7 +51,7 @@
   
   <div class="CtnInput">
     <form>
-     <div class="form">
+     <div class="form" onsubmit="addUser(event);">
       
       <div class="input-Ctn">
         <input autocomplete="off" class="input" type="email" placeholder="Email" id="login-email" required autocomplete="current-email">
@@ -105,6 +105,9 @@
   </div>
   <div class="PrivacyPolicy" style="display: none;">
       <p>Please check the Privacy Policy!</p>
+  </div>
+  <div class="InvalidEmail" style="display: none;">
+     <p>Please complete the email address!</p>
   </div>
   <div class="EmailandPassword" style="display: none;">
      <p>Please enter both an email and a password.</p>

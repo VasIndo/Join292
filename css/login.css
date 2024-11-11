@@ -427,7 +427,8 @@ footer a:hover {
 .FailedtoSingUp,
 .PrivacyPolicy,
 .EmailandPassword,
-.UserDontExist {
+.UserDontExist,
+.InvalidEmail{
   width: 312px;
   height: 74px;
   border-radius: 20px;
@@ -447,7 +448,8 @@ footer a:hover {
 .FailedtoSingUp p,
 .PrivacyPolicy p,
 .EmailandPassword p,
-.UserDontExist p {
+.UserDontExist p,
+.InvalidEmail p{
   font-size: 20px;
   line-height: 24px;
   font-weight: 400;
