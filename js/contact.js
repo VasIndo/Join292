@@ -197,13 +197,22 @@ document.addEventListener('DOMContentLoaded', function() {
               emailValue = document.getElementById('contact-email').value.trim(),
               phone = document.getElementById('contact-phone').value.trim();
 
-        if (!name || !emailValue || !phone) return alert('All fields must be filled!');
+        // Email validation: must end with .de or .com
+        const emailPattern = /^[^\s@]+@[^\s@]+\.(de|com)$/;
+        if (!name || !emailValue || !phone) {
+            return alert('All fields must be filled!');
+        }
+        if (!emailPattern.test(emailValue)) {
+            return alert('Please enter a valid email address that ends with .de or .com (e.g., test@example.com or test@example.de)');
+        }
 
         const duplicateContact = contacts.find(contact => 
             (contact.name.toLowerCase() === name.toLowerCase() && contact.email !== email) || 
             (contact.email.toLowerCase() === emailValue.toLowerCase() && contact.email !== email)
         );
-        if (duplicateContact) return alert('Dieser Name oder diese E-Mail ist bereits vorhanden. Bitte geben Sie andere Werte ein.');
+        if (duplicateContact) {
+            return alert('Dieser Name oder diese E-Mail ist bereits vorhanden. Bitte geben Sie andere Werte ein.');
+        }
 
         const contactIndex = contacts.findIndex(c => c.email === email);
         const isNewContact = contactIndex === -1;
