@@ -136,7 +136,6 @@ body {
 .second-row {
   width: 95%;
   display: flex;
-  justify-content: space-between;
   align-items: center;
   margin-top: 20px;
 }
@@ -263,6 +262,7 @@ body {
 .greeting {
   display: flex;
   flex-direction: column;
+  margin-left: 80px;
 }
 
 .greeting-message {
@@ -279,6 +279,12 @@ body {
 
 .headline-mobile {
   display: none;
+}
+
+#greeting-user {
+  font-size: 64px;
+  color: rgba(41, 171, 226, 1);
+  font-weight: 700;
 }
 
 @media (max-width: 1330px) {
