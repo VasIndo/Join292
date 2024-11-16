@@ -220,14 +220,36 @@ function editRenderPersonLogo() {
     let assignedPersonsArr = array[taskNum]["assigned persons"];
     let assignedPersonsColor = array[taskNum]["color"];
 
-    for (let i = 0; i < assignedPersonsArr.length; i++) {
-      let initials = editCreateInitials(i, assignedPersonsArr);
-      document.getElementById("card-detail-view-assigned-persons-logo").innerHTML += `
-          <div class="assigned-person-logo" style="background-color: ${assignedPersonsColor[i]}">${initials}</div>
-        `;
+    if (assignedPersonsArr.length > 4) {
+      renderMoreAssignedPersons(assignedPersonsArr, assignedPersonsColor);
+    } else {
+      renderFewerAssignedPersons(assignedPersonsArr, assignedPersonsColor);
     }
   }
 }
+
+function renderMoreAssignedPersons(assignedPersonsArr, assignedPersonsColor) {
+  const morePersons = assignedPersonsArr.length - 4;
+  for (let i = 0; i < 4; i++) {
+    let initials = editCreateInitials(i, assignedPersonsArr);
+    document.getElementById("card-detail-view-assigned-persons-logo").innerHTML += `
+        <div class="assigned-person-logo" style="background-color: ${assignedPersonsColor[i]}">${initials}</div>
+      `;
+  }
+  document.getElementById("card-detail-view-assigned-persons-logo").innerHTML += `
+  <span class="card-more-persons">+${morePersons}</span>
+`;
+}
+
+function renderFewerAssignedPersons(assignedPersonsArr, assignedPersonsColor) {
+  for (let i = 0; i < assignedPersonsArr.length; i++) {
+    let initials = editCreateInitials(i, assignedPersonsArr);
+    document.getElementById("card-detail-view-assigned-persons-logo").innerHTML += `
+        <div class="assigned-person-logo" style="background-color: ${assignedPersonsColor[i]}">${initials}</div>
+      `;
+  }
+}
+
 
 /**
  * Creates the initials for assigned persons.
@@ -275,7 +297,12 @@ function renderEditSubtaskContainer() {
  */
 function renderEditCheckedSubtasks() {
   checkedSubtasks = array[taskNum]["subtasksChecked"];
-  if (checkedSubtasks.length !== 0 && checkedSubtasks[0] !== "placeholder" && checkedSubtasks !== undefined && checkedSubtasks[0] !== "") {
+  if (
+    checkedSubtasks.length !== 0 &&
+    checkedSubtasks[0] !== "placeholder" &&
+    checkedSubtasks !== undefined &&
+    checkedSubtasks[0] !== ""
+  ) {
     for (let i = 0; i < checkedSubtasks.length; i++) {
       document.getElementById("card-detail-view-subtasks-container").innerHTML += `
             <div id="edit-checked-subtasks(${i})" class="card-detail-view-subtasks-enumeration">
@@ -294,7 +321,12 @@ function renderEditCheckedSubtasks() {
  */
 function renderEditUnCheckedSubtasks() {
   unCheckedSubtasks = array[taskNum]["subtasksNotChecked"];
-  if (unCheckedSubtasks.length !== 0 && unCheckedSubtasks[0] !== "placeholder" && unCheckedSubtasks !== undefined && unCheckedSubtasks[0] !== "") {
+  if (
+    unCheckedSubtasks.length !== 0 &&
+    unCheckedSubtasks[0] !== "placeholder" &&
+    unCheckedSubtasks !== undefined &&
+    unCheckedSubtasks[0] !== ""
+  ) {
     for (let i = 0; i < unCheckedSubtasks.length; i++) {
       document.getElementById("card-detail-view-subtasks-container").innerHTML += `
           <div id="edit-unchecked-subtasks(${i})" class="card-detail-view-subtasks-enumeration">
@@ -335,7 +367,7 @@ function editAddSubtask() {
       array[taskNum]["subtasksNotChecked"] = [];
     }
     array[taskNum]["subtasksNotChecked"].push(editInputValue);
-    document.getElementById('card-detail-view-subtasks-container').innerHTML = "";
+    document.getElementById("card-detail-view-subtasks-container").innerHTML = "";
     renderEditCheckedSubtasks();
     renderEditUnCheckedSubtasks();
     editInput.value = "";
