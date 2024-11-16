@@ -279,7 +279,7 @@ function renderEditCheckedSubtasks() {
     for (let i = 0; i < checkedSubtasks.length; i++) {
       document.getElementById("card-detail-view-subtasks-container").innerHTML += `
             <div id="edit-checked-subtasks(${i})" class="card-detail-view-subtasks-enumeration">
-              <img onclick="uncheckSubtask(${i}, 'card-detail-view-subtasks-container')" id="checkedCheckbox(${i})" src="assets/img/check-button-checked.svg" />
+              <img onclick="EditUncheckSubtask(${i}, 'card-detail-view-subtasks-container')" id="checkedCheckbox(${i})" src="assets/img/check-button-checked.svg" />
               <span>${checkedSubtasks[i]}</span>
               <img onclick="editDeleteCheckedSubtask(${i})" class="subtask-bin" src="assets/img/bin.svg" alt="Delete">
             </div>
@@ -294,11 +294,11 @@ function renderEditCheckedSubtasks() {
  */
 function renderEditUnCheckedSubtasks() {
   unCheckedSubtasks = array[taskNum]["subtasksNotChecked"];
-  if (unCheckedSubtasks.length !== 0 && unCheckedSubtasks[0] !== "placeholder" && unCheckedSubtasks !== undefined && checkedSubtasks[0] !== "") {
+  if (unCheckedSubtasks.length !== 0 && unCheckedSubtasks[0] !== "placeholder" && unCheckedSubtasks !== undefined && unCheckedSubtasks[0] !== "") {
     for (let i = 0; i < unCheckedSubtasks.length; i++) {
       document.getElementById("card-detail-view-subtasks-container").innerHTML += `
           <div id="edit-unchecked-subtasks(${i})" class="card-detail-view-subtasks-enumeration">
-            <img onclick="checkSubtask(${i}, 'card-detail-view-subtasks-container')" id="unCheckedCheckbox(${i})" src="assets/img/check-button.svg" />
+            <img onclick="editCheckSubtask(${i}, 'card-detail-view-subtasks-container')" id="unCheckedCheckbox(${i})" src="assets/img/check-button.svg" />
             <span>${unCheckedSubtasks[i]}</span>
             <img onclick="editDeletunCheckedSubtask(${i})" class="subtask-bin" src="assets/img/bin.svg" alt="Delete">
           </div>
@@ -307,15 +307,38 @@ function renderEditUnCheckedSubtasks() {
   }
 }
 
+function EditUncheckSubtask(i) {
+  unCheckedSubtasks.push(checkedSubtasks[i]);
+  checkedSubtasks.splice(i, 1);
+  document.getElementById("card-detail-view-subtasks-container").innerHTML = "";
+  renderEditUnCheckedSubtasks();
+  renderEditCheckedSubtasks();
+}
+
+function editCheckSubtask(i) {
+  checkedSubtasks.push(unCheckedSubtasks[i]);
+  unCheckedSubtasks.splice(i, 1);
+  document.getElementById("card-detail-view-subtasks-container").innerHTML = "";
+  renderEditUnCheckedSubtasks();
+  renderEditCheckedSubtasks();
+}
+
 /**
  * Adds a new subtask to the list of unchecked subtasks.
  */
 function editAddSubtask() {
-  let editInputValue = document.getElementById("edit-add-subtask").value;
+  let editInput = document.getElementById("edit-add-subtask");
+  let editInputValue = editInput.value;
 
   if (editInputValue !== "") {
+    if (array[taskNum]["subtasksNotChecked"] == "placeholder") {
+      array[taskNum]["subtasksNotChecked"] = [];
+    }
     array[taskNum]["subtasksNotChecked"].push(editInputValue);
-    editSubtasks();
+    document.getElementById('card-detail-view-subtasks-container').innerHTML = "";
+    renderEditCheckedSubtasks();
+    renderEditUnCheckedSubtasks();
+    editInput.value = "";
   }
 }
 
@@ -347,6 +370,7 @@ function updateArray() {
   array[taskNum]["description"] = description;
   let date = document.getElementById("edit-date-value").value;
   array[taskNum]["date"] = date;
+
   updateTasksInFirebase();
   resetCard();
   renderCardInfo();

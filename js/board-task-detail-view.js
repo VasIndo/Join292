@@ -190,20 +190,29 @@ function unCheckedSubtasksHtml(id) {
  * @param {string} id - The ID of the subtasks container element.
  */
 function checkSubtask(i, id) {
+  if (checkedSubtasks[0] == "placeholder" || checkedSubtasks[0] == "" || checkedSubtasks.length == 0) {
+    checkedSubtasks = [];
+  }
   checkedSubtasks.push(unCheckedSubtasks[i]);
   unCheckedSubtasks.splice(i, 1);
+  updateSubtasksInFirebase();
   document.getElementById(id).innerHTML = "";
   unCheckedSubtasksHtml(id);
   checkedSubtasksHtml(id);
 }
+
 /**
  * Moves a checked subtask to the unchecked subtasks list.
  * @param {number} i - The index of the subtask to uncheck.
  * @param {string} id - The ID of the subtasks container element.
  */
 function uncheckSubtask(i, id) {
+  if (unCheckedSubtasks[0] == "placeholder" || unCheckedSubtasks[0] == "" || unCheckedSubtasks.length == 0) {
+    unCheckedSubtasks = [];
+  }
   unCheckedSubtasks.push(checkedSubtasks[i]);
   checkedSubtasks.splice(i, 1);
+  updateSubtasksInFirebase();
   document.getElementById(id).innerHTML = "";
   unCheckedSubtasksHtml(id);
   checkedSubtasksHtml(id);

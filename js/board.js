@@ -19,9 +19,9 @@ const URL = "https://remotestorage-f8df7-default-rtdb.europe-west1.firebasedatab
  */
 
 async function loadData() {
-    await loadContacts();
-    await loadTasks();
-    renderTasks();
+  await loadContacts();
+  await loadTasks();
+  renderTasks();
 }
 
 /**
@@ -41,9 +41,9 @@ async function loadTasks() {
     response = await fetch(URL + "tasks/.json");
     responseJSON = await response.json();
     allTasks = Object.values(responseJSON);
-    sortTasksInColumn(allTasks);  
-  } catch(err) {
-    console.log(err)
+    sortTasksInColumn(allTasks);
+  } catch (err) {
+    console.log(err);
     loadData();
   }
 }
@@ -162,7 +162,7 @@ function setCategoryColor(tasksArr, i, tasksColumn) {
 function calculatedCheckedSubtasks(tasksArr, i, tasksColumn) {
   let subtasksCheckedNum = tasksArr[i]["subtasksChecked"].length;
   let subtasksChecked = tasksArr[i]["subtasksChecked"];
-  if (subtasksChecked == "" || subtasksChecked =="placeholder" || subtasksChecked == undefined) {
+  if (subtasksChecked == "" || subtasksChecked == "placeholder" || subtasksChecked == undefined) {
     subtasksCheckedNum = 0;
   }
 
@@ -182,7 +182,6 @@ function calculatedCheckedSubtasks(tasksArr, i, tasksColumn) {
  * @param {number} subtasksNotCheckedNum - The number of incomplete subtasks.
  * @param {number} i - The index of the task in the array.
  * @param {string} tasksColumn - The ID of the HTML column where tasks will be rendered.
-
  */
 function renderSubtaskDiagram(subtasksCheckedNum, subtasksNotCheckedNum, i, tasksColumn) {
   let allTasksNum = subtasksCheckedNum + subtasksNotCheckedNum;
@@ -198,8 +197,8 @@ function renderSubtaskDiagram(subtasksCheckedNum, subtasksNotCheckedNum, i, task
     </div>
   `;
 
-  let widthInPercent = subtasksCheckedNum / allTasksNum * 100;
-  document.getElementById(`${tasksColumn}-subtasks-diagram-filled(${i})`).style.width = `${widthInPercent}%`;
+    let widthInPercent = (subtasksCheckedNum / allTasksNum) * 100;
+    document.getElementById(`${tasksColumn}-subtasks-diagram-filled(${i})`).style.width = `${widthInPercent}%`;
   }
 }
 
@@ -227,7 +226,7 @@ function renderAssignedPersons(tasksColumn, i, idName) {
       document.getElementById(`${idName}assigned-to(${i})`).innerHTML += `
       <span class="card-more-persons">+${morePersons}</span>
     `;
-      } else {
+    } else {
       for (let j = 0; j < person.length; j++) {
         let initials = person[j]
           .split(" ")
@@ -237,7 +236,8 @@ function renderAssignedPersons(tasksColumn, i, idName) {
         document.getElementById(`${idName}assigned-to(${i})`).innerHTML += `
           <span style="background-color: ${color}; right:calc(5px * ${j})"  class="card-person-initials position">${initials}</span>
         `;
-      }    }
+      }
+    }
   }
 }
 
@@ -299,7 +299,6 @@ async function moveTo(newTaskColumn) {
 function toggleSplitsToMove(tasksColumn, i) {
   document.getElementById(`splits-to-move-container-${tasksColumn}-${i}`).classList.toggle("d-none");
 }
-
 
 /**
  * Updates the task's column based on its current position and the new column.
@@ -422,5 +421,3 @@ function addHighLight(split) {
 function removeHighLight(split) {
   document.getElementById(split).classList.remove("highlight");
 }
-
-
