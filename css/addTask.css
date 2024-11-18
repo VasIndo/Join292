@@ -132,12 +132,9 @@ body {
     z-index: 1;
 }
 
-#person-to-assigned {
-    top: 73px;
-}
 
 #categories {
-    top: 93px;
+    top: 82px;
 }
 
 .categories-container {
