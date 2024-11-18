@@ -8,6 +8,8 @@
     <link rel="stylesheet" href="css/template.css">
     <link rel="stylesheet" href="css/font.css" />
     <script src="./js/template.js"></script>
+    <script src="./js/loginScript.js"></script>
+    
 </head>
 
 <body>
@@ -16,7 +18,10 @@
         <span>Kanban Project Management Tool</span>
         <div class="headerInfo" id="headerInfo">
             <a onclick="openHelp()" id="helpBtn"><img class="helpBtn" src="assets/img/help.svg" alt="Help"></a>
-            <a onclick="openPopUp()"><img class="userBtn" src="assets/img/guest.svg" alt="User"></a>
+            <a onclick="openPopUp()">
+                <img id="userImage" src="assets/img/guest.svg" alt="User Image" class="userBtn" />
+            </a>
+            
         </div>
     </header>
 
@@ -49,7 +54,7 @@
         <div class="popUpWindow">
             <a href="LegalNotice.html">Legal Notice</a>
             <a href="privacyPolicy.html">Privacy Policy</a>
-            <a href="login.html">Log Out</a>
+            <a href="login.html" onclick="clearSessionData()">Log Out</a>
         </div>
     </div>
 </body>
