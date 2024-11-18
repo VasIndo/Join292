@@ -284,6 +284,7 @@ body {
 
 .assigned-to {
   display: flex;
+  align-items: center;
 }
 
 .position {

@@ -225,11 +225,69 @@ function renderSubtasks() {
     document.getElementById("added-subtasks-list").innerHTML += `
         <li id="subtask${i}" class="subtask">
           <span>${subtasksArr[i]}</span>
-            <img onclick="deletSubtask(${i})" src="assets/img/bin.svg" alt="Delete">
+          <div>
+          <img onclick="editTask(${i})" src="assets/img/edit.svg" alt="Edit">
+          <img onclick="deletSubtask(${i})" src="assets/img/bin.svg" alt="Delete">
+          </div>
         </li>
       `;
   }
 }
+
+/**
+ * Ermöglicht das Bearbeiten einer bestehenden Subtask.
+ * @param {number} index - Der Index der zu bearbeitenden Subtask im Array `subtasksArr`.
+ */
+function editTask(index) {
+  // Hole das aktuelle Subtask-Element
+  let subtaskElement = document.getElementById(`subtask${index}`);
+  
+  // Extrahiere den Subtask-Text
+  let currentSubtaskText = subtasksArr[index];
+
+  // Erstelle ein Eingabefeld mit dem aktuellen Text
+  subtaskElement.innerHTML = `
+    <input id="edit-input-${index}" type="text" value="${currentSubtaskText}" />
+    <div>
+    <img onclick="saveTask(${index})" src="assets/img/check.svg" alt="Save">
+    <img onclick="cancelEdit(${index}, '${currentSubtaskText}')" src="assets/img/cancel-x.svg" alt="Cancel">
+    </div>
+  `;
+}
+
+/**
+ * Speichert die Änderungen an einer Subtask.
+ * @param {number} index - Der Index der zu bearbeitenden Subtask im Array `subtasksArr`.
+ */
+function saveTask(index) {
+  // Hole den neuen Text aus dem Eingabefeld
+  let newSubtaskText = document.getElementById(`edit-input-${index}`).value;
+
+  // Überprüfe, ob der neue Text leer ist
+  if (newSubtaskText.trim() === "") {
+    alert("Subtask cannot be empty!");
+    return;
+  }
+
+  // Aktualisiere das Array
+  subtasksArr[index] = newSubtaskText;
+
+  // Rendere die Subtasks neu
+  renderSubtasks();
+}
+
+/**
+ * Bricht das Bearbeiten einer Subtask ab und stellt den alten Zustand wieder her.
+ * @param {number} index - Der Index der zu bearbeitenden Subtask im Array `subtasksArr`.
+ * @param {string} originalText - Der ursprüngliche Text der Subtask.
+ */
+function cancelEdit(index, originalText) {
+  subtasksArr[index] = originalText;
+
+  // Rendere die Subtasks neu
+  renderSubtasks();
+}
+
 
 /**
  * Adds an event listener to the input field that triggers a function when the Enter key is pressed.
@@ -298,14 +356,14 @@ function push(path) {
  */
 function pushAssignedPersonsAndColor() {
   if (assignedPersons == "placeholder" || assignedPersons == "") {
-    
+
   } else {
     newTask["assigned persons"] = [];
     newTask["color"] = [];
     for (let i = 0; i < assignedPersons.length; i++) {
       newTask["assigned persons"].push(assignedPersons[i]["name"]);
       newTask["color"].push(colorPerson[i]);
-    }  
+    }
   }
 }
 
@@ -356,3 +414,47 @@ async function addTaskInFirebase() {
   deleteAllFields();
   toggleAddTaskPopUp();
 }
+
+let assignedDropdownOpen = false;
+let categoryDropdownOpen = false;
+
+/**
+ * Toggles the visibility of the assigned person dropdown.
+ */
+function toggleAssignedDropDown() {
+  const dropdown = document.getElementById("person-to-assigned");
+  dropdown.classList.toggle("d-none");
+  assignedDropdownOpen = !dropdown.classList.contains("d-none");
+  renderDropDown();
+}
+
+/**
+ * Toggles the visibility of the category dropdown menu.
+ */
+function toggleCategoryDropDown() {
+  const dropdown = document.getElementById("categories");
+  dropdown.classList.toggle("d-none");
+  categoryDropdownOpen = !dropdown.classList.contains("d-none");
+}
+
+/**
+ * Closes dropdowns when clicking outside of them.
+ * This is added as a global event listener on the document.
+ */
+document.addEventListener("click", function (event) {
+  // Check for Assigned Dropdown
+  const assignedDropdown = document.getElementById("person-to-assigned");
+  const assignedTrigger = document.getElementById("assigned-dropdown");
+  if (assignedDropdownOpen && !assignedDropdown.contains(event.target) && !assignedTrigger.contains(event.target)) {
+    assignedDropdown.classList.add("d-none");
+    assignedDropdownOpen = false;
+  }
+
+  // Check for Category Dropdown
+  const categoryDropdown = document.getElementById("categories");
+  const categoryTrigger = document.getElementById("category-dropdown");
+  if (categoryDropdownOpen && !categoryDropdown.contains(event.target) && !categoryTrigger.contains(event.target)) {
+    categoryDropdown.classList.add("d-none");
+    categoryDropdownOpen = false;
+  }
+});
