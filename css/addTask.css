@@ -207,6 +207,18 @@ body {
     cursor: pointer;
 }
 
+.subTaskBtn {
+    width: 24px;
+    height: 24px;
+    padding: 2px;
+}
+
+.subTaskBtn:hover{
+    background-color: rgba(0, 0, 0, 0.2);
+    border-radius: 50%;
+    cursor: pointer;
+}
+
 #point-out {
     margin-top: 50px;
     color: red;
@@ -415,6 +427,14 @@ body {
 
 .bottomConPadding {
     padding-left: 710px;
+}
+
+li img {
+    display: none;
+}
+
+li:hover img {
+    display: unset;
 }
 
 @media only screen and (max-width: 1330px) {

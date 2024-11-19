@@ -226,8 +226,8 @@ function renderSubtasks() {
         <li id="subtask${i}" class="subtask">
           <span>${subtasksArr[i]}</span>
           <div>
-          <img onclick="editTask(${i})" src="assets/img/edit.svg" alt="Edit">
-          <img onclick="deletSubtask(${i})" src="assets/img/bin.svg" alt="Delete">
+          <img class="subTaskBtn" onclick="editTask(${i})" src="assets/img/edit.svg" alt="Edit">
+          <img class="subTaskBtn" onclick="deletSubtask(${i})" src="assets/img/bin.svg" alt="Delete">
           </div>
         </li>
       `;
@@ -249,8 +249,8 @@ function editTask(index) {
   subtaskElement.innerHTML = `
     <input id="edit-input-${index}" type="text" value="${currentSubtaskText}" />
     <div>
-    <img onclick="saveTask(${index})" src="assets/img/check.svg" alt="Save">
-    <img onclick="cancelEdit(${index}, '${currentSubtaskText}')" src="assets/img/cancel-x.svg" alt="Cancel">
+    <img class="subTaskBtn" onclick="saveTask(${index})" src="assets/img/check.svg" alt="Save">
+    <img class="subTaskBtn" onclick="cancelEdit(${index}, '${currentSubtaskText}')" src="assets/img/cancel-x.svg" alt="Cancel">
     </div>
   `;
 }
