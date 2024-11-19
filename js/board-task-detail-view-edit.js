@@ -308,7 +308,11 @@ function renderEditCheckedSubtasks() {
             <div id="edit-checked-subtasks(${i})" class="card-detail-view-subtasks-enumeration">
               <img onclick="EditUncheckSubtask(${i}, 'card-detail-view-subtasks-container')" id="checkedCheckbox(${i})" src="assets/img/check-button-checked.svg" />
               <span>${checkedSubtasks[i]}</span>
-              <img onclick="editDeleteCheckedSubtask(${i})" class="subtask-bin" src="assets/img/bin.svg" alt="Delete">
+              <div class="edit-options-container">
+                <img onclick="editRewriteCheckedSubtask(${i})" class="subtask-bin" src="assets/img/edit.svg" alt="Edit">
+                <div class="edit-options-container-line"></div>
+                <img onclick="editDeleteCheckedSubtask(${i})" class="subtask-bin" src="assets/img/bin.svg" alt="Delete">
+              </div>
             </div>
           `;
     }
@@ -332,7 +336,11 @@ function renderEditUnCheckedSubtasks() {
           <div id="edit-unchecked-subtasks(${i})" class="card-detail-view-subtasks-enumeration">
             <img onclick="editCheckSubtask(${i}, 'card-detail-view-subtasks-container')" id="unCheckedCheckbox(${i})" src="assets/img/check-button.svg" />
             <span>${unCheckedSubtasks[i]}</span>
-            <img onclick="editDeletunCheckedSubtask(${i})" class="subtask-bin" src="assets/img/bin.svg" alt="Delete">
+              <div class="edit-options-container">
+                <img onclick="editRewriteUnCheckedSubtask(${i})" class="subtask-bin" src="assets/img/edit.svg" alt="Edit">
+                <div class="edit-options-container-line"></div>
+                <img onclick="editDeletunCheckedSubtask(${i})" class="subtask-bin" src="assets/img/bin.svg" alt="Delete">
+              </div>
           </div>
         `;
     }

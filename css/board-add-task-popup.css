@@ -126,6 +126,7 @@ form {
 
 #assigned-person {
   display: flex;
+  align-items: center;
   margin: 10px;
   margin-right: 15px;
 }
