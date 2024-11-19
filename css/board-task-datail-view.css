@@ -388,3 +388,16 @@
   text-decoration: none;
   cursor: pointer;
 }
+
+
+.edit-options-container {
+  display: flex;
+}
+
+.edit-options-container-line {
+  width: 2px;
+  height: 20px;
+  background-color: rgba(168, 168, 168, 1);
+  margin-left: 3px;
+  margin-right: 3px;
+}

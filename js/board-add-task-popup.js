@@ -164,13 +164,30 @@ function addPersonsToTask() {
  */
 function addPersonLogo() {
   document.getElementById("assigned-person").innerHTML = "";
-  for (let i = 0; i < assignedPersons.length; i++) {
-    let letterForlogo = createInitials(i, assignedPersons);
+  const morePersons = assignedPersons.length - 4;
+
+  if (assignedPersons.length > 4) {
+    for (let i = 0; i < 4; i++) {
+      let letterForlogo = createInitials(i, assignedPersons);
+      document.getElementById("assigned-person").innerHTML += `
+          <div class="assigned-person-logo" style="background-color: ${assignedPersons[i]["color"]}">
+            ${letterForlogo}
+          </div>
+        `;
+    }  
     document.getElementById("assigned-person").innerHTML += `
-        <div class="assigned-person-logo" style="background-color: ${assignedPersons[i]["color"]}">
-          ${letterForlogo}
-        </div>
-      `;
+      <span>+${morePersons}</span>
+    `;
+
+  } else {
+    for (let i = 0; i < assignedPersons.length; i++) {
+      let letterForlogo = createInitials(i, assignedPersons);
+      document.getElementById("assigned-person").innerHTML += `
+          <div class="assigned-person-logo" style="background-color: ${assignedPersons[i]["color"]}">
+            ${letterForlogo}
+          </div>
+        `;
+    }  
   }
 }
 
