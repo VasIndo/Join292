@@ -84,7 +84,7 @@ function renderTask(tasksArr, tasksColumn, columnName) {
     document.getElementById(tasksColumn).innerHTML += generateHtml(tasksArr, tasksColumn, i);
     setCategoryColor(tasksArr, i, tasksColumn);
     calculatedCheckedSubtasks(tasksArr, i, tasksColumn);
-    renderAssignedPersons(tasksArr, i, tasksColumn);
+    renderAssignedPersonsOnCard(tasksArr, i, tasksColumn);
     renderPrio(tasksArr, i, tasksColumn);
   }
 }
@@ -203,41 +203,67 @@ function renderSubtaskDiagram(subtasksCheckedNum, subtasksNotCheckedNum, i, task
 }
 
 /**
- * Renders the assigned persons on a task card.
- * @param {Array} tasksArr - The array of tasks.
- * @param {number} i - The index of the task.
- * @param {string} idName - The base ID of the HTML element where the assigned persons will be displayed.
+ * Calls a function to render the assigned persons.
+ *
+ * @param {Array} tasksColumn - Array representing the tasks and their associated details.
+ * @param {number} i - Index of the current task within the tasks column.
+ * @param {string} idName - ID prefix for the HTML element where the assigned persons are rendered.
  */
-function renderAssignedPersons(tasksColumn, i, idName) {
+function renderAssignedPersonsOnCard(tasksColumn, i, idName) {
   const person = tasksColumn[i]["assigned persons"];
   const morePersons = person.length - 4;
   if (person !== undefined && person[0] !== "placeholder" && person !== "") {
     if (person.length > 4) {
-      for (let j = 0; j < 4; j++) {
-        let initials = person[j]
-          .split(" ")
-          .map((word) => word[0].toUpperCase())
-          .join("");
-        let color = tasksColumn[i]["color"][j];
-        document.getElementById(`${idName}assigned-to(${i})`).innerHTML += `
-          <span style="background-color: ${color}; right:calc(5px * ${j})"  class="card-person-initials position">${initials}</span>
-        `;
-      }
-      document.getElementById(`${idName}assigned-to(${i})`).innerHTML += `
-      <span class="card-more-persons">+${morePersons}</span>
-    `;
+      renderMoreAssignedPersons(person, tasksColumn, i, idName, morePersons);
     } else {
-      for (let j = 0; j < person.length; j++) {
-        let initials = person[j]
-          .split(" ")
-          .map((word) => word[0].toUpperCase())
-          .join("");
-        let color = tasksColumn[i]["color"][j];
-        document.getElementById(`${idName}assigned-to(${i})`).innerHTML += `
-          <span style="background-color: ${color}; right:calc(5px * ${j})"  class="card-person-initials position">${initials}</span>
-        `;
-      }
+      renderAssignedPersons(person, tasksColumn, i, idName);
     }
+  }
+}
+
+/**
+ * Renders four assigned persons on a task card and indicates the number of additional persons.
+ *
+ * @param {Array} person - List of assigned persons for the task.
+ * @param {Array} tasksColumn - Array representing the tasks and their associated details.
+ * @param {number} i - Index of the current task within the tasks column.
+ * @param {string} idName - ID prefix for the HTML element where the assigned persons are rendered.
+ * @param {number} morePersons - Number of additional persons beyond the first 4.
+ */
+function renderMoreAssignedPersons(person, tasksColumn, i, idName, morePersons) {
+  for (let j = 0; j < 4; j++) {
+    let initials = person[j]
+      .split(" ")
+      .map((word) => word[0].toUpperCase())
+      .join("");
+    let color = tasksColumn[i]["color"][j];
+    document.getElementById(`${idName}assigned-to(${i})`).innerHTML += `
+      <span style="background-color: ${color}; right:calc(5px * ${j})"  class="card-person-initials position">${initials}</span>
+    `;
+  }
+  document.getElementById(`${idName}assigned-to(${i})`).innerHTML += `
+  <span class="card-more-persons">+${morePersons}</span>
+`;
+}
+
+/**
+ * Renders all assigned persons on a task card.
+ *
+ * @param {Array} person - List of assigned persons for the task.
+ * @param {Array} tasksColumn - Array representing the tasks and their associated details.
+ * @param {number} i - Index of the current task within the tasks column.
+ * @param {string} idName - ID prefix for the HTML element where the assigned persons are rendered.
+ */
+function renderAssignedPersons (person, tasksColumn, i, idName) {
+  for (let j = 0; j < person.length; j++) {
+    let initials = person[j]
+      .split(" ")
+      .map((word) => word[0].toUpperCase())
+      .join("");
+    let color = tasksColumn[i]["color"][j];
+    document.getElementById(`${idName}assigned-to(${i})`).innerHTML += `
+      <span style="background-color: ${color}; right:calc(5px * ${j})"  class="card-person-initials position">${initials}</span>
+    `;
   }
 }
 

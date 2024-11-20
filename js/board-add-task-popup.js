@@ -160,35 +160,49 @@ function addPersonsToTask() {
 }
 
 /**
- * Updates the UI to display the initials of all assigned persons.
+ * Calls function to render assigned persons at a new task.
  */
 function addPersonLogo() {
   document.getElementById("assigned-person").innerHTML = "";
   const morePersons = assignedPersons.length - 4;
 
   if (assignedPersons.length > 4) {
-    for (let i = 0; i < 4; i++) {
-      let letterForlogo = createInitials(i, assignedPersons);
-      document.getElementById("assigned-person").innerHTML += `
-          <div class="assigned-person-logo" style="background-color: ${assignedPersons[i]["color"]}">
-            ${letterForlogo}
-          </div>
-        `;
-    }  
-    document.getElementById("assigned-person").innerHTML += `
-      <span>+${morePersons}</span>
-    `;
-
+    moreThenFourPersonsForNewTask(morePersons);
   } else {
-    for (let i = 0; i < assignedPersons.length; i++) {
-      let letterForlogo = createInitials(i, assignedPersons);
-      document.getElementById("assigned-person").innerHTML += `
-          <div class="assigned-person-logo" style="background-color: ${assignedPersons[i]["color"]}">
-            ${letterForlogo}
-          </div>
-        `;
-    }  
+    lessThenFourPersonsForNewTask();
   }
+}
+
+/**
+ * Renders the first four assigned persons then adds the number the additional ones.
+ * @param {number} morePersons - Number of additional persons beyond the first four.
+ */
+function moreThenFourPersonsForNewTask (morePersons) {
+  for (let i = 0; i < 4; i++) {
+    let letterForlogo = createInitials(i, assignedPersons);
+    document.getElementById("assigned-person").innerHTML += `
+        <div class="assigned-person-logo" style="background-color: ${assignedPersons[i]["color"]}">
+          ${letterForlogo}
+        </div>
+      `;
+  }  
+  document.getElementById("assigned-person").innerHTML += `
+    <span>+${morePersons}</span>
+  `;
+}
+
+/**
+ * Renders all assigned persons.
+ */
+function lessThenFourPersonsForNewTask() {
+  for (let i = 0; i < assignedPersons.length; i++) {
+    let letterForlogo = createInitials(i, assignedPersons);
+    document.getElementById("assigned-person").innerHTML += `
+        <div class="assigned-person-logo" style="background-color: ${assignedPersons[i]["color"]}">
+          ${letterForlogo}
+        </div>
+      `;
+  }  
 }
 
 /**
