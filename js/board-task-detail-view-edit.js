@@ -250,7 +250,6 @@ function renderFewerAssignedPersons(assignedPersonsArr, assignedPersonsColor) {
   }
 }
 
-
 /**
  * Creates the initials for assigned persons.
  */
@@ -307,9 +306,9 @@ function renderEditCheckedSubtasks() {
       document.getElementById("card-detail-view-subtasks-container").innerHTML += `
             <div id="edit-checked-subtasks(${i})" class="card-detail-view-subtasks-enumeration">
               <img onclick="EditUncheckSubtask(${i}, 'card-detail-view-subtasks-container')" id="checkedCheckbox(${i})" src="assets/img/check-button-checked.svg" />
-              <span>${checkedSubtasks[i]}</span>
-              <div class="edit-options-container">
-                <img onclick="editRewriteCheckedSubtask(${i})" class="subtask-bin" src="assets/img/edit.svg" alt="Edit">
+              <span id="edit-checked-subtask-${i}">${checkedSubtasks[i]}</span>
+              <div id="edit-checked-subtask-options-container(${i})" class="edit-options-container">
+                <img onclick="editRewriteCheckedSubtask(${i})" id="edit-checked-subtask-pencil-(${i})" class="subtask-bin" src="assets/img/edit.svg" alt="Edit">
                 <div class="edit-options-container-line"></div>
                 <img onclick="editDeleteCheckedSubtask(${i})" class="subtask-bin" src="assets/img/bin.svg" alt="Delete">
               </div>
@@ -317,6 +316,20 @@ function renderEditCheckedSubtasks() {
           `;
     }
   }
+}
+
+function editRewriteCheckedSubtask(i) {
+  const subtask = document.getElementById(`edit-checked-subtask-${i}`);
+  const value = subtask.value || subtask.textContent || "";
+  subtask.innerHTML = `
+    <input type="text" id="edit-checked-subtask-${i}" name="subtask-input" required="" placeholder="Rewrite your subtask" value="${value}">
+  `;
+  document.getElementById(`edit-checked-subtask-options-container(${i})`).innerHTML = "";
+  document.getElementById(`edit-checked-subtask-options-container(${i})`).innerHTML = `
+    <img onclick="editSaveRewriteCheckedSubtask(${i})" class="subtask-bin" src="assets/img/check.svg" alt="Save">
+    <div class="edit-options-container-line"></div>
+    <img onclick="cancelEditSubtask()" class="subtask-bin" src="assets/img/cancel-x.svg" alt="Cancel">
+  `;
 }
 
 /**
@@ -335,9 +348,9 @@ function renderEditUnCheckedSubtasks() {
       document.getElementById("card-detail-view-subtasks-container").innerHTML += `
           <div id="edit-unchecked-subtasks(${i})" class="card-detail-view-subtasks-enumeration">
             <img onclick="editCheckSubtask(${i}, 'card-detail-view-subtasks-container')" id="unCheckedCheckbox(${i})" src="assets/img/check-button.svg" />
-            <span>${unCheckedSubtasks[i]}</span>
-              <div class="edit-options-container">
-                <img onclick="editRewriteUnCheckedSubtask(${i})" class="subtask-bin" src="assets/img/edit.svg" alt="Edit">
+            <span id="edit-unchecked-subtask-${i}">${unCheckedSubtasks[i]}</span>
+              <div id="edit-unchecked-subtask-options-container(${i})" class="edit-options-container">
+                <img onclick="editRewriteUnCheckedSubtask(${i})" id="edit-checked-subtask-pencil-(${i})" class="subtask-bin" src="assets/img/edit.svg" alt="Edit">
                 <div class="edit-options-container-line"></div>
                 <img onclick="editDeletunCheckedSubtask(${i})" class="subtask-bin" src="assets/img/bin.svg" alt="Delete">
               </div>
@@ -345,6 +358,24 @@ function renderEditUnCheckedSubtasks() {
         `;
     }
   }
+}
+
+function editRewriteUnCheckedSubtask(i) {
+  const subtask = document.getElementById(`edit-unchecked-subtask-${i}`);
+  const value = subtask.value || subtask.textContent || "";
+  subtask.innerHTML = `
+    <input type="text" id="edit-unchecked-subtask-${i}" name="subtask-input" required="" placeholder="Rewrite your subtask" value="${value}">
+  `;
+  document.getElementById(`edit-unchecked-subtask-options-container(${i})`).innerHTML = "";
+  document.getElementById(`edit-unchecked-subtask-options-container(${i})`).innerHTML = `
+    <img onclick="editSaveRewriteUncheckedSubtask(${i})" class="subtask-bin" src="assets/img/check.svg" alt="Save">
+    <div class="edit-options-container-line"></div>
+    <img onclick="cancelEditSubtask()" class="subtask-bin" src="assets/img/cancel-x.svg" alt="Cancel">
+  `;
+}
+
+function cancelEditSubtask() {
+  editSubtasks();
 }
 
 function EditUncheckSubtask(i) {

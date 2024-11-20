@@ -257,7 +257,7 @@ function renderSubtasks() {
         <li id="subtask${i}" class="subtask">
           <span>${subtasksArr[i]}</span>
           <div>
-          <img class="subTaskBtn" onclick="editTask(${i})" src="assets/img/edit.svg" alt="Edit">
+          <img class="subTaskBtn" onclick="editSubtaskTask(${i})" src="assets/img/edit.svg" alt="Edit">
           <img class="subTaskBtn" onclick="deletSubtask(${i})" src="assets/img/bin.svg" alt="Delete">
           </div>
         </li>
@@ -269,7 +269,7 @@ function renderSubtasks() {
  * Ermöglicht das Bearbeiten einer bestehenden Subtask.
  * @param {number} index - Der Index der zu bearbeitenden Subtask im Array `subtasksArr`.
  */
-function editTask(index) {
+function editSubtaskTask(index) {
   // Hole das aktuelle Subtask-Element
   let subtaskElement = document.getElementById(`subtask${index}`);
   
