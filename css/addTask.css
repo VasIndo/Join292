@@ -595,4 +595,8 @@ li:hover img {
     .bottom-right {
        gap: 16px;
     }
+
+    li img {
+        display: unset;
+    }
 }
