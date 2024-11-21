@@ -607,4 +607,8 @@ li input {
     li img {
         display: unset;
     }
+
+    li input {
+        font-size: 16px;
+    }
 }
