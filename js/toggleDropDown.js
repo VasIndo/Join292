@@ -1,6 +1,15 @@
 let assignedDropdownOpen = false;
 let categoryDropdownOpen = false;
 
+/**
+ * Toggles the visibility of the assigned person dropdown.
+ */
+function toggleAssignedDropDown() {
+  const dropdown = document.getElementById("person-to-assigned");
+  dropdown.classList.toggle("d-none");
+  assignedDropdownOpen = !dropdown.classList.contains("d-none");
+  renderDropDown();
+}
 
 /**
  * Toggles the visibility of the category dropdown menu.
