@@ -382,7 +382,6 @@ async function pushNewTaskInJson() {
     document.getElementById('notification').classList.remove("d-none");
     // Entferne die Benachrichtigung nach 3 Sekunden
     setTimeout(() => {
-      notificationContainer.remove();
     }, 3000);
   }
   
