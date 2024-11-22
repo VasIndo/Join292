@@ -2,6 +2,8 @@
  * Initiates the process of editing a task by calling functions.
  */
 function editTask() {
+  checkedSubtasks = array[taskNum]["subtasksChecked"];
+  unCheckedSubtasks = array[taskNum]["subtasksNotChecked"];
   editHeadline();
   editTitle();
   editDescription();
@@ -13,6 +15,7 @@ function editTask() {
   editRenderPersonLogo();
   editSubtasks();
   changeOptions();
+
 }
 
 /**
@@ -222,7 +225,7 @@ function editRenderPersonLogo() {
 
     if (assignedPersonsArr.length > 4) {
       renderMoreAssignedPersons(assignedPersonsArr, assignedPersonsColor);
-    } else if (assignedPersonsArr.length > 0) {
+    } else if (assignedPersonsArr[0] !== "placeholder") {
       renderFewerAssignedPersons(assignedPersonsArr, assignedPersonsColor);
     }
   }
@@ -295,7 +298,7 @@ function renderEditSubtaskContainer() {
  * This function loops through the list of checked subtasks and displays them.
  */
 function renderEditCheckedSubtasks() {
-  checkedSubtasks = array[taskNum]["subtasksChecked"];
+  // checkedSubtasks = array[taskNum]["subtasksChecked"];
   if ( checkedSubtasks.length !== 0 && checkedSubtasks[0] !== "placeholder" && checkedSubtasks !== undefined && checkedSubtasks[0] !== "") {
     for (let i = 0; i < checkedSubtasks.length; i++) {
       document.getElementById("card-detail-view-subtasks-container").innerHTML += `
@@ -336,7 +339,6 @@ function editSaveRewriteCheckedSubtask() {
  * This function loops through the list of unchecked subtasks and displays them.
  */
 function renderEditUnCheckedSubtasks() {
-  unCheckedSubtasks = array[taskNum]["subtasksNotChecked"];
   if (
     unCheckedSubtasks.length !== 0 &&
     unCheckedSubtasks[0] !== "placeholder" &&
@@ -363,7 +365,7 @@ function editRewriteUnCheckedSubtask(i) {
   const subtask = document.getElementById(`edit-unchecked-subtask-${i}`);
   const value = subtask.value || subtask.textContent || "";
   subtask.innerHTML = `
-    <input type="text" id="edit-unchecked-subtask-iput-(${i})" name="subtask-input" required="" placeholder="Rewrite your subtask" value="${value}">
+    <input type="text" id="edit-unchecked-subtask-input-(${i})" name="subtask-input" required="" placeholder="Rewrite your subtask" value="${value}">
   `;
   document.getElementById(`edit-unchecked-subtask-options-container(${i})`).innerHTML = "";
   document.getElementById(`edit-unchecked-subtask-options-container(${i})`).innerHTML = `
@@ -374,7 +376,7 @@ function editRewriteUnCheckedSubtask(i) {
 }
 
 function editSaveRewriteUncheckedSubtask(i) {
-  let newValue = document.getElementById(`edit-unchecked-subtask-iput-(${i})`).value;
+  let newValue = document.getElementById(`edit-unchecked-subtask-input-(${i})`).value;
   array[taskNum]["subtasksNotChecked"][i] = newValue;
   editSubtasks();
 }
@@ -390,7 +392,7 @@ function EditUncheckSubtask(i) {
   unCheckedSubtasks.push(checkedSubtasks[i]);
   checkedSubtasks.splice(i, 1);
   document.getElementById("card-detail-view-subtasks-container").innerHTML = "";
-  updateSubtasksInFirebase();
+  array[taskNum]["subtasksNotChecked"] = unCheckedSubtasks;
   renderEditUnCheckedSubtasks();
   renderEditCheckedSubtasks();
 }
@@ -402,7 +404,7 @@ function editCheckSubtask(i) {
   checkedSubtasks.push(unCheckedSubtasks[i]);
   unCheckedSubtasks.splice(i, 1);
   document.getElementById("card-detail-view-subtasks-container").innerHTML = "";
-  updateSubtasksInFirebase();
+  array[taskNum]["subtasksChecked"] = checkedSubtasks;
   renderEditUnCheckedSubtasks();
   renderEditCheckedSubtasks();
 }

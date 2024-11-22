@@ -196,10 +196,8 @@ function checkSubtask(i, id) {
   checkedSubtasks.push(unCheckedSubtasks[i]);
   unCheckedSubtasks.splice(i, 1);
   document.getElementById(id).innerHTML = "";
-  console.log(array[taskNum]["subtasksChecked"])
   unCheckedSubtasksHtml(id);
   checkedSubtasksHtml(id);
-  updateSubtasksInFirebase();
 }
 
 /**
@@ -213,7 +211,6 @@ function uncheckSubtask(i, id) {
   }
   unCheckedSubtasks.push(checkedSubtasks[i]);
   checkedSubtasks.splice(i, 1);
-  updateSubtasksInFirebase();
   document.getElementById(id).innerHTML = "";
   unCheckedSubtasksHtml(id);
   checkedSubtasksHtml(id);
