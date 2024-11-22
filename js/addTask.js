@@ -22,11 +22,15 @@ let newTask = {
   taskColumn: "toDo",
 };
 
+let assignedDropdownOpen = false;
+let categoryDropdownOpen = false;
 /**
  * Toggles the visibility of the assigned person dropdown.
  */
 function toggleAssignedDropDown() {
-  document.getElementById("person-to-assigned").classList.toggle("d-none");
+  const dropdown = document.getElementById("person-to-assigned");
+  dropdown.classList.toggle("d-none");
+  assignedDropdownOpen = !dropdown.classList.contains("d-none");
   renderDropDown();
 }
 
@@ -105,13 +109,6 @@ function createInitials(i, array) {
   let initials = name.split(" ").map((word) => word[0]);
   let initialsString = initials.join("");
   return initialsString.toUpperCase();
-}
-
-/**
- * Toggles the visibility of the category dropdown menu.
- */
-function toggleCategoryDropDown() {
-  document.getElementById("categories").classList.toggle("d-none");
 }
 
 /**
@@ -325,16 +322,6 @@ function cancelEdit(index, originalText) {
   // Rendere die Subtasks neu
   renderSubtasks();
 }
-
-
-/**
- * Adds an event listener to the input field that triggers a function when the Enter key is pressed.
- */
-document.getElementById("add-subtasks").addEventListener("keydown", function (event) {
-  if (event.key === "Enter") {
-    addSubtasks();
-  }
-});
 
 /**
  * Deletes a subtask from the list.
