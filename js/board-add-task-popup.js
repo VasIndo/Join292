@@ -3,8 +3,8 @@ let colorPerson = [];
 let subtasksArr = [];
 
 let newTask = {
-  title: [],
-  description: [],
+  title: null,
+  description: null,
   "assigned persons": ["placeholder"],
   color: [],
   date: [],

@@ -222,7 +222,7 @@ function editRenderPersonLogo() {
 
     if (assignedPersonsArr.length > 4) {
       renderMoreAssignedPersons(assignedPersonsArr, assignedPersonsColor);
-    } else {
+    } else if (assignedPersonsArr.length > 0) {
       renderFewerAssignedPersons(assignedPersonsArr, assignedPersonsColor);
     }
   }
@@ -296,12 +296,7 @@ function renderEditSubtaskContainer() {
  */
 function renderEditCheckedSubtasks() {
   checkedSubtasks = array[taskNum]["subtasksChecked"];
-  if (
-    checkedSubtasks.length !== 0 &&
-    checkedSubtasks[0] !== "placeholder" &&
-    checkedSubtasks !== undefined &&
-    checkedSubtasks[0] !== ""
-  ) {
+  if ( checkedSubtasks.length !== 0 && checkedSubtasks[0] !== "placeholder" && checkedSubtasks !== undefined && checkedSubtasks[0] !== "") {
     for (let i = 0; i < checkedSubtasks.length; i++) {
       document.getElementById("card-detail-view-subtasks-container").innerHTML += `
             <div id="edit-checked-subtasks(${i})" class="card-detail-view-subtasks-enumeration">
@@ -330,6 +325,10 @@ function editRewriteCheckedSubtask(i) {
     <div class="edit-options-container-line"></div>
     <img onclick="cancelEditSubtask()" class="subtask-bin" src="assets/img/cancel-x.svg" alt="Cancel">
   `;
+}
+
+function editSaveRewriteCheckedSubtask() {
+
 }
 
 /**
@@ -364,7 +363,7 @@ function editRewriteUnCheckedSubtask(i) {
   const subtask = document.getElementById(`edit-unchecked-subtask-${i}`);
   const value = subtask.value || subtask.textContent || "";
   subtask.innerHTML = `
-    <input type="text" id="edit-unchecked-subtask-${i}" name="subtask-input" required="" placeholder="Rewrite your subtask" value="${value}">
+    <input type="text" id="edit-unchecked-subtask-iput-(${i})" name="subtask-input" required="" placeholder="Rewrite your subtask" value="${value}">
   `;
   document.getElementById(`edit-unchecked-subtask-options-container(${i})`).innerHTML = "";
   document.getElementById(`edit-unchecked-subtask-options-container(${i})`).innerHTML = `
@@ -374,22 +373,36 @@ function editRewriteUnCheckedSubtask(i) {
   `;
 }
 
+function editSaveRewriteUncheckedSubtask(i) {
+  let newValue = document.getElementById(`edit-unchecked-subtask-iput-(${i})`).value;
+  array[taskNum]["subtasksNotChecked"][i] = newValue;
+  editSubtasks();
+}
+
 function cancelEditSubtask() {
   editSubtasks();
 }
 
 function EditUncheckSubtask(i) {
+  if (unCheckedSubtasks[0] == "placeholder") {
+    unCheckedSubtasks = [];
+  }
   unCheckedSubtasks.push(checkedSubtasks[i]);
   checkedSubtasks.splice(i, 1);
   document.getElementById("card-detail-view-subtasks-container").innerHTML = "";
+  updateSubtasksInFirebase();
   renderEditUnCheckedSubtasks();
   renderEditCheckedSubtasks();
 }
 
 function editCheckSubtask(i) {
+  if (checkedSubtasks[0] == "placeholder") {
+    checkedSubtasks = [];
+  }
   checkedSubtasks.push(unCheckedSubtasks[i]);
   unCheckedSubtasks.splice(i, 1);
   document.getElementById("card-detail-view-subtasks-container").innerHTML = "";
+  updateSubtasksInFirebase();
   renderEditUnCheckedSubtasks();
   renderEditCheckedSubtasks();
 }
@@ -436,9 +449,11 @@ function editDeletunCheckedSubtask(i) {
  */
 function updateArray() {
   let title = document.getElementById("edit-title-input").value;
-  array[taskNum]["title"] = title;
+  array[taskNum]["title"] = [];
+  array[taskNum]["title"].push(title);
   let description = document.getElementById("edit-description-textarea").value;
-  array[taskNum]["description"] = description;
+  array[taskNum]["description"] = [];
+  array[taskNum]["description"].push(description);
   let date = document.getElementById("edit-date-value").value;
   array[taskNum]["date"] = date;
 

@@ -415,22 +415,26 @@ function toggleAddTaskPopUp() {
  */
 async function filterTask() {
   let searchbarValue = document.getElementById("searchbar-field").value.toLowerCase();
-  if (searchbarValue == "") {
+  if (searchbarValue === "") {
     searchbarValue = document.getElementById("searchbar-field-mobile").value.toLowerCase();
   }
-  let filtered = allTasks.filter((task) => {
+
+  if (searchbarValue.length === 0) {
+    loadData();
+    return;
+  }
+
+  let filteredResults = allTasks.filter((task) => {
     let titleString = task["title"][0].toLowerCase();
-    return titleString.includes(searchbarValue);
+    let descString = task["description"] && task["description"][0] ? task["description"][0].toLowerCase() : "";
+
+    return titleString.includes(searchbarValue) || descString.includes(searchbarValue);
   });
 
-  if (searchbarValue.length == 0) {
-    loadData();
-  } else {
-    allTasks = filtered;
-    sortTasksInColumn(allTasks);
-    renderTasks();
-  }
+  sortTasksInColumn(filteredResults);
+  renderTasks(filteredResults);
 }
+
 
 /**
  * Adds a class to the split to highlight it.
