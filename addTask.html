@@ -15,7 +15,6 @@
     <script src="js/template.js" defer></script>
     <script src="js/board.js" defer></script>
     <script src="js/addTask.js"></script>
-    <script src="js/board-add-task-popup.js" defer></script>
     <script src="./js/loginScript.js"></script>
 </head>
 
@@ -128,7 +127,11 @@
                   <a href="#" onclick="resetForm()" class="cancel-btn">Clear<img id="cancel-btn-img" src="assets/img/cancel-x.svg"></a>
                   <a href="#" onclick="pushNewTaskInJson()" class="create-task-btn">Create Task<img src="assets/img/create-task-check.svg"></a>
                 </div>
-              </div>
+            </div>
+
+            <div id="notification" class="notification d-none">
+                <p>Task successfully created! <br> Redirecting to Board...</p>
+            </div>
     </div>
 </body>
 

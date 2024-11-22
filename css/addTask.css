@@ -446,6 +446,36 @@ li input {
     border-radius: 10px;
 }
 
+.notification {
+    position: fixed;
+    top: 50%;
+    right: 30%;
+    background-color: #4caf50;
+    color: white;
+    padding: 15px 20px;
+    border-radius: 5px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+    font-size: 24px;
+    animation: fadeInOut 3s ease;
+    text-align: center;
+}
+
+@keyframes fadeInOut {
+    0% {
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+    20%, 80% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    100% {
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+  }  
+
 @media only screen and (max-width: 1330px) {
     .addTaskContainer {
         padding-left: 16px;
@@ -514,6 +544,11 @@ li input {
     .addTaskContainer h1 {
         padding-top: 48px;
         padding-bottom: 40px;
+    }
+
+    .notification {
+        top: 50%;
+        right: 39%;
     }
 }
 
@@ -609,6 +644,12 @@ li input {
     }
 
     li input {
+        font-size: 16px;
+    }
+
+    .notification {
+        top: 72%;
+        right: 10%;
         font-size: 16px;
     }
 }
