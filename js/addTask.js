@@ -2,6 +2,7 @@
 function resetForm(){
     document.getElementById("formAddTask").reset();
     document.getElementById("added-subtasks-list").innerHTML ="";
+    document.getElementById("assigned-person").innerHTML ="";
     subtasksArr.length = 0;
 }
 
