@@ -402,7 +402,32 @@ form div{
 }
 
 @media(max-height: 667px){
-  
+   .AddContactCard{
+     width: 360px;
+     height: 650px;
+   }
+
+   .profil-img{
+    top: 250px;
+    width: 110px;
+   }
+
+   .profil-img img{
+    width: 100px;
+    height: 100px;
+   }
+
+   form{
+    margin-top: -80px;
+   }
+
+   form div{
+    height: 35px;
+   }
+
+   .ctn-button{
+    margin-top: 0px;
+   }
 
 }
 

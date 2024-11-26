@@ -168,6 +168,13 @@ document.addEventListener('DOMContentLoaded', function() {
 
         document.body.insertAdjacentHTML('beforeend', generateAddContactHtml(contact, isNewContact, isEditMode));
 
+        if (isEditMode) {
+            const profileImg = document.querySelector('.profil-img');
+            if (profileImg) {
+                profileImg.style.display = 'none';
+            }
+        }
+
         document.getElementById('closeBtn').addEventListener('click', function() {
             document.getElementById('next').remove();
         });
@@ -391,7 +398,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     <div class="rightSide">
                         <div class="close-icon"><img id="closeBtn" src="./assets/icon/close.svg"></div>
                         <div class="rightSide-middle">
-                            <div class="profil-img">${isNewContact ? contact.img : generateInitialsImage(contact.name, 120, contact.color)}</div>
+                            <div class="profil-img" style="display: none;">${isNewContact ? contact.img : generateInitialsImage(contact.name, 120, contact.color)}</div>
                             <form id="contact-form">
                                 <div><input id="contact-name" type="text" placeholder="Name" value="${contact.name}"><img class="iconInput" src="./assets/icon/Person1.webp"></div>
                                 <div><input id="contact-email" type="email" placeholder="Email" value="${contact.email}"><img class="iconInput" src="./assets/icon/mail.webp"></div>
