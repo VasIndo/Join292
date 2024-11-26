@@ -12,6 +12,10 @@ body {
   background-color: rgb(246, 247, 248);
 }
 
+header {
+  width: 100vw;
+}
+
 .d-none {
   display: none;
 }
@@ -28,7 +32,7 @@ body {
 .board {
   display: flex;
   flex-direction: column;
-  margin-left: 240px;
+  margin-left: 280px;
 }
 
 .headline {
@@ -145,6 +149,10 @@ body {
   padding: 10px;
 }
 
+.done-split {
+  margin-right: 30px;
+}
+
 .to-do-headline,
 .in-progress-headline,
 .await-feedback-headline,
@@ -195,7 +203,6 @@ body {
   padding: 16px;
   gap: 10px;
   box-shadow: 0px 0px 10px 3px rgba(0, 0, 0, 0.08);
-  margin-bottom: 30px;
 }
 
 #card:hover,
@@ -326,6 +333,13 @@ body {
   display: none;
 }
 
+@media (min-width: 1920px) {
+  body {
+    width: 1920px;
+  }
+}
+
+
 /* ### Mobile ### */
 
 @media (max-width: 1300px) {
@@ -393,18 +407,16 @@ body {
   }
 
   .tasks-card {
-    width: 252px;
+    width: 352px;
+    height: 324px;
     margin-right: 20px;
+    margin-bottom: 30px;
   }
 }
 
 @media (max-width: 768px) {
   .done-tasks {
     margin-bottom: 100px;
-  }
-
-  .tasks-card {
-    width: 145px;
   }
 
   .subtasks-diagram {
@@ -469,18 +481,14 @@ body {
     right: 18px;
   }
 
-  #to-do-tasks,
-  #in-progress-tasks,
-  #await-feedback-tasks,
-  #done-tasks {
-    width: 100%;
-  }
-
   .to-do-headline,
   .in-progress-headline,
   .await-feedback-headline,
   .done-headline.done-headline {
-    width: 100%;
+    width: 87%;
+    position: sticky;
+    top: 0;
+    left: 0;
   }
 
   .to-do-headline > span,
@@ -496,6 +504,10 @@ body {
   .done-headline > img {
     width: 30px;
     height: 30px;
+  }
+
+  #to-do-tasks, #in-progress-tasks, #await-feedback-tasks, #done-tasks {
+    margin-top: 50px;
   }
 
   .mobile-menu {
