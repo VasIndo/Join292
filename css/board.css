@@ -162,6 +162,9 @@ header {
   justify-content: space-between;
   align-items: center;
   margin-bottom: 30px;
+  position: sticky;
+  top: 0;
+  left: 0;
 }
 
 .to-do-headline > span,
@@ -408,8 +411,8 @@ header {
   }
 
   .tasks-card {
-    width: 352px;
-    height: 324px;
+    width: 252px;
+    height: 244px;
     margin-right: 20px;
     margin-bottom: 30px;
   }
@@ -507,15 +510,8 @@ header {
     height: 30px;
   }
 
-  #to-do-tasks, #in-progress-tasks, #await-feedback-tasks, #done-tasks {
-    margin-top: 50px;
-  }
-
   .mobile-menu {
     display: block;
   }
   
-  #person-and-prio {
-    display: unset;
-  }
 }

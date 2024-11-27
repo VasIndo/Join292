@@ -109,8 +109,8 @@ function generateHtml(tasksArr, tasksColumn, i) {
         <div onclick="showSplitsToMove(event)" id="person-and-prio">
             <div id="${tasksColumn}assigned-to(${i})" class="assigned-to"></div>                
             <img id="${tasksColumn}prio${i}" class="prio" src="assets/img/prio-medium.svg" alt="medium" />
+            <img onclick="event.stopPropagation(), toggleSplitsToMove('${tasksColumn}', ${i}), rotate('${tasksColumn}-card(${i})')" class="mobile-menu" src="assets/img/mobile-menu.svg">
         </div>
-        <img onclick="event.stopPropagation(), toggleSplitsToMove('${tasksColumn}', ${i}), rotate('${tasksColumn}-card(${i})')" class="mobile-menu" src="assets/img/mobile-menu.svg">
         <div id="splits-to-move-container-${tasksColumn}-${i}" class="splits-to-move-container d-none">
         <span onclick="event.stopPropagation(), moveTo('toDo')">To do</span><br>
         <span onclick="event.stopPropagation(), moveTo('inProgress')">In Progress</span><br>
