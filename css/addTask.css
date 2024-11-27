@@ -570,6 +570,7 @@ li input {
 
     .addTaskContainer {
         margin-left: 0;
+        padding-left: 25px;
     }
 
     .addTaskContainer h1 {
