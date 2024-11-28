@@ -20,6 +20,10 @@ header {
   display: none;
 }
 
+.fixed {
+  position: fixed;
+}
+
 #board-container {
   width: 100vw;
   height: 100%;
@@ -472,14 +476,6 @@ header {
   .mobile-menu {
     display: block;
   }
-  
-
-
-
-
-
-
-
 
   #to-do-tasks,
   #in-progress-tasks,
@@ -492,7 +488,6 @@ header {
   .in-progress-headline,
   .await-feedback-headline,
   .done-headline.done-headline {
-    width: 30%;
     position: sticky;
   }
 

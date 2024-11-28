@@ -10,6 +10,7 @@ let binNum;
 function cardAnimation() {
   document.getElementById("card-detail-view").classList.toggle("show-card");
   document.getElementById("board-container").classList.toggle("d-none");
+  document.getElementById("body").classList.toggle("fixed")
 }
 
 /**
