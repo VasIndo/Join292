@@ -224,14 +224,14 @@ function editRenderPersonLogo() {
     let assignedPersonsColor = array[taskNum]["color"];
 
     if (assignedPersonsArr.length > 4) {
-      renderMoreAssignedPersons(assignedPersonsArr, assignedPersonsColor);
+      EditRenderMoreAssignedPersons(assignedPersonsArr, assignedPersonsColor);
     } else if (assignedPersonsArr[0] !== "placeholder") {
-      renderFewerAssignedPersons(assignedPersonsArr, assignedPersonsColor);
+      EditRenderFewerAssignedPersons(assignedPersonsArr, assignedPersonsColor);
     }
   }
 }
 
-function renderMoreAssignedPersons(assignedPersonsArr, assignedPersonsColor) {
+function EditRenderMoreAssignedPersons(assignedPersonsArr, assignedPersonsColor) {
   const morePersons = assignedPersonsArr.length - 4;
   for (let i = 0; i < 4; i++) {
     let initials = editCreateInitials(i, assignedPersonsArr);
@@ -244,7 +244,7 @@ function renderMoreAssignedPersons(assignedPersonsArr, assignedPersonsColor) {
 `;
 }
 
-function renderFewerAssignedPersons(assignedPersonsArr, assignedPersonsColor) {
+function EditRenderFewerAssignedPersons(assignedPersonsArr, assignedPersonsColor) {
   for (let i = 0; i < assignedPersonsArr.length; i++) {
     let initials = editCreateInitials(i, assignedPersonsArr);
     document.getElementById("card-detail-view-assigned-persons-logo").innerHTML += `
