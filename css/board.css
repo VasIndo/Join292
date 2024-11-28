@@ -32,11 +32,10 @@ header {
 .board {
   display: flex;
   flex-direction: column;
-  margin-left: 280px;
+  margin-left: 250px;
 }
 
 .headline {
-  width: 70%;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -48,9 +47,9 @@ header {
 }
 
 .headline-right {
-  width: 504px;
   display: flex;
-  justify-content: space-between;
+  gap: 18px;
+  margin-right: 30px;
 }
 
 #searchbar {
