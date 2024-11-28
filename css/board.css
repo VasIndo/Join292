@@ -134,6 +134,7 @@ header {
 
 .tasks {
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
 }
 
@@ -371,49 +372,8 @@ header {
 }
 
 @media (max-width: 1200px) {
-  #to-do-tasks,
-  #in-progress-tasks,
-  #await-feedback-tasks,
-  #done-tasks {
-    width: unset;
-  }
-
-  .to-do-headline,
-  .in-progress-headline,
-  .await-feedback-headline,
-  .done-headline.done-headline {
-    width: 30%;
-    position: sticky;
-  }
-
-  .to-do-split,
-  .in-progress-split,
-  .await-feedback-split,
   .done-split {
-    width: 100%;
-    display: flex;
-    align-items: start;
-    overflow: scroll;
-    padding: 10px;
-  }
-
-  .tasks {
-    flex-direction: column;
-  }
-
-  #to-do-tasks,
-  #in-progress-tasks,
-  #await-feedback-tasks,
-  #done-tasks {
-    overflow: scroll;
-    display: flex;
-  }
-
-  .tasks-card {
-    width: 252px;
-    height: 244px;
-    margin-right: 20px;
-    margin-bottom: 30px;
+    margin: 0;
   }
 }
 
@@ -513,4 +473,57 @@ header {
     display: block;
   }
   
+
+
+
+
+
+
+
+
+  #to-do-tasks,
+  #in-progress-tasks,
+  #await-feedback-tasks,
+  #done-tasks {
+    width: unset;
+  }
+
+  .to-do-headline,
+  .in-progress-headline,
+  .await-feedback-headline,
+  .done-headline.done-headline {
+    width: 30%;
+    position: sticky;
+  }
+
+  .to-do-split,
+  .in-progress-split,
+  .await-feedback-split,
+  .done-split {
+    width: 100%;
+    display: flex;
+    align-items: start;
+    overflow: scroll;
+    padding: 10px;
+  }
+
+  .tasks {
+    flex-direction: column;
+  }
+
+  #to-do-tasks,
+  #in-progress-tasks,
+  #await-feedback-tasks,
+  #done-tasks {
+    overflow: scroll;
+    display: flex;
+  }
+
+  .tasks-card {
+    width: 252px;
+    height: 244px;
+    margin-right: 20px;
+    margin-bottom: 30px;
+  }
+
 }

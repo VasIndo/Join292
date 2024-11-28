@@ -402,3 +402,11 @@
   margin-left: 3px;
   margin-right: 3px;
 }
+
+@media (max-width: 500px) {
+  .high-btn,
+  .medium-btn,
+  .low-btn {
+    width: 200px;
+  }
+}
