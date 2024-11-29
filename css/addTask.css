@@ -1,6 +1,7 @@
 html {
     background-color: #f6f7f8;
 }
+
 body {
     overflow-x: hidden;
 }
@@ -217,7 +218,7 @@ body {
     padding: 2px;
 }
 
-.subTaskBtn:hover{
+.subTaskBtn:hover {
     background-color: rgba(0, 0, 0, 0.2);
     border-radius: 50%;
     cursor: pointer;
@@ -466,18 +467,21 @@ li input {
 
 @keyframes fadeInOut {
     0% {
-      opacity: 0;
-      transform: translateY(-10px);
+        opacity: 0;
+        transform: translateY(-10px);
     }
-    20%, 80% {
-      opacity: 1;
-      transform: translateY(0);
+
+    20%,
+    80% {
+        opacity: 1;
+        transform: translateY(0);
     }
+
     100% {
-      opacity: 0;
-      transform: translateY(-10px);
+        opacity: 0;
+        transform: translateY(-10px);
     }
-  }  
+}
 
 @media only screen and (max-width: 1330px) {
     .addTaskContainer {
@@ -644,7 +648,7 @@ li input {
     }
 
     .bottom-right {
-       gap: 16px;
+        gap: 16px;
     }
 
     li img {
@@ -659,5 +663,14 @@ li input {
         top: 72%;
         right: 10%;
         font-size: 16px;
+    }
+}
+
+@media only screen and (min-width: 1550px) {
+    .bottom {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 550px;
     }
 }
