@@ -168,8 +168,10 @@ document.addEventListener('DOMContentLoaded', function() {
 
         document.body.insertAdjacentHTML('beforeend', generateAddContactHtml(contact, isNewContact, isEditMode));
 
-        if (window.innerHeight === 667) {
+        if (window.innerHeight >= 900 && window.innerWidth <= 430) {
             document.querySelector('.profil-img').style.display = 'none';
+        } else {
+            document.querySelector('.profil-img').style.display = 'block';
         }
 
         document.getElementById('closeBtn').addEventListener('click', function() {
