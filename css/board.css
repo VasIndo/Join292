@@ -1,3 +1,25 @@
+/* ===== Scrollbar CSS ===== */
+  /* Firefox */
+  * {
+    scrollbar-width: auto;
+    scrollbar-color: #293647 #ffffff;
+  }
+
+  /* Chrome, Edge, and Safari */
+  *::-webkit-scrollbar {
+    width: 16px;
+  }
+
+  *::-webkit-scrollbar-track {
+    background: #ffffff;
+  }
+
+  *::-webkit-scrollbar-thumb {
+    background-color: #293647;
+    border-radius: 10px;
+    border: 0px solid #ffffff;
+  }
+
 * {
   box-sizing: border-box;
 }
@@ -138,7 +160,6 @@ header {
 
 .tasks {
   display: flex;
-  flex-wrap: wrap;
   justify-content: space-between;
 }
 
@@ -349,10 +370,6 @@ header {
 /* ### Mobile ### */
 
 @media (max-width: 1300px) {
-  .headline {
-    width: 95%;
-  }
-
   .headline-left > h1 {
     font-size: 48px;
     font-weight: 700;
@@ -377,6 +394,52 @@ header {
 @media (max-width: 1200px) {
   .done-split {
     margin: 0;
+  }
+
+  #to-do-tasks,
+  #in-progress-tasks,
+  #await-feedback-tasks,
+  #done-tasks {
+    width: unset;
+  }
+
+  .to-do-headline,
+  .in-progress-headline,
+  .await-feedback-headline,
+  .done-headline.done-headline {
+    width: 30%;
+    position: sticky;
+    top: 0;
+    left: 0;
+  }
+
+  .to-do-split,
+  .in-progress-split,
+  .await-feedback-split,
+  .done-split {
+    width: 100%;
+    display: flex;
+    align-items: start;
+    overflow: scroll;
+    padding: 10px;
+  }
+
+  .tasks {
+    flex-direction: column;
+  }
+
+  #to-do-tasks,
+  #in-progress-tasks,
+  #await-feedback-tasks,
+  #done-tasks {
+    display: flex;
+  }
+
+  .tasks-card {
+    width: 352px;
+    height: 324px;
+    margin-right: 20px;
+    margin-bottom: 30px;
   }
 }
 
@@ -509,7 +572,6 @@ header {
   #in-progress-tasks,
   #await-feedback-tasks,
   #done-tasks {
-    overflow: scroll;
     display: flex;
   }
 
@@ -520,4 +582,10 @@ header {
     margin-bottom: 30px;
   }
 
+}
+
+@media (pointer: coarse) {
+  .mobile-menu {
+    display: block;
+}
 }
