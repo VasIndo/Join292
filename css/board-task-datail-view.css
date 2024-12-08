@@ -290,9 +290,15 @@
   border: 1px solid rgb(209, 209, 209);
   padding: 12px 21px;
   border-radius: 10px;
-  font-size: 20px;
+  font-size: 16px;
   margin-top: 10px;
   margin-bottom: 30px;
+}
+
+#edit-low-btn,
+#edit-medium-btn,
+#edit-high-btn {
+  font-size: 16px;
 }
 
 #edit-description {
@@ -304,7 +310,7 @@
   border: 1px solid rgb(209, 209, 209);
   padding: 12px 21px;
   border-radius: 10px;
-  font-size: 20px;
+  font-size: 16px;
   margin-top: 10px;
 }
 
@@ -325,6 +331,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  font-size: 16px;
   border: 1px solid rgba(209, 209, 209, 1);
   border-radius: 10px;
   padding: 7px 16px;

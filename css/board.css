@@ -20,6 +20,10 @@
     border: 0px solid #ffffff;
   }
 
+  header {
+    width: 100% !important;
+  }
+
 * {
   box-sizing: border-box;
 }
@@ -53,6 +57,7 @@ header {
   background-color: rgba(0, 0, 0, 0.3);
   top: 0;
   z-index: 5;
+  overflow: hidden;
 }
 
 .board {
@@ -420,7 +425,7 @@ header {
     width: 100%;
     display: flex;
     align-items: start;
-    overflow: scroll;
+    overflow: auto;
     padding: 10px;
   }
 
@@ -560,7 +565,7 @@ header {
     width: 100%;
     display: flex;
     align-items: start;
-    overflow: scroll;
+    overflow: auto;
     padding: 10px;
   }
 
