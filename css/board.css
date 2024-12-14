@@ -1,35 +1,14 @@
-/* ===== Scrollbar CSS ===== */
-  /* Firefox */
-  * {
-    scrollbar-width: auto;
-    scrollbar-color: #293647 #ffffff;
-  }
-
-  /* Chrome, Edge, and Safari */
-  *::-webkit-scrollbar {
-    width: 16px;
-  }
-
-  *::-webkit-scrollbar-track {
-    background: #ffffff;
-  }
-
-  *::-webkit-scrollbar-thumb {
-    background-color: #293647;
-    border-radius: 10px;
-    border: 0px solid #ffffff;
-  }
-
   header {
-    width: 100% !important;
+    width: unset !important;
   }
 
-* {
+  * {
   box-sizing: border-box;
 }
 
 html,
 body {
+  width: 100% !important;
   height: 100vh;
   font-family: "Inter";
   font-weight: 400;
@@ -366,12 +345,10 @@ header {
 }
 
 @media (min-width: 1920px) {
-  body {
-    width: 1920px;
+  #board {
+    width: 1640px;
   }
 }
-
-
 /* ### Mobile ### */
 
 @media (max-width: 1300px) {
