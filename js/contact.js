@@ -9,6 +9,32 @@ document.addEventListener('DOMContentLoaded', function() {
         editContactCard();
     });
 
+    document.addEventListener('DOMContentLoaded', function () {
+        const innerContentDiv = document.querySelector('.innerContent'); // Selektiert den innerContent-Bereich
+        const floatCtn = document.querySelector('.float-Ctn'); // Selektiert den Detailbereich
+    
+        document.querySelectorAll('.contact-data').forEach(function (el) {
+            el.addEventListener('click', function () {
+                // innerContent ausblenden
+                if (innerContentDiv) {
+                    innerContentDiv.style.display = 'none';
+                    console.log('innerContent ausgeblendet:', innerContentDiv.style.display);
+                } else {
+                    console.error('innerContent nicht gefunden.');
+                }
+    
+                // Detailbereich anzeigen
+                if (floatCtn) {
+                    floatCtn.style.display = 'block';
+                    console.log('Float-Ctn sichtbar gemacht:', floatCtn.style.display);
+                } else {
+                    console.error('Float-Ctn nicht gefunden.');
+                }
+            });
+        });
+    });
+    
+
     /**
      * Attaches click events to contact elements.
      * Toggles contact selection and displays/hides the contact card.
@@ -332,6 +358,14 @@ document.addEventListener('DOMContentLoaded', function() {
      */
     function generateContactCardHtml(contact) {
         return `
+            <div class="ContactsNew">
+                <div class="backcontainer"> 
+                    <h2>Contacts</h2>
+                    <img id="contactsNew" src="/assets/img/Vector.svg" alt="">
+                 </div>
+                 <p>Better with a team</p>
+                 <div class="blue-line"></div>
+            </div>
             <div class="float-top-Ctn">
                 <div class="float-img">${generateInitialsImage(contact.name, 120, contact.color)}</div>
                 <div class="float-Edit-Delet-Ctn">
@@ -349,7 +383,17 @@ document.addEventListener('DOMContentLoaded', function() {
             </div>
         `;
     }
+    
 
+    document.addEventListener('click', function (event) {
+        if (event.target.id === 'contactsNew') {
+            const floatCtn = document.querySelector('.float-Ctn');
+            if (floatCtn) {
+                floatCtn.style.display = 'none';
+            } 
+        }
+    });
+    
     /**
      * Generates HTML for the contact list.
      * @param {Array<Object>} contacts - Array of contacts.
@@ -437,3 +481,4 @@ function closeOnOutsideClick() {
         }
     });
 };
+
