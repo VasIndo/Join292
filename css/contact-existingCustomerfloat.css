@@ -151,9 +151,27 @@ h3{
   color: white;
   font-weight: bold;
   text-transform: uppercase;
- 
 }
 
+.edit-delete3{
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  width: 70px;
+  height: 40px;
+  margin: 5px;
+}
+
+.edit-delete3 p{
+  padding-left: 5px;
+}
+
+.edit-delete3:hover{
+  color: rgb(146, 146, 146);
+  font-weight: 700;
+  cursor: pointer;
+  filter: brightness(0) saturate(100%) invert(27%) sepia(90%) saturate(3325%) hue-rotate(170deg) brightness(90%) contrast(91%);
+}
 
 @media(max-width: 1590px){
  h2{
@@ -319,6 +337,10 @@ h3{
   }
 
   .menuButton{
+    display: none;
+  }
+
+  .edit-delete3{
     display: none;
   }
 }
