@@ -19,10 +19,6 @@ body{
  
 }
 
-.Content-Contacts::-webkit-scrollbar-thumb {
-    background: #888; /* Farbe des Scrollbar-Schiebereglers */
-    border-radius: 20px;
-}
   
 .Btn-Container{
   width: 430px;

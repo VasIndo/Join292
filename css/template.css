@@ -1,3 +1,30 @@
+* {
+  --sb-track-color: #f6f7f8;
+  --sb-thumb-color: #293647;
+  --sb-size: 10px;
+}
+
+*::-webkit-scrollbar {
+  width: var(--sb-size);
+}
+
+*::-webkit-scrollbar-track {
+  background: var(--sb-track-color);
+  border-radius: 10px;
+}
+
+*::-webkit-scrollbar-thumb {
+  background: var(--sb-thumb-color);
+  border-radius: 10px;
+}
+
+@supports not selector(::-webkit-scrollbar) {
+  * {
+      scrollbar-color: var(--sb-thumb-color)
+                     var(--sb-track-color);
+  }
+}
+
 body {
   padding: 0;
   margin: 0;
@@ -103,13 +130,13 @@ nav {
   gap: 8px;
 }
 
-.navLaws>a {
+.navLaws > a {
   color: #a8a8a8;
   font-size: 16px;
   text-decoration: none;
 }
 
-.navLaws>a:hover {
+.navLaws > a:hover {
   cursor: pointer;
   font-weight: 700;
   color: rgba(41, 171, 226, 1);
@@ -226,7 +253,7 @@ nav {
     gap: unset;
   }
 
-  header>span,
+  header > span,
   .helpBtn {
     display: none;
   }
@@ -250,7 +277,7 @@ nav {
     z-index: 1;
   }
 
-  .navbar-mobile>a {
+  .navbar-mobile > a {
     color: #cdcdcd;
     text-decoration: none;
     display: flex;
