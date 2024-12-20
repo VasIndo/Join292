@@ -387,8 +387,8 @@ document.addEventListener('DOMContentLoaded', function() {
             </div>
 
             <div id="menuButton" class="menuButton" style="display: none;">
-              <div class="edit-delete2"><img class="small-img" src="./assets/icon/edit.svg"><p>Edit</p></div>
-              <div class="edit-delete2"><img class="small-img" src="./assets/icon/delete.svg"><p>Delete</p></div>
+              <div class="edit-delete3"><img class="small-img" src="./assets/icon/edit.svg"><p>Edit</p></div>
+              <div class="edit-delete3"><img class="small-img" src="./assets/icon/delete.svg"><p>Delete</p></div>
             </div>
         `;
         
@@ -517,6 +517,4 @@ function closeOnOutsideClick() {
         }
     });
 };
-
-
 
