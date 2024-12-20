@@ -381,10 +381,46 @@ document.addEventListener('DOMContentLoaded', function() {
                 <p class="font-weight">Email</p><p class="email-blue">${contact.email}</p>
                 <p class="font-weight">Phone</p><p>${contact.phone}</p>
             </div>
+            
+            <div id="menuDot" class="menuDot">
+            <img src="/assets/img/threedot.svg" alt="" >
+            </div>
+
+            <div id="menuButton" class="menuButton" style="display: none;">
+              <div class="edit-delete2"><img class="small-img" src="./assets/icon/edit.svg"><p>Edit</p></div>
+              <div class="edit-delete2"><img class="small-img" src="./assets/icon/delete.svg"><p>Delete</p></div>
+            </div>
         `;
+        
+        
     }
     
-
+    function handleMenuClick(event) {
+        // Prüfen, ob der Klick auf ein Element mit der Klasse "menuDot" war
+        if (event.target.closest(".menuDot")) {
+            const menuDot = event.target.closest(".menuDot");
+            const menuButton = menuDot.nextElementSibling; // Nächstes Element in der Struktur
+            if (!menuButton) {
+                console.error("Fehler: Menü-Button nicht gefunden.");
+                return;
+            }
+            // Umschalten der Sichtbarkeit
+            if (menuButton.style.display === "none" || menuButton.style.display === "") {
+                menuButton.style.display = "flex";
+            } else {
+                menuButton.style.display = "none";
+            }
+        } else if (!event.target.closest(".menuButton")) {
+            // Wenn der Klick außerhalb von menuDot und menuButton ist, Menüs schließen
+            document.querySelectorAll(".menuButton").forEach(menu => {
+                menu.style.display = "none";
+            });
+        }
+    }
+    
+    // Event Listener hinzufügen
+    document.addEventListener("click", handleMenuClick);
+    
     document.addEventListener('click', function (event) {
         if (event.target.id === 'contactsNew') {
             const floatCtn = document.querySelector('.float-Ctn');
@@ -481,4 +517,6 @@ function closeOnOutsideClick() {
         }
     });
 };
+
+
 

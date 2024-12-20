@@ -82,7 +82,7 @@ h2{
 }
 
 .edit-delete2:hover{
-  color: rgba(41, 171, 226, 1);
+  color: rgb(146, 146, 146);
   font-weight: 700;
   cursor: pointer;
   filter: brightness(0) saturate(100%) invert(27%) sepia(90%) saturate(3325%) hue-rotate(170deg) brightness(90%) contrast(91%);
@@ -130,6 +130,11 @@ h3{
   display: flex;
   align-items: center;
   margin-top: 20px;
+  margin-left: -25px;
+}
+
+.contact-Information-box{
+  margin-left: -25px;
 }
 
 .font-weight{
@@ -310,12 +315,72 @@ h3{
   .ContactsNew{
     display: none;
   }
+
+  .menuDot{
+    display: none;
+  }
+
+  .menuButton{
+    display: none;
+  }
 }
 
 @media (max-width: 600px) {
  .mid-Content{
   display: none;
  }
+
+
+ .float-Edit-Delet-Ctn {
+  justify-content: center;
+}
+
+ .edit-delete-Ctn{
+  display: none;
+ }
+
+ .edit-delete2 p {
+  font-size: 20px;
+  
+}
+
+ .menuButton{
+  width: 150px;
+  height: 120px;
+  border-radius: 30px 30px 0px 30px;
+  background-color: rgb(251 251 251);
+  box-shadow: 1px 2px 2px 2px #b5b5b5;
+  position: fixed;
+  bottom: 300px;
+  right: 80px;
+  left: auto;
+  top: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+ }
+
+ .menuDot{
+    border-radius: 10px;
+    padding: 12px 0px 12px 0px;
+    background-color: rgba(42, 54, 71, 1);
+    display: flex;
+    border-radius: 50px;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    border: none;
+    box-shadow: 1px 4px 20px 0px #717171;
+    bottom: 230px;
+    width: 100px;
+    height: 80px;
+    top: auto;
+    right: 60px;
+    left: auto;
+    position: fixed;
+}
+ 
 
  .blue-line{
   width: 120px;
@@ -395,6 +460,16 @@ h3{
   }
 }
 
+
+@media(max-width: 500px){
+  .menuDot{
+    width: 70px;
+    height: 45px;
+    right: 50px;
+    bottom: 240px;
+  }
+}
+
 @media (max-width: 420px){
   .float-Ctn{
     padding-left: 10px;
@@ -430,4 +505,41 @@ h3{
   .contact-Information {
      margin-top: -5px; 
   }
+
+  .menuDot{
+    width: 50px;
+    height: 25px;
+    bottom: 200px;
+    right: 25px;
+  }
+
+  .menuButton{
+    width: 140px;
+    height: 110px;
+    bottom: 240px;
+    right: 40px;
+  }
+  
 }
+
+@media (max-width: 375px) and (max-height: 667px) {
+ .backcontainer img {
+  margin-left: 170px;
+}
+
+.menuDot{
+  width: 50px;
+  height: 25px;
+  bottom: 200px;
+  right: 25px;
+}
+
+.menuButton{
+  width: 140px;
+  height: 110px;
+  bottom: 240px;
+  right: 40px;
+}
+
+}
+
