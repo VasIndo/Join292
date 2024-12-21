@@ -94,6 +94,17 @@ document.addEventListener('DOMContentLoaded', function() {
             deleteContact(contact.email);
         });
 
+        document.getElementById('editButton').addEventListener('click', function(e) {
+            e.stopPropagation();
+            editContactCard(contact.email, true);
+        });
+
+        document.getElementById('deleteButton').addEventListener('click', function() {
+            deleteContact(contact.email);
+        });
+        
+        
+        
         function updateFloatImgSize() {
             const floatImg = card.querySelector('.float-img div');
             if (window.innerWidth <= 1590) {
@@ -387,15 +398,15 @@ document.addEventListener('DOMContentLoaded', function() {
             </div>
 
             <div id="menuButton" class="menuButton" style="display: none;">
-              <div class="edit-delete3"><img class="small-img" src="./assets/icon/edit.svg"><p>Edit</p></div>
-              <div class="edit-delete3"><img class="small-img" src="./assets/icon/delete.svg"><p>Delete</p></div>
+              <div class="edit-delete3" id="editButton"><img class="small-img" src="./assets/icon/edit.svg"><p>Edit</p></div>
+              <div class="edit-delete3" id="deleteButton"><img class="small-img" src="./assets/icon/delete.svg"><p>Delete</p></div>
             </div>
         `;
         
         
     }
-    
-    function handleMenuClick(event) {
+
+     function handleMenuClick(event) {
         // Prüfen, ob der Klick auf ein Element mit der Klasse "menuDot" war
         if (event.target.closest(".menuDot")) {
             const menuDot = event.target.closest(".menuDot");

@@ -361,7 +361,10 @@ h3{
 
  .edit-delete2 p {
   font-size: 20px;
-  
+}
+
+.profil-img{
+  display: none;
 }
 
  .menuButton{
