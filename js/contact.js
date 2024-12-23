@@ -372,7 +372,7 @@ document.addEventListener('DOMContentLoaded', function() {
             <div class="ContactsNew">
                 <div class="backcontainer"> 
                     <h2>Contacts</h2>
-                    <img id="contactsNew" src="/assets/img/Vector.svg" alt="">
+                    <img id="contactsNew" src="assets/img/Vector.svg" alt="">
                  </div>
                  <p>Better with a team</p>
                  <div class="blue-line"></div>
@@ -394,7 +394,7 @@ document.addEventListener('DOMContentLoaded', function() {
             </div>
             
             <div id="menuDot" class="menuDot">
-            <img src="/assets/img/threedot.svg" alt="" >
+            <img src="assets/img/threedot.svg" alt="" >
             </div>
 
             <div id="menuButton" class="menuButton" style="display: none;">
