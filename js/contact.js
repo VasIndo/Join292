@@ -229,50 +229,70 @@ document.addEventListener('DOMContentLoaded', function() {
         closeOnOutsideClick();
     }
 
-    /**
-     * Saves the edited or new contact.
-     * @param {Event} event - The event object.
-     * @param {string} email - The email of the contact being edited.
-     */
-    async function saveEditedContact(event, email) {
-        event.preventDefault();
-        const name = document.getElementById('contact-name').value.trim(),
-              emailValue = document.getElementById('contact-email').value.trim(),
-              phone = document.getElementById('contact-phone').value.trim();
+   /**
+ * Saves the edited or new contact.
+ * @param {Event} event - The event object.
+ * @param {string} email - The email of the contact being edited live.
+ */
+async function saveEditedContact(event, email) {
+    event.preventDefault();
+    const name = document.getElementById('contact-name').value.trim(),
+          emailValue = document.getElementById('contact-email').value.trim(),
+          phone = document.getElementById('contact-phone').value.trim();
 
-        // Email validation: must end with .de or .com
-        const emailPattern = /^[^\s@]+@[^\s@]+\.(de|com)$/;
-        if (!name || !emailValue || !phone) {
-            return alert('All fields must be filled!');
-        }
-        if (!emailPattern.test(emailValue)) {
-            return alert('Please enter a valid email address that ends with .de or .com (e.g., test@example.com or test@example.de)');
-        }
+    // Email-Validierung: muss mit .de oder .com enden
+    const emailPattern = /^[^\s@]+@[^\s@]+\.(de|com)$/;
+    const phonePattern = /^\d+$/; // Nur Zahlen erlaubt
 
-        const duplicateContact = contacts.find(contact => 
-            (contact.name.toLowerCase() === name.toLowerCase() && contact.email !== email) || 
-            (contact.email.toLowerCase() === emailValue.toLowerCase() && contact.email !== email)
-        );
-        if (duplicateContact) {
-            return alert('Dieser Name oder diese E-Mail ist bereits vorhanden. Bitte geben Sie andere Werte ein.');
-        }
-
-        const contactIndex = contacts.findIndex(c => c.email === email);
-        const isNewContact = contactIndex === -1;
-        const updatedContact = { name, email: emailValue, phone, color: contacts[contactIndex]?.color || getUniqueColor() };
-
-        if (isNewContact) {
-            contacts.push(updatedContact);
-            await addContactToFirebase(updatedContact);
-            showCreationAlert();
-        } else {
-            contacts[contactIndex] = updatedContact;
-            await updateContactInFirebase(email, updatedContact);
-        }
-
-        renderContactList();
-        document.getElementById('next').remove();
+    if (!name || !emailValue || !phone) {
+        return alert('All fields must be filled!');
     }
+    if (!emailPattern.test(emailValue)) {
+        return alert('Please enter a valid email address that ends with .de or .com (e.g., test@example.com or test@example.de)');
+    }
+    if (!phonePattern.test(phone)) {
+        return alert('The phone number must contain only numbers!');
+    }
+
+    const duplicateContact = contacts.find(contact => 
+        (contact.name.toLowerCase() === name.toLowerCase() && contact.email !== email) || 
+        (contact.email.toLowerCase() === emailValue.toLowerCase() && contact.email !== email)
+    );
+    if (duplicateContact) {
+        return alert('Dieser Name oder diese E-Mail ist bereits vorhanden. Bitte geben Sie andere Werte ein.');
+    }
+
+    const contactIndex = contacts.findIndex(c => c.email === email);
+    const isNewContact = contactIndex === -1;
+    const updatedContact = { name, email: emailValue, phone, color: contacts[contactIndex]?.color || getUniqueColor() };
+
+    if (isNewContact) {
+        // Neuer Kontakt
+        contacts.push(updatedContact);
+        await addContactToFirebase(updatedContact);
+        showCreationAlert();
+    } else {
+        // Bestehenden Kontakt aktualisieren
+        contacts[contactIndex] = updatedContact;
+        await updateContactInFirebase(email, updatedContact);
+
+        // UI sofort aktualisieren
+        const contactElement = document.querySelector(`.contact-data[data-email="${email}"]`);
+        if (contactElement) {
+            contactElement.querySelector('h1').innerText = updatedContact.name;
+            contactElement.querySelector('p').innerText = updatedContact.email;
+        }
+
+        // Kontaktkarten-Details aktualisieren, falls geöffnet
+        const contactCard = document.querySelector('.float-Ctn');
+        if (contactCard && contactCard.classList.contains('visible')) {
+            renderContactCard(updatedContact);
+        }
+    }
+
+    renderContactList(); // Gesamte Liste neu rendern (optional, falls nötig)
+    document.getElementById('next').remove(); // Bearbeitungsfenster schließen
+}
 
     /**
      * Adds a new contact to Firebase.
