@@ -571,7 +571,7 @@ li input {
 
 @media only screen and (max-width: 768px) {
     .form {
-        font-size: 16px;
+        font-size: 18px;
     }
 
     .bottom {
@@ -593,11 +593,17 @@ li input {
 
     #title {
         width: 238px;
+        font-size: 15px;
+    }
+
+    #description {
+        font-size: 15px;
     }
 
     #assigned-dropdown,
     #category-dropdown {
         width: 246px;
+        font-size: 15px;
     }
 
     #person-to-assigned,
@@ -611,6 +617,7 @@ li input {
 
     #date {
         width: 245px;
+        font-size: 15px;
     }
 
     .high-btn,
@@ -627,6 +634,7 @@ li input {
 
     .add-subtasks-container>input {
         width: 247px;
+        font-size: 15px;
     }
 
     .add-subtasks-container>img {
