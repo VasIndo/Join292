@@ -234,7 +234,7 @@ document.addEventListener('DOMContentLoaded', function() {
  * @param {Event} event - The event object.
  * @param {string} email - The email of the contact being edited live.
  */
-async function saveEditedContact(event, email) {
+   async function saveEditedContact(event, email) {
     event.preventDefault();
     const name = document.getElementById('contact-name').value.trim(),
           emailValue = document.getElementById('contact-email').value.trim(),
@@ -245,13 +245,13 @@ async function saveEditedContact(event, email) {
     const phonePattern = /^\d+$/; // Nur Zahlen erlaubt
 
     if (!name || !emailValue || !phone) {
-        return alert('All fields must be filled!');
+        return showAlert('All fields must be filled!', 'error');
     }
     if (!emailPattern.test(emailValue)) {
-        return alert('Please enter a valid email address that ends with .de or .com (e.g., test@example.com or test@example.de)');
+        return showAlert('Please enter a valid email address that ends with .de or .com (e.g., test@example.com or test@example.de)', 'error');
     }
     if (!phonePattern.test(phone)) {
-        return alert('The phone number must contain only numbers!');
+        return showAlert('The phone number must contain only numbers!', 'error');
     }
 
     const duplicateContact = contacts.find(contact => 
@@ -259,7 +259,7 @@ async function saveEditedContact(event, email) {
         (contact.email.toLowerCase() === emailValue.toLowerCase() && contact.email !== email)
     );
     if (duplicateContact) {
-        return alert('Dieser Name oder diese E-Mail ist bereits vorhanden. Bitte geben Sie andere Werte ein.');
+        return showAlert('Dieser Name oder diese E-Mail ist bereits vorhanden. Bitte geben Sie andere Werte ein.', 'error');
     }
 
     const contactIndex = contacts.findIndex(c => c.email === email);
@@ -270,7 +270,7 @@ async function saveEditedContact(event, email) {
         // Neuer Kontakt
         contacts.push(updatedContact);
         await addContactToFirebase(updatedContact);
-        showCreationAlert();
+        showAlert('Contact successfully created', 'success');
     } else {
         // Bestehenden Kontakt aktualisieren
         contacts[contactIndex] = updatedContact;
@@ -293,6 +293,7 @@ async function saveEditedContact(event, email) {
     renderContactList(); // Gesamte Liste neu rendern (optional, falls nötig)
     document.getElementById('next').remove(); // Bearbeitungsfenster schließen
 }
+
 
     /**
      * Adds a new contact to Firebase.
@@ -353,20 +354,29 @@ async function saveEditedContact(event, email) {
     /**
      * Displays a creation success alert.
      */
-    function showCreationAlert() {
+    function showAlert(message, type = 'info') {
+        const alertTypes = {
+            info: 'alert-info',
+            success: 'alert-success',
+            error: 'alert-error'
+        };
+    
+        const alertClass = alertTypes[type] || alertTypes.info;
+    
         document.body.insertAdjacentHTML('beforeend', `
-            <div class="AlertCreated">
-                <div class="createdsuccesfully">Contact successfully created</div>
+            <div class="AlertCreated ${alertClass}">
+                <div class="createdsuccesfully">${message}</div>
             </div>
         `);
+    
+        const alertElement = document.querySelector('.AlertCreated');
+    
         setTimeout(() => {
-            const alertElement = document.querySelector('.AlertCreated');
             alertElement.style.transition = 'opacity 0.5s ease';
             alertElement.style.opacity = '0';
             setTimeout(() => alertElement.remove(), 500);
-        }, 1000);
+        }, 1500);
     }
-
     /**
      * Adjusts the avatar size based on window width.
      */
